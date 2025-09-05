@@ -16,7 +16,7 @@ TOPK = 8                # sensible default (5–8)
 model = SentenceTransformer("multi-qa-mpnet-base-dot-v1")
 client = OpenAI(api_key=apiKey)
 
-def load_query(path="query.md"):
+def load_query(path="batchQuery.md"):
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             return f.read().strip()
@@ -149,9 +149,37 @@ def show_page_table(chunks, metas, scores):
 def ensure_pagefile():
     return update_pagefile(PDF_DIR, PAGE_FILE)
 
+# if __name__ == "__main__":
+#     ix,X,chunks,metas,manifest = ensure_pagefile()
+#     query_text = load_query("query.md")
+#     ans, scores = query_rag(query_text, ix, chunks, k=TOPK)
+#     show_page_table(chunks, metas, scores)
+#     print("\n---\n", ans)
+
+
 if __name__ == "__main__":
-    ix,X,chunks,metas,manifest = ensure_pagefile()
-    query_text = load_query("query.md")
-    ans, scores = query_rag(query_text, ix, chunks, k=TOPK)
-    show_page_table(chunks, metas, scores)
-    print("\n---\n", ans)
+
+    # Load or update index
+    ix, X, chunks, metas, manifest = ensure_pagefile()
+
+    # Collect queries
+    with open("batchQueries.txt", "r", encoding="utf-8") as f:
+        queries = [line.strip() for line in f if line.strip()]
+
+    # Run batch
+    results = []
+    for i, q in enumerate(queries, 1):
+        print(f"\n🔍 Query {i}/{len(queries)}: {q}")
+        try:
+            query_text = q + "\n\n" + load_query()
+            ans, scores = query_rag(query_text, ix, chunks, k=TOPK)
+            show_page_table(chunks, metas, scores)
+            print(f"\n📥 Answer:\n{ans}\n")
+            results.append(f"Q{i}: {q}\nA{i}: {ans}\n{'-'*60}\n")
+        except Exception as e:
+            print(f"❌ Error on query {i}: {e}")
+            results.append(f"Q{i}: {q}\nA{i}: [ERROR: {e}]\n{'-'*60}\n")
+
+    # Write output file
+    with open("result.txt", "w", encoding="utf-8") as f:
+        f.writelines(results)
