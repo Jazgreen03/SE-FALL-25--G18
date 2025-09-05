@@ -1,0 +1,117 @@
+Q1: Use the following structures as a template for your response:
+
+UC1: Order a Drink as a Customer
+Preconditions:
+• The customer is logged in.
+• At least one menu item is available.
+
+Main Flow:
+The user opens the application, triggering the system to [Display Menu]. The user then makes a selection, which executes the [Select Item] subflow. The user provides final confirmation to [Place Order], prompting the system to [Confirm Order] and finalize the transaction.
+
+Subflows:
+• [Display Menu] System retrieves and displays available items.
+• [Select Item] Customer chooses an item from the list.
+• [Place Order] Customer confirms (e.g., taps “Order Now”).
+• [Confirm Order] System creates an order number, sets status to ORDERED, and shows a confirmation message.
+
+Alternative Flows and Edge Cases:
+• [AF1: No Available Items] At [Display Menu], if no items are available, show: “Sorry, no items are currently available.” and return to start.
+• [AF2: Item Unavailable After Selection] At [Place Order], if the item is no longer available, show: “Sorry, that item just sold out,” and return to [Display Menu].
+
+UC2: View and Fulfill a New Order
+Preconditions:
+• The Staff member is logged into the Staff Dashboard with the STAFF role.
+
+Main Flow:
+The staff member opens the dashboard, prompting the system to [Check Orders]. The staff selects an order to [Prepare Order] and, upon completion, chooses to [Mark Fulfilled], which directs the system to [Update Status] and remove the order from the active list.
+
+Subflows:
+• [Check Orders] System retrieves all orders with status ORDERED.
+ – If none exist, show “No new orders” [No Orders].
+• [Prepare Order] Staff prepares selected order.
+ – If unable to complete, go to [Cancel Order].
+• [Mark Fulfilled] Staff selects “Mark as Fulfilled”; system sets status to FULFILLED.
+• [Update Status] Order is removed from the ORDERED list.
+• [Cancel Order] Staff selects “Cancel Order”; system sets status to CANCELLED.
+
+Alternative Flows:
+• [AF1: No Orders] At [Check Orders], if no ORDERED orders exist, the System shows “No new orders.”
+• [AF2: Missing Ingredients] At [Prepare Order], if the order cannot be completed, go to [Cancel Order].
+
+UC3: Delivery Driver Delivers Order
+Preconditions:
+The User must be Logged In, and their account must have the Delivery Driver/Courier permissions [AF1].
+
+Mainflow:
+	On the main home page, the User selects "Check Orders," which displays all orders assigned to the User that are ready for pickup [AF2]. The User is then able to select an Order, then select the Pickup option [AF3][AF4]. The User is then directed to the Map, which updates to show the most efficient and safest route for the Driver to take to deliver the order to the Customer [AF5]. Once the Driver delivers the Order, they select the Delivered option, which will remove the Order from the Active Orders and add it to the Delivered Orders under the Customer’s account [AF6].
+
+Subflows:
+Pickup: Once selected, the Order is removed from the Orders Ready list (as seen under Check Orders), and is moved to the Active Orders list under the Users account. Additionally, the Customer receives a notification that the Order has been picked up and will be delivered soon.
+Map: Displays the map of where the User is, as well as the route that should be taken, as well as any potential alternative routes. The Map page will automatically update based on traffic and weather conditions to provide the safest and quickest route.
+
+Alternative Flows:
+[AF1]: If the User does not have Delivery Driver/Courier permissions, they will be redirected to the Customer view of the application, but will be able to go under the Support section of the application to request assistance
+[AF2]: If no order is available and marked as ready for pickup, the User is unable to select Pickup
+[AF3]: If more than one order is marked as ready, all orders can be selected and the Bulk Pickup option can be selected
+A1: # Use Cases UC11-UC25: Food Ordering and Delivery System
+
+## UC11: Schedule Order for Later Delivery
+**Preconditions:**
+• The customer is logged in.
+• At least one restaurant is available for scheduled delivery.
+• The selected delivery time is within the restaurant's operating hours.
+
+**Main Flow:**
+The customer opens the application and selects "Schedule Order" from the main menu, triggering the system to [Display Available Time Slots]. The customer selects their preferred delivery time, which executes the [Select Time Slot] subflow. The customer then proceeds to [Browse Menu] and [Place Scheduled Order], prompting the system to [Confirm Scheduled Order] and set the order status to SCHEDULED.
+
+**Subflows:**
+• [Display Available Time Slots] System retrieves and displays available delivery windows for the next 7 days.
+• [Select Time Slot] Customer chooses a specific date and time for delivery.
+• [Browse Menu] Customer selects items from the restaurant menu.
+• [Place Scheduled Order] Customer confirms the order with scheduled delivery time.
+• [Confirm Scheduled Order] System creates order number, sets status to SCHEDULED, and displays confirmation with delivery time.
+
+**Alternative Flows:**
+• [AF1: No Available Slots] At [Display Available Time Slots], if no slots are available, show "Sorry, no delivery slots available for your area" and return to main menu.
+• [AF2: Time Slot Unavailable] At [Place Scheduled Order], if the selected time slot is no longer available, show "Selected time slot is no longer available" and return to [Display Available Time Slots].
+
+## UC12: Apply Promotional Code
+**Preconditions:**
+• The customer is logged in.
+• The customer has items in their cart.
+• At least one promotional code exists in the system.
+
+**Main Flow:**
+The customer navigates to the checkout page and selects "Apply Promo Code", triggering the system to [Display Promo Code Entry]. The customer enters their code, which executes the [Validate Promo Code] subflow. Upon successful validation, the system applies the discount through [Apply Discount] and updates the order total via [Recalculate Total].
+
+**Subflows:**
+• [Display Promo Code Entry] System shows input field for promotional code entry.
+• [Validate Promo Code] System checks code validity, expiration date, and usage limits.
+• [Apply Discount] System applies the appropriate discount amount or percentage.
+• [Recalculate Total] Order total is updated to reflect the promotional discount.
+
+**Alternative Flows:**
+• [AF1: Invalid Code] At [Validate Promo Code], if code is invalid or expired, show "Invalid or expired promotional code" and return to checkout.
+• [AF2: Code Already Used] At [Validate Promo Code], if code has reached usage limit, show "Promotional code has already been used" and return to checkout.
+• [AF3: Minimum Order Not Met] At [Apply Discount], if order doesn't meet minimum requirements, show "Order must be at least $X to use this code" and return to checkout.
+
+## UC13: Rate and Review Completed Order
+**Preconditions:**
+• The customer is logged in.
+• The customer has at least one completed order with status DELIVERED.
+• The order has not been previously reviewed.
+
+**Main Flow:**
+The customer opens their order history and selects a delivered order, triggering the system to [Display Review Form]. The customer provides ratings and comments through [Submit Rating] and [Add Written Review] subflows. The system then processes the feedback via [Save Review] and updates restaurant ratings through [Update Restaurant Rating].
+
+**Subflows:**
+• [Display Review Form] System shows rating interface for food quality, delivery time, and overall experience.
+• [Submit Rating] Customer provides star ratings (1-5) for different aspects of the order.
+• [Add Written Review] Customer optionally adds written feedback about their experience.
+• [Save Review] System stores the review and links it to the order and restaurant.
+• [Update Restaurant Rating] System recalculates restaurant's average rating based on new review.
+
+**Alternative Flows:**
+• [AF1: Already Reviewed] At [Display Review Form], if order was already reviewed, show "You have already reviewed this order" and display existing review.
+• [AF2: Order Too Old] At [Display Review Form], if order is older than 30 days, show "Review period has expired for this order" an
+------------------------------------------------------------

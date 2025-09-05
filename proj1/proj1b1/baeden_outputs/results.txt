@@ -1,0 +1,144 @@
+Q1: Using the supporing material below, generate 15 use case titles
+A1: UC11: Place Order
+Preconditions:
+- Customer has registered and has a valid account
+- Customer has selected a restaurant to order from
+- Customer has items in their cart
+
+Main Flow:
+1. Customer selects "Place Order" option
+2. System displays order summary, including items, quantities, and total cost
+3. Customer reviews order details and selects "Confirm Order"
+4. System processes the order and provides the customer with an estimated delivery time
+5. System sends the order to the selected restaurant
+
+Subflows:
+[Display Order Summary]
+[Process Payment]
+
+Alternative Flows:
+[AF1: Apply Promo Code]
+- Customer selects "Apply Promo Code" before confirming order
+- System applies the promo code and updates the order total
+- Customer reviews updated order details and selects "Confirm Order"
+
+UC12: Track Order Status
+Preconditions:
+- Customer has placed an order
+
+Main Flow:
+1. Customer selects "Track Order" option
+2. System displays the current status of the customer's order
+3. System provides estimated time for order completion and delivery
+
+Subflows:
+[Display Order Status]
+
+Alternative Flows:
+[AF1: Contact Support]
+- Customer selects "Contact Support" if they have any questions or issues with their order
+- System directs the customer to the appropriate support channel
+
+UC13: Manage Account
+Preconditions:
+- Customer has a registered account
+
+Main Flow:
+1. Customer selects "My Account" option
+2. System displays the customer's account information, including name, email, and delivery address
+3. Customer can update their account details as needed
+4. System saves the updated information
+
+Subflows:
+[Update Profile Information]
+[Change Password]
+
+Alternative Flows:
+[AF1: Delete Account]
+- Customer selects "Delete Account" option
+- System prompts the customer to confirm account deletion
+- System deactivates the customer's account
+
+UC14: Rate and Review Order
+Preconditions:
+- Customer has received a completed order
+
+Main Flow:
+1. Customer selects "Rate Order" option
+2. System displays a rating and review form
+3. Customer provides a rating and optional written review
+4. System saves the customer's feedback and associates it with the order
+
+Subflows:
+[Provide Rating]
+[Write Review]
+
+Alternative Flows:
+[AF1: Edit Review]
+- Customer selects "Edit Review" option
+- System allows the customer to update their review
+- System saves the updated review
+
+UC15: Manage Favorite Restaurants
+Preconditions:
+- Customer has a registered account
+
+Main Flow:
+1. Customer selects "Favorite Restaurants" option
+2. System displays the customer's list of favorite restaurants
+3. Customer can add, remove, or rearrange favorite restaurants
+
+Subflows:
+[Add Favorite Restaurant]
+[Remove Favorite Restaurant]
+[Reorder Favorites]
+
+Alternative Flows:
+[AF1: Search for Restaurants]
+- Customer selects "Search" option
+- System displays a list of restaurants based on the customer's search criteria
+- Customer can add a restaurant to their favorites from the search results
+
+UC16: Customize Order
+Preconditions:
+- Customer has items in their cart
+- Customer is ready to place an order
+
+Main Flow:
+1. Customer selects "Customize Order" option
+2. System displays the customer's current order details
+3. Customer can modify item quantities, remove items, or add new items
+4. System updates the order summary and total cost
+5. Customer confirms the updated order
+
+Subflows:
+[Modify Quantities]
+[Remove Items]
+[Add New Items]
+
+Alternative Flows:
+[AF1: Apply Dietary Preferences]
+- Customer selects "Dietary Preferences" option
+- System filters the menu to display only items that match the customer's preferences
+- Customer can add preferred items to their order
+
+UC17: Schedule Delivery
+Preconditions:
+- Customer has placed an order
+
+Main Flow:
+1. Customer selects "Schedule Delivery" option
+2. System displays the customer's current delivery address and estimated delivery time
+3. Customer can choose a different delivery date and time
+4. System updates the delivery details and provides the customer with a revised estimated delivery time
+5. Customer confirms the scheduled delivery
+
+Subflows:
+[Change Delivery Address]
+[Select Delivery Date and Time]
+
+Alternative Flows:
+[AF1: Reschedule Delivery]
+- Customer selects "Reschedule Delivery" option
+-
+------------------------------------------------------------

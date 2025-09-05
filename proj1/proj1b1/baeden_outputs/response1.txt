@@ -1,0 +1,3749 @@
+Q1: Use the following structures as a template for your response:
+A1: Here are 15 new use cases for the food ordering and delivery system, following the requested structure:
+
+UC11: Update User Profile
+Preconditions:
+- User is logged into the app.
+- User has a valid account.
+
+Main Flow:
+1. User selects the "Update Profile" option.
+2. System displays the current user profile information.
+3. User modifies the desired profile details (e.g., name, email, phone number, address).
+4. User submits the updated profile information.
+5. System validates the new profile data.
+6. System updates the user's profile in the database.
+7. System confirms the successful profile update to the user.
+
+Subflows:
+[Validate User Input]
+[Update User Database]
+
+Alternative Flows:
+[AF1: Invalid Input]
+  3a. System detects invalid or incomplete profile data.
+  3b. System displays an error message and prompts the user to re-enter the information.
+  3c. User corrects the profile data and resubmits.
+  Steps 4-7 in Main Flow resume.
+
+UC12: Track Order Status
+Preconditions:
+- User has placed an order.
+- Order is in progress.
+
+Main Flow:
+1. User selects the "Track Order" option.
+2. System retrieves the user's current order details.
+3. System displays the order status (e.g., preparing, en route, delivered).
+4. System provides estimated delivery time.
+5. User can monitor the order progress.
+
+Subflows:
+[Retrieve Order Details]
+[Display Order Status]
+
+Alternative Flows:
+[AF1: Order Not Found]
+  2a. System cannot find the user's current order.
+  2b. System displays an error message.
+
+UC13: Schedule Recurring Orders
+Preconditions:
+- User has a valid account.
+- User has placed orders before.
+
+Main Flow:
+1. User selects the "Schedule Recurring Order" option.
+2. System displays the user's previous order history.
+3. User selects a previous order to repeat.
+4. User customizes the order details (e.g., frequency, delivery time).
+5. User confirms the recurring order setup.
+6. System schedules the recurring order in the database.
+7. System confirms the successful schedule to the user.
+
+Subflows:
+[Display Order History]
+[Schedule Recurring Order]
+
+Alternative Flows:
+[AF1: Invalid Schedule]
+  4a. System detects an invalid schedule (e.g., overlapping delivery times).
+  4b. System displays an error message and prompts the user to re-enter the schedule.
+  4c. User corrects the schedule and confirms.
+  Steps 5-7 in Main Flow resume.
+
+UC14: Leave Feedback
+Preconditions:
+- User has placed an order.
+- Order has been delivered.
+
+Main Flow:
+1. User selects the "Leave Feedback" option.
+2. System displays a feedback form.
+3. User rates the overall experience (e.g., 1-5 stars).
+4. User provides additional comments (optional).
+5. User submits the feedback.
+6. System saves the user's feedback in the database.
+7. System confirms the successful feedback submission.
+
+Subflows:
+[Display Feedback Form]
+[Submit Feedback]
+
+Alternative Flows:
+[AF1: Incomplete Feedback]
+  3a. User does not provide a rating.
+  3b. System displays an error message and prompts the user to provide a rating.
+  3c. User completes the rating and proceeds.
+  Steps 4-7 in Main Flow resume.
+
+UC15: Report Order Issue
+Preconditions:
+- User has placed an order.
+- Order has been delivered.
+
+Main Flow:
+1. User selects the "Report Issue" option.
+2. System displays a list of common order issues (e.g., missing items, incorrect order, cold food).
+3. User selects the appropriate issue.
+4. User provides additional details about the issue (optional).
+5. User submits the issue report.
+6. System logs the issue report in the database.
+7. System notifies the restaurant and the customer service team about the issue.
+8. System confirms the successful issue report to the user.
+
+Subflows:
+[Display Issue Options]
+[Submit Issue Report]
+[Notify Stakeholders]
+
+Alternative Flows:
+[AF1: No Issue Selected]
+  3a
+------------------------------------------------------------
+Q2: UC1: Order a Drink as a Customer
+A2: UC11: Place an Order for Multiple Items
+
+Preconditions:
+- The customer is a registered member of the food ordering system.
+- The customer has a valid payment method linked to their account.
+- The restaurant the customer wishes to order from is open and accepting orders.
+
+Main Flow:
+1. The customer navigates to the restaurant menu on the mobile app or website.
+2. The customer browses the menu and selects multiple food and/or drink items they would like to order.
+3. The customer reviews the order summary, including the item details, quantities, and the total cost.
+4. The customer provides any special instructions for the order (e.g., dietary requirements, delivery preferences).
+5. The customer selects their preferred delivery or pickup time slot.
+6. The customer confirms the order and proceeds to the payment page.
+7. The customer securely provides their payment information and completes the transaction.
+8. The system processes the payment and sends the order to the restaurant.
+9. The restaurant receives the order and begins preparing the items.
+10. The customer receives a confirmation of the order and is provided with order tracking updates.
+11. The customer's order is delivered or made available for pickup at the selected time.
+
+Subflows:
+[Select Menu Items]
+[Review Order Summary]
+[Select Delivery/Pickup Time]
+[Provide Payment Information]
+
+Alternative Flows:
+[AF1: Item Unavailable]
+- If an item the customer selected is unavailable, the system notifies the customer and removes the item from the order.
+- The customer is given the option to replace the unavailable item or proceed with the remaining items.
+
+[AF2: Insufficient Funds]
+- If the customer's payment method has insufficient funds to complete the order, the system notifies the customer.
+- The customer is prompted to update their payment information or choose a different payment method.
+
+[AF3: Delivery Unavailable]
+- If the customer's selected delivery location is outside the restaurant's delivery radius, the system notifies the customer.
+- The customer is given the option to choose a different delivery location or select pickup instead.
+
+UC12: Track an Ongoing Order
+
+Preconditions:
+- The customer has placed an order with the food ordering system.
+- The order is currently being processed by the restaurant.
+
+Main Flow:
+1. The customer navigates to the order tracking section of the mobile app or website.
+2. The customer enters their order number or selects the order from their order history.
+3. The system retrieves the current status of the order and displays it to the customer.
+4. The customer can view details such as the order preparation progress, the driver's location (if applicable), and the estimated delivery or pickup time.
+5. The customer can contact the restaurant or delivery driver directly from the order tracking page if needed.
+6. The customer receives real-time updates as the order progresses through the different stages.
+7. The customer is notified when the order is ready for pickup or has been delivered.
+
+Subflows:
+[View Order Status]
+[Contact Restaurant/Driver]
+[Receive Order Updates]
+
+Alternative Flows:
+[AF1: Order Not Found]
+- If the customer enters an invalid order number or the order is not found in the system, the system displays an error message.
+- The customer is prompted to check the order number and try again.
+
+[AF2: Delayed Order]
+- If the order is delayed beyond the expected delivery or pickup time, the system notifies the customer.
+- The customer is provided with an estimated revised delivery or pickup time and the reason for the delay.
+
+UC13: Provide Feedback on an Order
+
+Preconditions:
+- The customer has received an order from the food ordering system.
+- The customer has an account with the food ordering system.
+
+Main Flow:
+1. The customer navigates to the order history section of the mobile app or website.
+2. The customer selects the order they wish to provide feedback on.
+3. The customer is presented with a feedback form, which includes sections for rating the overall experience, the food quality, the delivery service, and the restaurant's performance.
+4. The customer provides a numerical rating and optionally writes a text-based review for each section.
+5. The customer submits the feedback form.
+6. The system processes the feedback and associates it with the customer's account and the specific order.
+7. The restaurant and the food ordering system's administration team receive the customer's feedback.
+8. The customer is thanked for their feedback and informed that it will be used to improve the service.
+
+Subflows:
+[Select Order for Feedback]
+[
+------------------------------------------------------------
+Q3: Preconditions:
+A3: UC11: Place Order for Delivery
+Preconditions:
+- Customer has an active account with the food delivery app.
+- Customer has a valid payment method associated with their account.
+- Restaurant is open and accepting delivery orders.
+- Item(s) the customer wishes to order are available on the restaurant's menu.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the restaurant's menu.
+2. Customer selects the desired item(s) and adds them to their cart.
+3. Customer reviews the order summary, including the total cost and estimated delivery time.
+4. Customer selects their delivery address and preferred payment method.
+5. Customer places the order.
+6. The app sends the order details to the restaurant.
+7. The restaurant acknowledges the order and begins preparing the items.
+8. The app tracks the order status and provides updates to the customer.
+9. Once the order is ready, the app assigns a delivery driver to pick up the order from the restaurant.
+10. The delivery driver picks up the order and delivers it to the customer's address.
+11. The customer receives the order and can rate the delivery experience.
+
+Subflows:
+[Apply Promo Code]
+1. Before placing the order, the customer can enter a promo code to receive a discount or special offer.
+2. The app applies the promo code and updates the order total accordingly.
+
+[Contact Customer Support]
+1. If the customer has any issues with their order (e.g., incorrect items, late delivery), they can contact the app's customer support team.
+2. The customer support agent investigates the issue and attempts to resolve it, such as by issuing a refund or credit.
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. If the customer attempts to order an item that is currently unavailable, the app displays a message indicating the item is out of stock.
+2. The customer can then choose to remove the item from their cart or select a different item.
+
+[AF2: Payment Declined]
+1. If the customer's selected payment method is declined, the app prompts the customer to update their payment information.
+2. Once the customer provides a valid payment method, they can proceed with placing the order.
+
+UC12: Schedule a Future Delivery
+Preconditions:
+- Customer has an active account with the food delivery app.
+- Restaurant is open and accepting delivery orders.
+- Item(s) the customer wishes to order are available on the restaurant's menu.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the restaurant's menu.
+2. Customer selects the desired item(s) and adds them to their cart.
+3. Customer reviews the order summary, including the total cost.
+4. Customer selects a future delivery date and time.
+5. Customer selects their delivery address and preferred payment method.
+6. Customer places the order for the scheduled future delivery.
+7. The app sends the order details to the restaurant and schedules the delivery.
+8. The restaurant acknowledges the order and prepares the items in advance of the scheduled delivery time.
+9. The app assigns a delivery driver to pick up the order from the restaurant and deliver it to the customer at the scheduled time.
+10. The customer receives the order at the scheduled time and can rate the delivery experience.
+
+Subflows:
+[Apply Promo Code]
+1. Before placing the order, the customer can enter a promo code to receive a discount or special offer.
+2. The app applies the promo code and updates the order total accordingly.
+
+[Modify Scheduled Delivery]
+1. If the customer needs to change the scheduled delivery date or time, they can do so through the app's order management interface.
+2. The app updates the order details and communicates the changes to the restaurant and delivery driver.
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. If the customer attempts to order an item that is no longer available, the app displays a message indicating the item is out of stock.
+2. The customer can then choose to remove the item from their cart or select a different item.
+
+[AF2: Payment Declined]
+1. If the customer's selected payment method is declined, the app prompts the customer to update their payment information.
+2. Once the customer provides a valid payment method, they can proceed with placing the order.
+
+UC13: Track Order Status
+Preconditions:
+- Customer has placed a delivery order through the food delivery app.
+- The order is currently being processed by the restaurant and/or in transit for delivery.
+
+Main Flow:
+1. Customer opens the food delivery app an
+------------------------------------------------------------
+Q4: • The customer is logged in.
+A4: UC11: Customer Reorders Previous Meal
+
+Preconditions:
+- The customer is logged into the app.
+- The customer has placed at least one previous order.
+
+Main Flow:
+1. The customer navigates to the "Order History" section of the app.
+2. The customer selects a previous order from the list.
+3. The app displays the details of the selected order, including the items ordered, the total cost, and the delivery address.
+4. The customer selects the "Reorder" button.
+5. The app adds all the items from the previous order to the customer's current cart.
+6. The customer reviews the cart and makes any desired modifications.
+7. The customer proceeds to the checkout process to complete the reorder.
+
+Subflows:
+[Display Order History]
+1. The app retrieves the customer's previous order history from the database.
+2. The app displays a list of the customer's previous orders, including the order date, total cost, and delivery address.
+
+Alternative Flows:
+[AF1: Customer Modifies Reorder]
+4a. The customer selects the "Modify" button on the order details screen.
+4b. The app displays the order items in the customer's cart, allowing them to add, remove, or modify the quantities.
+4c. The customer reviews the modified cart and proceeds to checkout.
+
+[AF2: Customer Cancels Reorder]
+4a. The customer selects the "Cancel" button instead of "Reorder".
+4b. The app removes the selected order items from the customer's cart.
+
+UC12: Customer Adds Tip for Delivery Driver
+
+Preconditions:
+- The customer has placed an order and the food is currently being delivered.
+
+Main Flow:
+1. The customer receives a notification that the food has been delivered.
+2. The customer navigates to the "Order History" section of the app.
+3. The customer selects the completed order.
+4. The app displays the order details, including an option to add a tip for the delivery driver.
+5. The customer selects the tip amount (e.g., 10%, 15%, 20%) or enters a custom tip amount.
+6. The customer confirms the tip amount.
+7. The app updates the order total to include the tip and charges the customer's payment method.
+
+Subflows:
+[Display Tip Options]
+4a. The app retrieves the available tip percentage options from the system settings.
+4b. The app displays the tip percentage options to the customer.
+
+Alternative Flows:
+[AF1: Customer Declines Tip]
+4a. The customer selects "No Tip" or does not enter a tip amount.
+4b. The app proceeds to complete the order without adding a tip.
+
+UC13: Customer Provides Feedback on Delivery Experience
+
+Preconditions:
+- The customer has received a completed order.
+
+Main Flow:
+1. The customer receives a notification that the order has been delivered.
+2. The customer navigates to the "Order History" section of the app.
+3. The customer selects the completed order.
+4. The app displays the order details and prompts the customer to provide feedback on the delivery experience.
+5. The customer selects a rating (e.g., 1-5 stars) for the delivery experience.
+6. The customer provides an optional written review of the delivery experience.
+7. The customer submits the feedback.
+8. The app records the customer's feedback and associates it with the completed order.
+
+Subflows:
+[Display Feedback Form]
+4a. The app retrieves the feedback form template from the system settings.
+4b. The app displays the feedback form to the customer, including the rating scale and text input field.
+
+Alternative Flows:
+[AF1: Customer Skips Feedback]
+4a. The customer selects "Skip" or does not provide any feedback.
+4b. The app proceeds without recording feedback for the order.
+
+UC14: Customer Earns Loyalty Points for Placing Orders
+
+Preconditions:
+- The customer is logged into the app and has a valid loyalty account.
+
+Main Flow:
+1. The customer places an order for food delivery.
+2. The app calculates the number of loyalty points the customer will earn based on the order total.
+3. The app updates the customer's loyalty account balance with the earned points.
+4. The app displays a notification to the customer, informing them of the loyalty points earned.
+
+Subflows:
+[Calculate Loyalty Points]
+2a. The app retrieves the current loyalty points
+------------------------------------------------------------
+Q5: • At least one menu item is available.
+A5: UC11: View Available Menu Items
+Preconditions:
+- The customer has opened the food ordering app and navigated to the restaurant menu page.
+
+Main Flow:
+1. The customer views the list of menu items available for the selected restaurant.
+2. The customer can see the name, description, price, and any dietary or allergen information for each menu item.
+3. The customer can filter or sort the menu items by various criteria, such as category, price, or dietary preference.
+4. The customer can select one or more menu items to add to their order.
+
+Subflows:
+[Display Menu]
+1. The app retrieves the restaurant's current menu data from the backend system.
+2. The app displays the menu items in an organized and visually appealing way.
+3. The app allows the customer to interact with the menu (e.g., filtering, sorting, selecting items).
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. If a menu item is temporarily unavailable, the app clearly indicates this to the customer.
+2. The customer can choose to select a different item or continue building their order without the unavailable item.
+
+UC12: View Nutritional Information
+Preconditions:
+- The customer has selected one or more menu items to add to their order.
+
+Main Flow:
+1. The customer taps on a menu item to view its detailed information.
+2. The app displays the nutritional information for the selected item, including calories, macronutrients, and any dietary labels (e.g., gluten-free, vegetarian).
+3. The customer can use this information to make an informed decision about their order.
+
+Subflows:
+[Display Nutritional Info]
+1. The app retrieves the detailed nutritional data for the selected menu item from the restaurant's database.
+2. The app presents the information in a clear and easy-to-understand format.
+
+Alternative Flows:
+[AF1: Nutritional Info Unavailable]
+1. If the restaurant has not provided detailed nutritional information for a menu item, the app informs the customer that this data is not available.
+2. The customer can still view the item's description and make a decision based on the available information.
+
+UC13: Add Customizations to Order
+Preconditions:
+- The customer has selected one or more menu items to add to their order.
+- The restaurant allows for customizations of menu items.
+
+Main Flow:
+1. The customer taps on a menu item to view its details.
+2. The app displays any available customization options for the item, such as size, protein, toppings, or sides.
+3. The customer selects their preferred customizations.
+4. The app updates the item's price and description based on the customer's selections.
+5. The customer adds the customized item to their order.
+
+Subflows:
+[Display Customization Options]
+1. The app retrieves the available customization options for the selected menu item from the restaurant's database.
+2. The app presents the customization options in a clear and user-friendly way.
+
+Alternative Flows:
+[AF1: Customization Not Available]
+1. If the restaurant does not allow customizations for a particular menu item, the app informs the customer that customizations are not available for that item.
+2. The customer can still add the item to their order without any customizations.
+
+UC14: Apply Promo Codes
+Preconditions:
+- The customer has added one or more items to their order.
+- The restaurant is offering a valid promo code or discount.
+
+Main Flow:
+1. The customer taps on the "Apply Promo Code" button in the checkout screen.
+2. The app prompts the customer to enter a promo code.
+3. The customer enters a promo code and taps "Apply".
+4. The app validates the promo code and applies the corresponding discount to the order total.
+5. The updated order total, including the discount, is displayed to the customer.
+
+Subflows:
+[Validate Promo Code]
+1. The app sends the entered promo code to the backend system for verification.
+2. The backend checks if the promo code is valid, unexpired, and can be applied to the current order.
+3. The app receives the validation response from the backend and applies the discount accordingly.
+
+Alternative Flows:
+[AF1: Invalid Promo Code]
+1. If the promo code entered by the customer is invalid or expired, the app displays an error message.
+2. The customer can try entering a different promo code or proceed with
+------------------------------------------------------------
+Q6: Main Flow:
+A6: UC11: Place a Pre-Scheduled Delivery Order
+Preconditions:
+- The user has downloaded and registered with the app.
+- The user has a valid payment method set up in their account.
+- The user has selected a delivery address.
+
+Main Flow:
+1. The user opens the app and selects the "Schedule Delivery" option.
+2. The user chooses the restaurant from which they would like to order.
+[Display Menu]
+3. The user browses the menu, selects the items they want, and adds them to their cart.
+4. The user selects a delivery date and time for the order.
+5. The user reviews the order details, including the items, delivery time, and total cost.
+6. The user confirms the order and initiates the payment.
+7. The app processes the payment and confirms the order.
+8. The app notifies the selected restaurant of the upcoming pre-scheduled delivery order.
+
+Subflows:
+[Display Menu]: The app displays the full menu for the selected restaurant, including item descriptions, prices, and availability.
+
+Alternative Flows:
+[AF1: Delivery Slot Unavailable]
+3a. If the user's preferred delivery time is not available, the app displays alternative delivery slots.
+3b. The user selects a different delivery time slot and continues with the order.
+
+[AF2: Payment Declined]
+6a. If the user's payment is declined, the app prompts the user to update their payment method.
+6b. The user updates their payment method and re-confirms the order.
+
+UC12: Modify a Scheduled Delivery Order
+Preconditions:
+- The user has a scheduled delivery order in the app.
+- The order has not yet been processed by the restaurant.
+
+Main Flow:
+1. The user opens the app and selects the "Scheduled Orders" section.
+2. The user selects the order they wish to modify.
+3. The user makes the desired changes, such as adding or removing items, updating the delivery time, or changing the delivery address.
+4. The user reviews the updated order details and confirms the changes.
+5. The app updates the order information and notifies the restaurant of the changes.
+
+Subflows:
+[Update Order Details]: The user can modify the order, including the item selection, delivery time, and delivery address.
+
+Alternative Flows:
+[AF1: Order Already Processed]
+2a. If the order has already been processed by the restaurant, the app informs the user that the order cannot be modified.
+2b. The user is directed back to the "Scheduled Orders" section.
+
+UC13: Track the Status of a Delivery Order
+Preconditions:
+- The user has placed a delivery order through the app.
+- The order is in progress.
+
+Main Flow:
+1. The user opens the app and selects the "Orders" section.
+2. The user locates the active delivery order.
+3. The app displays the current status of the order, including:
+   - Order preparation status
+   - Estimated delivery time
+   - Driver location (if available)
+4. The user can view any updates or notifications related to the order.
+
+Subflows:
+[Display Order Status]: The app retrieves and displays the current status of the delivery order, including preparation progress, estimated delivery time, and driver location (if available).
+[Provide Order Updates]: The app pushes any relevant updates or notifications to the user regarding the order status.
+
+Alternative Flows:
+[AF1: Order Delivered]
+3a. If the order has been delivered, the app displays the completed status and prompts the user to provide feedback.
+3b. The user can rate the overall experience and leave a comment.
+
+UC14: Request a Refund for a Delivery Order
+Preconditions:
+- The user has placed a delivery order through the app.
+- The order has been delivered, but the user is dissatisfied with the service.
+
+Main Flow:
+1. The user opens the app and navigates to the "Orders" section.
+2. The user selects the delivered order for which they wish to request a refund.
+3. The user provides a reason for the refund request, such as missing items, cold food, or poor delivery service.
+4. The app prompts the user to submit any supporting evidence, such as photos or receipts.
+5. The user submits the refund request and any additional information.
+6. The app processes the refund request and notifies the user of the status.
+
+Subflows:
+[Submit Refund Request]: The user provides the reason for the refun
+------------------------------------------------------------
+Q7: The user opens the application, triggering the system to [Display Menu]. The user then makes a selection, which executes the [Select Item] subflow. The user provides final confirmation to [Place Order], prompting the system to [Confirm Order] and finalize the transaction.
+A7: Use Case 11 (UC11): Display Menu and Select Items
+
+Preconditions:
+- The user has launched the food delivery app.
+- The user is on the main screen of the app.
+
+Main Flow:
+1. The system [Display Menu] to the user, showing a list of available restaurants and their menus.
+2. The user browses the menu items and selects one or more items they wish to order [Select Item].
+3. The user reviews the selected items in their cart and confirms they are ready to place the order [Place Order].
+4. The system [Confirm Order] by displaying the order details and prompting the user for payment information.
+
+Subflows:
+[Display Menu]
+1. The system retrieves the list of available restaurants and their menus from the database.
+2. The system presents the menu options to the user in an organized and visually appealing manner.
+3. The user can filter, sort, or search the menu items as needed.
+
+[Select Item]
+1. The user taps on a menu item to add it to their cart.
+2. The system updates the cart display to reflect the added item.
+3. The user can continue browsing the menu and adding more items to their cart.
+4. The user can also remove items from their cart if desired.
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. If the user selects an item that is currently unavailable, the system displays a message informing the user of the item's unavailability.
+2. The user can either select a different item or proceed with the order without the unavailable item.
+
+[AF2: Invalid Payment]
+1. If the user's payment information is invalid or declined, the system prompts the user to enter valid payment details.
+2. The user can then retry the payment process.
+
+Use Case 12 (UC12): Select Delivery Options
+
+Preconditions:
+- The user has placed an order and completed the payment process.
+
+Main Flow:
+1. The system [Display Delivery Options] to the user, allowing them to choose between pickup or delivery.
+2. If the user selects delivery, they [Provide Delivery Details] such as their address and contact information.
+3. The system [Confirm Delivery Details] and [Assign Delivery Runner] to fulfill the order.
+
+Subflows:
+[Display Delivery Options]
+1. The system presents the user with the choice between pickup or delivery.
+2. The user selects their preferred delivery method.
+
+[Provide Delivery Details]
+1. If the user selects delivery, the system prompts them to enter their delivery address and any additional contact information.
+2. The user provides the requested delivery details.
+
+[Assign Delivery Runner]
+1. The system matches the order with an available delivery runner based on factors such as location and order priority.
+2. The system notifies the selected delivery runner of the order and provides them with the necessary information to fulfill the delivery.
+
+Alternative Flows:
+[AF1: No Delivery Available]
+1. If delivery is not available for the user's location, the system informs the user and prompts them to select the pickup option.
+
+Use Case 13 (UC13): Track Order Status
+
+Preconditions:
+- The user has placed an order and selected their delivery method.
+
+Main Flow:
+1. The system [Display Order Status] to the user, showing the current stage of their order.
+2. As the order progresses, the system [Update Order Status] in real-time to keep the user informed.
+3. The user can [View Order Details] to see the specifics of their order.
+
+Subflows:
+[Display Order Status]
+1. The system retrieves the current status of the user's order from the database.
+2. The system presents the order status information to the user, such as the order preparation stage, the delivery runner's location, and the estimated delivery time.
+
+[Update Order Status]
+1. The system continuously monitors the order's progress.
+2. When the order status changes (e.g., from "Accepted" to "In Preparation"), the system updates the information displayed to the user.
+
+[View Order Details]
+1. The user can access a detailed view of their order, including the items ordered, the total cost, and the delivery information.
+2. The system retrieves and displays the order details from the database.
+
+Alternative Flows:
+[AF1: Order Cancelled]
+1. If the user or the restaurant cancels the order, the system updates the order status to "Cancelled" and notifies the user.
+2. The user
+------------------------------------------------------------
+Q8: Subflows:
+A8: UC11: Customer Accesses Restaurant Menu
+Preconditions:
+- The customer has installed the food ordering app on their mobile device.
+- The customer has an active internet connection.
+
+Main Flow:
+1. The customer opens the food ordering app on their mobile device.
+2. The app displays the list of available restaurants.
+3. The customer selects a restaurant from the list.
+[Display Menu]
+4. The app displays the restaurant's menu, including items, descriptions, and prices.
+5. The customer reviews the menu and decides what to order.
+
+Subflows:
+[Display Menu]
+1. The app retrieves the restaurant's menu data from the server.
+2. The app displays the menu items, including names, descriptions, and prices.
+3. The app allows the customer to filter or sort the menu items based on various criteria (e.g., cuisine type, dietary restrictions, price range).
+
+Alternative Flows:
+[AF1: No Internet Connection]
+1. If the customer does not have an active internet connection, the app displays an error message and prompts the customer to check their connection.
+2. The customer checks their internet connection and tries the action again.
+
+UC12: Customer Adds Items to Cart
+Preconditions:
+- The customer has selected a restaurant and is viewing the menu.
+
+Main Flow:
+1. The customer selects one or more menu items they would like to order.
+2. The app adds the selected items to the customer's cart.
+3. The app displays the updated cart, including the total cost of the order.
+4. The customer reviews the cart and decides to proceed with the order.
+
+Subflows:
+[Update Cart]
+1. The app calculates the total cost of the items in the cart.
+2. The app displays the cart, including the list of items and the total cost.
+3. The app allows the customer to modify the quantities or remove items from the cart.
+
+Alternative Flows:
+[AF1: Maximum Order Limit Reached]
+1. If the customer tries to add more items to the cart than the maximum allowed, the app displays a message informing the customer of the limit.
+2. The customer adjusts the order to fit within the maximum limit and proceeds.
+
+UC13: Customer Selects Delivery Options
+Preconditions:
+- The customer has added items to their cart and is ready to proceed with the order.
+
+Main Flow:
+1. The app prompts the customer to select a delivery option.
+2. The customer chooses between delivery or pickup.
+[Select Delivery Option]
+3. The app displays the available delivery options, including estimated delivery times and fees.
+4. The customer selects the desired delivery option.
+5. The app updates the order summary with the selected delivery option and total cost.
+
+Subflows:
+[Select Delivery Option]
+1. The app retrieves the available delivery options from the restaurant or delivery service.
+2. The app displays the delivery options, including estimated delivery times and fees.
+3. The app allows the customer to select the desired delivery option.
+
+Alternative Flows:
+[AF1: Pickup Selected]
+1. If the customer selects the pickup option, the app prompts the customer to choose a pickup time.
+2. The app updates the order summary with the pickup details.
+
+UC14: Customer Provides Delivery Details
+Preconditions:
+- The customer has selected a delivery option for their order.
+
+Main Flow:
+1. The app prompts the customer to provide their delivery address.
+[Validate Delivery Address]
+2. The customer enters their delivery address.
+3. The app confirms the delivery address and displays it in the order summary.
+4. The customer provides any special delivery instructions (e.g., gate code, leave at the door).
+5. The app updates the order summary with the delivery instructions.
+
+Subflows:
+[Validate Delivery Address]
+1. The app checks the validity of the delivery address provided by the customer.
+2. If the address is valid, the app displays the address in the order summary.
+3. If the address is invalid, the app prompts the customer to re-enter the address.
+
+Alternative Flows:
+[AF1: Invalid Delivery Address]
+1. If the customer enters an invalid delivery address, the app displays an error message and prompts the customer to re-enter the address.
+2. The customer corrects the address and proceeds with the order.
+
+UC15: Customer Selects Payment Method
+Preconditions:
+- The customer has provided the delivery details for their order.
+
+Main Flow:
+1. The app prompts the customer to select a payment
+------------------------------------------------------------
+Q9: • [Display Menu] System retrieves and displays available items.
+A9: UC11: View Available Menu Items
+
+Preconditions:
+- The user has selected a food store.
+- The system has retrieved and stored the menu items from the selected food store.
+
+Main Flow:
+1. The system retrieves the menu items for the selected food store.
+2. The system displays the menu categories (e.g., appetizers, entrees, desserts) and the items within each category.
+3. The user browses the menu and selects one or more items they wish to order.
+4. The system adds the selected items to the user's shopping cart.
+
+Subflows:
+[Display Menu]
+1. The system queries the database for the menu items associated with the selected food store.
+2. The system organizes the menu items by category and formats the information for display.
+3. The system presents the menu on the user's device.
+
+Alternative Flows:
+[AF1: No Menu Items Available]
+1. If there are no menu items available for the selected food store, the system displays a message indicating that the menu is currently unavailable.
+2. The user is returned to the "Choose Food Store" screen.
+
+UC12: Filter and Sort Menu Items
+
+Preconditions:
+- The user has selected a food store and the menu items have been displayed.
+
+Main Flow:
+1. The user indicates they would like to filter or sort the menu items.
+2. The system presents the user with options to filter by category, price range, dietary restrictions, or other attributes.
+3. The user selects the desired filter criteria.
+4. The system updates the displayed menu to only show items that match the user's filter criteria.
+5. The user selects an option to sort the filtered menu items by attributes such as price, popularity, or dietary information.
+6. The system re-organizes the displayed menu items based on the user's sort preferences.
+
+Subflows:
+[Filter Menu Items]
+1. The system retrieves the available filter options from the database.
+2. The system presents the filter options to the user.
+3. The system applies the user's selected filters to the menu data.
+4. The system updates the displayed menu with the filtered items.
+
+[Sort Menu Items]
+1. The system retrieves the available sort options from the database.
+2. The system presents the sort options to the user.
+3. The system re-organizes the displayed menu items based on the user's sort preferences.
+
+Alternative Flows:
+[AF1: No Filter Options Available]
+1. If there are no filter options available for the selected food store, the system displays a message indicating that filtering is not supported.
+2. The user is returned to the unfiltered menu.
+
+[AF2: No Sort Options Available]
+1. If there are no sort options available for the selected food store, the system displays a message indicating that sorting is not supported.
+2. The user is returned to the unsorted menu.
+
+UC13: Add Items to Cart
+
+Preconditions:
+- The user has selected a food store and the menu items have been displayed.
+- The user has browsed and selected one or more menu items.
+
+Main Flow:
+1. The user indicates they would like to add an item to their shopping cart.
+2. The system adds the selected item to the user's cart, including the quantity and any customization options.
+3. The system updates the cart total and displays the cart contents to the user.
+
+Subflows:
+[Add Item to Cart]
+1. The system retrieves the details of the selected menu item.
+2. The system prompts the user to specify the quantity and any customization options.
+3. The system adds the item and user-specified details to the user's shopping cart.
+4. The system calculates the updated cart total.
+5. The system displays the updated cart contents to the user.
+
+Alternative Flows:
+[AF1: Customization Not Available]
+1. If the selected menu item does not have any customization options, the system skips the customization step and directly adds the item to the cart.
+
+[AF2: Item Unavailable]
+1. If the selected menu item is currently unavailable, the system displays a message indicating that the item is out of stock.
+2. The user is returned to the menu without the item being added to the cart.
+
+UC14: Remove Items from Cart
+
+Preconditions:
+- The user has added one or more items to their shopping cart.
+
+Main Flow:
+1. The user indicates they would like to remove an item from their shopping cart.
+2. The system removes the selected item from the user's cart.
+3. The system updates the cart total an
+------------------------------------------------------------
+Q10: • [Select Item] Customer chooses an item from the list.
+A10: UC11: Select Item from Menu
+
+Preconditions:
+- The user has navigated to the Food Menu section of the app.
+- The user has not yet added any items to their cart.
+
+Main Flow:
+1. [Display Menu] The app displays a list of available menu items from the selected restaurant.
+2. The user selects an item from the menu.
+3. [Add to Cart] The selected item is added to the user's cart.
+4. The app displays a confirmation message indicating the item has been added to the cart.
+
+Subflows:
+[Display Menu]
+1. The app retrieves the full menu for the selected restaurant.
+2. The menu items are displayed in an easy-to-browse list or grid format.
+3. Each menu item is displayed with its name, description, price, and any applicable modifiers or customization options.
+
+[Add to Cart]
+1. The selected menu item is added to the user's virtual cart.
+2. The app updates the cart total and item count.
+3. The user can continue browsing the menu and adding more items.
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. If the selected menu item is unavailable, the app displays a message indicating it is currently out of stock.
+2. The user is prompted to select a different item.
+
+[AF2: Cart is Full]
+1. If the user attempts to add an item but the cart has reached its maximum capacity, the app displays a message informing the user.
+2. The user is given the option to review their cart and remove items before adding more.
+
+UC12: Select Customization Options
+
+Preconditions:
+- The user has selected a menu item and added it to their cart.
+- The selected item has customizable options available.
+
+Main Flow:
+1. [Display Customization Options] The app displays the available customization options for the selected menu item.
+2. The user selects their desired customizations.
+3. [Update Cart] The app updates the cart with the selected customizations and recalculates the total.
+4. The user can continue browsing the menu and customizing additional items.
+
+Subflows:
+[Display Customization Options]
+1. The app retrieves the customization options for the selected menu item.
+2. The customization options are displayed in an easy-to-use interface, such as dropdown menus, checkboxes, or radio buttons.
+3. The user can select their preferred customizations.
+
+[Update Cart]
+1. The app updates the cart with the selected customizations for the menu item.
+2. The total cost of the order is recalculated to reflect the customizations.
+3. The user can review the updated cart details.
+
+Alternative Flows:
+[AF1: Maximum Customizations Reached]
+1. If the user attempts to select more customizations than are allowed, the app displays a message informing them of the limit.
+2. The user is prompted to remove or modify their existing customizations before proceeding.
+------------------------------------------------------------
+Q11: • [Place Order] Customer confirms (e.g., taps “Order Now”).
+A11: UC11: Place Order
+
+Preconditions:
+- The customer has selected items from the menu and is ready to place the order.
+- The customer has a valid payment method set up in the app.
+
+Main Flow:
+1. The customer taps the "Order Now" button to confirm the order.
+2. The app validates the order details, including the items, delivery address, and payment method.
+3. The app sends the order information to the restaurant partner.
+4. The restaurant partner receives the order and changes the status to "Accepted".
+5. The app notifies the customer that the order has been successfully placed.
+6. The customer receives a confirmation email with the order details.
+
+Subflows:
+[Display Menu]
+[Select Items]
+[Set Delivery Address]
+[Select Payment Method]
+
+Alternative Flows:
+[AF1: Invalid Payment Method]
+1. If the customer's payment method is invalid or expired, the app displays an error message.
+2. The customer is prompted to update their payment method.
+3. The customer updates the payment method and retries placing the order.
+
+[AF2: Out of Stock Item]
+1. If one or more of the selected items are out of stock, the app displays a message indicating which items are unavailable.
+2. The customer can remove the unavailable items and place the order for the remaining items.
+3. Alternatively, the customer can cancel the order and start a new one.
+------------------------------------------------------------
+Q12: • [Confirm Order] System creates an order number, sets status to ORDERED, and shows a confirmation message.
+A12: UC11: Place Order with Existing User Profile
+
+Preconditions:
+- The user has an existing profile in the food ordering system.
+- The user has items in their shopping cart.
+
+Main Flow:
+1. [View Cart] The user selects the "View Cart" button to review the items in their cart.
+2. [Checkout] The user selects the "Checkout" button to proceed to the checkout process.
+3. [Confirm Order] The system displays the user's saved profile information and the order summary.
+4. The user reviews the order details and selects the "Confirm" button to place the order.
+5. [Confirm Order] The system creates a unique order number, sets the order status to "ORDERED", and displays a confirmation message to the user.
+
+Subflows:
+[View Cart]
+1. The system displays the user's current cart items, quantities, and the total order amount.
+2. The user can adjust the quantities or remove items from the cart.
+3. The user selects the "Checkout" button to proceed.
+
+[Confirm Order]
+1. The system displays the user's saved profile information, including name, address, and contact details.
+2. The system displays the order summary, including the items, quantities, and total order amount.
+3. The user reviews the order details and selects the "Confirm" button.
+
+Alternative Flows:
+[AF1: Modify Order]
+1. After reviewing the order details, the user decides to modify the order.
+2. The user selects the "Back" button to return to the cart and make changes.
+3. The user updates the cart and proceeds with the checkout process.
+
+[AF2: Cancel Order]
+1. After reviewing the order details, the user decides to cancel the order.
+2. The user selects the "Back" button to return to the cart.
+3. The user selects the "Cancel Order" button, and the system removes the order from the system.
+
+UC12: Place Order as a Guest User
+
+Preconditions:
+- The user does not have an existing profile in the food ordering system.
+- The user has items in their shopping cart.
+
+Main Flow:
+1. [View Cart] The user selects the "View Cart" button to review the items in their cart.
+2. [Checkout] The user selects the "Checkout" button to proceed to the checkout process.
+3. [Enter User Info] The system displays a form for the user to enter their personal information, including name, address, and contact details.
+4. The user fills out the form and selects the "Next" button to proceed.
+5. [Confirm Order] The system displays the order summary, including the user's entered information and the total order amount.
+6. The user reviews the order details and selects the "Confirm" button to place the order.
+7. [Confirm Order] The system creates a unique order number, sets the order status to "ORDERED", and displays a confirmation message to the user.
+
+Subflows:
+[View Cart]
+1. The system displays the user's current cart items, quantities, and the total order amount.
+2. The user can adjust the quantities or remove items from the cart.
+3. The user selects the "Checkout" button to proceed.
+
+[Enter User Info]
+1. The system displays a form for the user to enter their name, address, and contact details.
+2. The user fills out the form and selects the "Next" button.
+
+[Confirm Order]
+1. The system displays the user's entered profile information and the order summary.
+2. The user reviews the order details and selects the "Confirm" button.
+
+Alternative Flows:
+[AF1: Modify Order]
+1. After reviewing the order details, the user decides to modify the order.
+2. The user selects the "Back" button to return to the cart and make changes.
+3. The user updates the cart and proceeds with the checkout process.
+
+[AF2: Cancel Order]
+1. After reviewing the order details, the user decides to cancel the order.
+2. The user selects the "Back" button to return to the cart.
+3. The user selects the "Cancel Order" button, and the system removes the order from the system.
+
+[AF3: Save User Info]
+1. After entering their user information, the user decides to save their profile for future use.
+2. The user selects the "Save User Info" button, and the system stores the user's information in their profile.
+
+UC13: Update Order Status
+
+Preconditions:
+------------------------------------------------------------
+Q13: Alternative Flows and Edge Cases:
+A13: UC11: Place Order for Pickup
+
+Preconditions:
+- The user has the food delivery app installed and an active account.
+- The user is within the delivery area of the selected restaurant.
+- The restaurant is open and accepting orders.
+
+Main Flow:
+1. The user selects the "Pickup" option on the app.
+2. The user navigates to the menu and selects the items they wish to order.
+3. The user reviews the order details and proceeds to checkout.
+4. The user selects the "Pickup" option and provides any special instructions for the order.
+5. The user provides payment information and completes the order.
+6. The app confirms the order and provides an estimated pickup time.
+7. The user arrives at the restaurant at the designated pickup time.
+8. The user presents a pickup code or identification to the restaurant staff.
+9. The restaurant staff verifies the order and hands the order to the user.
+10. The user collects the order and leaves the restaurant.
+
+Subflows:
+[Display Menu]
+[Review Order]
+[Select Pickup]
+[Provide Payment]
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. The user selects an item that is temporarily unavailable.
+2. The app displays a message informing the user of the unavailability.
+3. The user can choose to select a different item or remove the unavailable item from the order.
+
+[AF2: Pickup Time Delay]
+1. The restaurant experiences a delay in preparing the order.
+2. The app updates the estimated pickup time and notifies the user.
+3. The user can choose to wait for the order or cancel the order.
+
+[AF3: Order Pickup Cancellation]
+1. The user arrives at the restaurant but is unable to pick up the order.
+2. The user contacts the restaurant or the app support to cancel the order.
+3. The app processes the cancellation and provides a refund or credit to the user's account.
+
+UC12: Place Order for Delivery
+
+Preconditions:
+- The user has the food delivery app installed and an active account.
+- The user is within the delivery area of the selected restaurant.
+- The restaurant is open and accepting orders.
+
+Main Flow:
+1. The user selects the "Delivery" option on the app.
+2. The user navigates to the menu and selects the items they wish to order.
+3. The user reviews the order details and proceeds to checkout.
+4. The user provides the delivery address and any special instructions for the order.
+5. The user provides payment information and completes the order.
+6. The app confirms the order and provides an estimated delivery time.
+7. The order is dispatched to a nearby delivery driver.
+8. The delivery driver picks up the order from the restaurant.
+9. The delivery driver navigates to the user's location and delivers the order.
+10. The user receives the order and verifies the contents.
+
+Subflows:
+[Display Menu]
+[Review Order]
+[Provide Delivery Address]
+[Provide Payment]
+[Dispatch Order]
+[Pick Up Order]
+[Deliver Order]
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. The user selects an item that is temporarily unavailable.
+2. The app displays a message informing the user of the unavailability.
+3. The user can choose to select a different item or remove the unavailable item from the order.
+
+[AF2: Delivery Time Delay]
+1. The restaurant or the delivery driver experiences a delay in the order preparation or delivery.
+2. The app updates the estimated delivery time and notifies the user.
+3. The user can choose to wait for the order or cancel the order.
+
+[AF3: Order Delivery Cancellation]
+1. The user is unable to receive the order at the specified delivery location.
+2. The user contacts the app support to cancel the order.
+3. The app processes the cancellation and provides a refund or credit to the user's account.
+
+UC13: Track Order Status
+
+Preconditions:
+- The user has placed an order through the food delivery app.
+- The order is in progress or has been completed.
+
+Main Flow:
+1. The user accesses the "Order Status" section of the app.
+2. The user selects the order they wish to track.
+3. The app displays the current status of the order, including the order preparation and delivery progress.
+4. The user can view the location of the delivery driver (if applicable) on a map.
+5.
+------------------------------------------------------------
+Q14: • [AF1: No Available Items] At [Display Menu], if no items are available, show: “Sorry, no items are currently available.” and return to start.
+A14: UC11: View Menu Specials
+
+Preconditions:
+- The customer has successfully logged into the app.
+- The customer has navigated to the restaurant's menu page.
+
+Main Flow:
+1. [Display Menu Specials] The system displays a section of the menu highlighting special or featured items.
+2. The customer browses the menu specials.
+3. The customer selects one or more special items to add to their order.
+4. [Add to Order] The system adds the selected special items to the customer's order.
+
+Subflows:
+[Display Menu Specials]
+1. The system retrieves the list of menu special items from the restaurant's database.
+2. The system displays the special items in a dedicated section of the menu, highlighting them with visual cues (e.g., special tags, images).
+
+Alternative Flows:
+[AF1: No Special Items]
+1. If there are no special items available, the system displays a message indicating that there are no specials currently available.
+2. The customer can continue browsing the regular menu items.
+
+UC12: Redeem Reward Points
+
+Preconditions:
+- The customer has successfully logged into the app.
+- The customer has accumulated reward points from previous orders.
+
+Main Flow:
+1. [View Reward Points] The system displays the customer's current reward point balance.
+2. The customer selects the "Redeem Rewards" option.
+3. [Select Reward] The system presents a list of available rewards that the customer can redeem using their points.
+4. The customer selects the desired reward.
+5. [Apply Reward] The system applies the selected reward to the customer's current order, updating the order total accordingly.
+
+Subflows:
+[View Reward Points]
+1. The system retrieves the customer's reward point balance from the customer's profile.
+2. The system displays the balance prominently in the app.
+
+[Select Reward]
+1. The system retrieves the list of available rewards from the database.
+2. The system presents the rewards in a user-friendly format, including the point cost and details of each reward.
+
+[Apply Reward]
+1. The system deducts the required points from the customer's balance.
+2. The system applies the selected reward to the current order, updating the order total.
+
+Alternative Flows:
+[AF1: Insufficient Points]
+1. If the customer does not have enough points to redeem the desired reward, the system displays a message indicating the required point balance.
+2. The customer can choose to earn more points or select a different reward.
+
+UC13: Track Order Status
+
+Preconditions:
+- The customer has placed an order through the app.
+
+Main Flow:
+1. [View Order Status] The customer selects the "Track Order" option.
+2. The system displays the current status of the customer's order, including the order number, restaurant name, items ordered, and the order's progress through the fulfillment process.
+3. The customer can refresh the order status to see the latest updates.
+
+Subflows:
+[View Order Status]
+1. The system retrieves the customer's current order details and status from the database.
+2. The system displays the order information, including the order number, restaurant name, items ordered, and the current stage of the order fulfillment process (e.g., "Preparing", "Out for Delivery", "Delivered").
+
+Alternative Flows:
+[AF1: Order Not Found]
+1. If the customer's order cannot be found in the system, the system displays a message indicating that the order information is not available.
+2. The customer can try refreshing the order status or contact customer support for assistance.
+
+UC14: Submit Delivery Feedback
+
+Preconditions:
+- The customer has received a delivery order.
+- The customer has the option to provide feedback on the delivery experience.
+
+Main Flow:
+1. [View Delivery Feedback] The system prompts the customer to provide feedback on the delivery experience.
+2. The customer selects a rating (e.g., 1-5 stars) for the delivery service.
+3. [Add Delivery Feedback] The customer can optionally provide additional comments or notes about the delivery.
+4. The customer submits the delivery feedback.
+5. [Save Delivery Feedback] The system records the customer's feedback in the database.
+
+Subflows:
+[View Delivery Feedback]
+1. The system displays a feedback form, including a rating scale and an optional comments section.
+
+[Add Delivery Feedback]
+1. The customer enters any additional comments or notes about the
+------------------------------------------------------------
+Q15: • [AF2: Item Unavailable After Selection] At [Place Order], if the item is no longer available, show: “Sorry, that item just sold out,” and return to [Display Menu].
+A15: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: View Restaurant Hours
+Preconditions: User has selected a restaurant to order from.
+Main Flow:
+1. System displays the selected restaurant's operating hours.
+2. User can view the restaurant's hours of operation.
+
+UC12: Reorder Past Order
+Preconditions: User has placed an order in the past.
+Main Flow:
+1. User selects "Reorder" for a previous order.
+2. System retrieves the details of the previous order.
+3. User confirms they want to reorder the same items.
+4. System adds the items to the user's current cart.
+
+UC13: Split Order Between Addresses
+Preconditions: User has multiple delivery addresses associated with their account.
+Main Flow:
+1. User begins placing an order.
+2. System prompts user to select a delivery address.
+3. User chooses to split the order between multiple addresses.
+4. System displays the user's saved addresses.
+5. User selects which items to send to each address.
+6. System calculates the total for each partial order.
+Subflows:
+[Assign Items to Addresses]
+Alternative Flows:
+[AF1: Single Address Order] If user selects only one address, system proceeds with a single delivery.
+
+UC14: Preset Favorite Orders
+Preconditions: User has placed orders in the past.
+Main Flow: 
+1. User selects "Favorites" from the main menu.
+2. System displays the user's past orders.
+3. User selects an order to save as a "Favorite".
+4. System stores the favorite order details.
+Subflows:
+[Save Favorite Order]
+Alternative Flows:
+[AF1: Edit Favorite Order] User can modify a favorite order before saving it.
+[AF2: Delete Favorite Order] User can remove a favorite order from their profile.
+
+UC15: Track Driver Location
+Preconditions: User has placed a delivery order.
+Main Flow:
+1. User selects "Track Order" from the main menu.
+2. System displays the current location of the delivery driver on a map.
+3. User can view the driver's progress towards their delivery address.
+Subflows:
+[Display Driver Location on Map]
+
+UC16: Provide Delivery Instructions
+Preconditions: User has placed a delivery order.
+Main Flow:
+1. User selects "Delivery Instructions" when placing the order.
+2. System prompts the user to enter special instructions.
+3. User types in notes, such as gate codes or request to leave order at door.
+4. System saves the delivery instructions to be provided to the driver.
+Subflows:
+[Save Delivery Instructions]
+
+UC17: Earn Loyalty Points
+Preconditions: User has an account and is logged in.
+Main Flow:
+1. User places an order.
+2. System awards loyalty points based on the total order value.
+3. User's loyalty point balance is updated.
+4. User can view their loyalty points in their account profile.
+Subflows:
+[Calculate Loyalty Points]
+[Update Loyalty Balance]
+
+UC18: Redeem Loyalty Rewards
+Preconditions: User has accumulated loyalty points.
+Main Flow:
+1. User selects "Rewards" from the main menu.
+2. System displays the user's available loyalty point balance and redemption options.
+3. User chooses to redeem points for a discount, free item, or other reward.
+4. System applies the reward to the user's next order.
+Subflows:
+[Deduct Loyalty Points]
+[Apply Reward to Order]
+
+UC19: Schedule Future Delivery
+Preconditions: User is placing a delivery order.
+Main Flow:
+1. User selects a delivery time/date that is in the future.
+2. System confirms the selected delivery window is available.
+3. User completes the order placement.
+4. System schedules the order for the specified future delivery time.
+Subflows:
+[Check Delivery Availability]
+[Schedule Delivery Time]
+
+UC20: Pause Ongoing Order
+Preconditions: User has an order in progress.
+Main Flow:
+1. User selects "Pause Order" while configuring their cart.
+2. System saves the current state of the user's order.
+3. User can resume the order at a later time.
+Subflows:
+[Save Order State]
+[Resume Paused Order]
+
+UC21: Order
+------------------------------------------------------------
+Q16: UC2: View and Fulfill a New Order
+A16: UC11: Update Restaurant Menu
+
+Preconditions:
+- The restaurant user is logged into the FeedMe app.
+- The restaurant has at least one existing menu item.
+
+Main Flow:
+1. The restaurant user navigates to the "Menu Management" section of the app.
+2. The restaurant user selects an existing menu item to update.
+[Display Menu Items]
+3. The restaurant user modifies the item's details, such as the name, description, price, or availability.
+4. The restaurant user saves the updated menu item details.
+5. The updated menu item is displayed in the app's menu for customers to view.
+
+Subflows:
+[Display Menu Items]
+1. The app retrieves and displays all the restaurant's current menu items.
+2. The restaurant user can browse and select a specific item to update.
+
+Alternative Flows:
+[AF1: Add New Menu Item]
+1. From the "Menu Management" section, the restaurant user selects the option to add a new menu item.
+2. The restaurant user inputs the new item's details, such as name, description, price, and availability.
+3. The restaurant user saves the new menu item, and it is added to the app's menu.
+
+[AF2: Remove Menu Item]
+1. From the "Menu Management" section, the restaurant user selects the option to remove an existing menu item.
+2. The restaurant user confirms the item removal, and the item is no longer displayed in the app's menu.
+
+UC12: Manage Delivery Zones
+
+Preconditions:
+- The restaurant user is logged into the FeedMe app.
+- The restaurant has at least one existing delivery zone set up.
+
+Main Flow:
+1. The restaurant user navigates to the "Delivery Management" section of the app.
+2. The restaurant user views the list of their current delivery zones.
+[Display Delivery Zones]
+3. The restaurant user selects an existing delivery zone to manage.
+4. The restaurant user updates the zone's details, such as the coverage area, delivery fees, or operating hours.
+5. The restaurant user saves the updated delivery zone information.
+6. The changes are reflected in the app's delivery options for customers.
+
+Subflows:
+[Display Delivery Zones]
+1. The app retrieves and displays all the restaurant's current delivery zones.
+2. The restaurant user can browse and select a specific zone to manage.
+
+Alternative Flows:
+[AF1: Add New Delivery Zone]
+1. From the "Delivery Management" section, the restaurant user selects the option to add a new delivery zone.
+2. The restaurant user inputs the new zone's details, such as the coverage area, delivery fees, and operating hours.
+3. The restaurant user saves the new delivery zone, and it is added to the app's delivery options.
+
+[AF2: Remove Delivery Zone]
+1. From the "Delivery Management" section, the restaurant user selects the option to remove an existing delivery zone.
+2. The restaurant user confirms the zone removal, and it is no longer displayed in the app's delivery options.
+
+UC13: Update Delivery Courier Availability
+
+Preconditions:
+- The restaurant user is logged into the FeedMe app.
+- The restaurant has at least one active delivery courier assigned.
+
+Main Flow:
+1. The restaurant user navigates to the "Courier Management" section of the app.
+2. The restaurant user views the list of their current delivery couriers.
+[Display Courier List]
+3. The restaurant user selects a courier to update their availability.
+4. The restaurant user changes the courier's status to "Available" or "Unavailable".
+5. The restaurant user saves the updated courier availability.
+6. The changes are reflected in the app's delivery options for customers.
+
+Subflows:
+[Display Courier List]
+1. The app retrieves and displays all the restaurant's current delivery couriers.
+2. The restaurant user can browse and select a specific courier to update.
+
+Alternative Flows:
+[AF1: Add New Delivery Courier]
+1. From the "Courier Management" section, the restaurant user selects the option to add a new delivery courier.
+2. The restaurant user inputs the new courier's details, such as their name, contact information, and availability status.
+3. The restaurant user saves the new delivery courier, and they are added to the app's courier pool.
+
+[AF2: Remove Delivery Courier]
+1. From the "Courier Management" section, the restaurant user selects the option to remove an existing delivery courier.
+2. The restaurant user confirms the courier removal,
+------------------------------------------------------------
+Q17: Preconditions:
+A17: UC11: Schedule Restaurant Pickup
+Preconditions:
+- The customer has placed an order for pickup.
+- The customer has selected a pickup time.
+- The restaurant has confirmed the order and the pickup time.
+
+Main Flow:
+1. The customer arrives at the restaurant at the selected pickup time.
+2. The customer approaches the designated pickup counter or area.
+3. The restaurant staff verifies the customer's order and pickup time.
+4. The restaurant staff retrieves the customer's order and prepares it for pickup.
+5. The restaurant staff hands the order to the customer.
+6. The customer inspects the order and confirms it is correct.
+7. The customer pays any remaining balance for the order.
+8. The customer departs the restaurant with their order.
+
+Subflows:
+[Verify Customer Identity]: The restaurant staff asks the customer for their name or order number to confirm their identity.
+[Reprint Order]: If the order is not ready, the restaurant staff can reprint the order ticket and provide it to the customer.
+
+Alternative Flows:
+[AF1: Order Not Ready]: If the order is not ready at the scheduled pickup time, the restaurant staff can inform the customer of the delay and provide an estimated ready time.
+[AF2: Order Incorrect]: If the order is incorrect, the restaurant staff can remake the order or provide a refund/credit to the customer.
+
+UC12: Track Delivery Driver
+Preconditions:
+- The customer has placed a delivery order.
+- The order has been accepted by a delivery driver.
+- The delivery driver has started their trip to the customer's location.
+
+Main Flow:
+1. The customer opens the food delivery app.
+2. The customer selects the "Track Driver" or "Order Status" feature.
+3. The app displays the delivery driver's current location and estimated time of arrival.
+4. The customer can monitor the driver's progress towards their location.
+5. The driver arrives at the customer's location.
+6. The driver hands the order to the customer.
+7. The customer inspects the order and confirms it is correct.
+8. The customer provides any necessary payment or tip to the driver.
+9. The driver departs, and the order is completed.
+
+Subflows:
+[Contact Driver]: The customer can call or message the driver through the app if they have any questions or need to provide additional instructions.
+[Reroute Driver]: If the customer's location changes during the delivery, they can update the address in the app, and the driver's route will be adjusted accordingly.
+
+Alternative Flows:
+[AF1: Driver Delayed]: If the driver is delayed due to traffic or other issues, the app can provide the customer with updated estimated arrival times.
+[AF2: Order Incorrect]: If the order is incorrect, the customer can contact the driver or the restaurant to resolve the issue.
+
+UC13: Manage Restaurant Menu
+Preconditions:
+- The restaurant has an account with the food delivery platform.
+- The restaurant has the ability to update its menu items through the platform's interface.
+
+Main Flow:
+1. The restaurant staff logs into the food delivery platform's management portal.
+2. The staff navigates to the "Menu" section of the portal.
+3. The staff can view the current menu items and their details (e.g., name, description, price, availability).
+4. The staff can add new menu items by providing the necessary information.
+5. The staff can update existing menu items, such as changing the price or description.
+6. The staff can mark menu items as "unavailable" if they are temporarily out of stock or no longer offered.
+7. The staff can reorder the menu items to change their display order.
+8. The staff reviews and confirms the changes to the menu.
+9. The updated menu is now visible to customers on the food delivery platform.
+
+Subflows:
+[Upload Menu Images]: The staff can upload photos or images to accompany the menu items.
+[Set Item Availability]: The staff can set individual menu items to be available or unavailable for ordering.
+
+Alternative Flows:
+[AF1: Menu Item Deletion]: If a menu item is permanently discontinued, the staff can remove it from the menu.
+[AF2: Menu Sync Issues]: If there are any issues synchronizing the updated menu with the food delivery platform, the staff can contact customer support for assistance.
+
+UC14: Manage Restaurant Hours
+Preconditions:
+- The restaurant has an account with the food delivery platform.
+- The restaurant has the ability to update its operating hours through the platform's interface.
+
+Main Flow:
+1. The restaurant staff logs into the food delivery platform's management portal.
+------------------------------------------------------------
+Q18: • The Staff member is logged into the Staff Dashboard with the STAFF role.
+A18: UC11: Add New Menu Item
+
+Preconditions:
+- The staff member is logged into the staff dashboard with the STAFF role.
+- The staff member has permission to manage the restaurant's menu.
+
+Main Flow:
+1. The staff member selects the "Menu Management" option from the staff dashboard.
+2. The system displays the current menu items.
+3. The staff member clicks the "Add New Item" button.
+4. The system displays a form for adding a new menu item.
+5. The staff member fills out the form with the new item's details, such as name, description, price, and any optional modifiers.
+6. The staff member uploads an image for the new menu item.
+7. The staff member clicks the "Save" button.
+8. The system validates the input and adds the new menu item to the restaurant's menu.
+9. The system displays a success message to the staff member.
+
+Subflows:
+[Upload Image]
+1. The staff member clicks the "Upload Image" button.
+2. The system opens the device's file explorer.
+3. The staff member selects an image file and confirms the upload.
+4. The system associates the uploaded image with the new menu item.
+
+Alternative Flows:
+[AF1: Invalid Input]
+1. If the staff member enters invalid or incomplete information in the form, the system displays an error message and highlights the fields that need correction.
+2. The staff member makes the necessary corrections and clicks "Save" again.
+
+[AF2: Image Upload Failure]
+1. If the image upload fails, the system displays an error message.
+2. The staff member can try uploading the image again or continue without an image.
+
+UC12: Update Menu Item
+
+Preconditions:
+- The staff member is logged into the staff dashboard with the STAFF role.
+- The staff member has permission to manage the restaurant's menu.
+
+Main Flow:
+1. The staff member selects the "Menu Management" option from the staff dashboard.
+2. The system displays the current menu items.
+3. The staff member clicks the "Edit" button for the menu item they want to update.
+4. The system displays the edit form for the selected menu item.
+5. The staff member updates the item's details, such as name, description, price, or modifiers.
+6. The staff member uploads a new image for the menu item, if desired.
+7. The staff member clicks the "Save" button.
+8. The system validates the input and updates the menu item.
+9. The system displays a success message to the staff member.
+
+Subflows:
+[Upload Image]
+1. The staff member clicks the "Upload Image" button.
+2. The system opens the device's file explorer.
+3. The staff member selects an image file and confirms the upload.
+4. The system associates the uploaded image with the menu item.
+
+Alternative Flows:
+[AF1: Invalid Input]
+1. If the staff member enters invalid or incomplete information in the form, the system displays an error message and highlights the fields that need correction.
+2. The staff member makes the necessary corrections and clicks "Save" again.
+
+[AF2: Image Upload Failure]
+1. If the image upload fails, the system displays an error message.
+2. The staff member can try uploading the image again or continue without updating the image.
+
+UC13: Remove Menu Item
+
+Preconditions:
+- The staff member is logged into the staff dashboard with the STAFF role.
+- The staff member has permission to manage the restaurant's menu.
+
+Main Flow:
+1. The staff member selects the "Menu Management" option from the staff dashboard.
+2. The system displays the current menu items.
+3. The staff member clicks the "Delete" button for the menu item they want to remove.
+4. The system displays a confirmation dialog.
+5. The staff member confirms the deletion.
+6. The system removes the menu item from the restaurant's menu.
+7. The system displays a success message to the staff member.
+
+Alternative Flows:
+[AF1: Cancel Deletion]
+1. If the staff member clicks the "Cancel" button in the confirmation dialog, the system does not remove the menu item and returns to the menu management page.
+
+UC14: View Order History
+
+Preconditions:
+- The staff member is logged into the staff dashboard with the STAFF role.
+- The staff member has permission to view the restaurant's order history.
+
+Main Flow:
+1. The staff member selects the "Order Management" option from the staff dashboard.
+2. The system displays a list of all orders placed for the restaurant.
+3
+------------------------------------------------------------
+Q19: Main Flow:
+A19: UC11: Place Food Order
+Preconditions:
+- The customer has a valid account with the food ordering app.
+- The customer has a delivery address saved in their account.
+- The customer's payment method is set up and ready for use.
+
+Main Flow:
+1. The customer opens the food ordering app on their mobile device.
+2. The customer selects the "Order Food" option from the main menu.
+3. The app displays the list of available restaurants and their menus.
+4. The customer browses the menu and selects the desired items.
+5. The customer specifies any special instructions or customizations for the order.
+6. The customer reviews the order details, including the total cost and estimated delivery time.
+7. The customer confirms the order and selects the payment method.
+8. The app processes the payment and sends the order to the selected restaurant.
+9. The customer receives a confirmation of the order placement and a tracking number.
+
+Subflows:
+[Display Menu]: The app retrieves and displays the menu items, including descriptions, prices, and availability.
+[Select Payment Method]: The app allows the customer to choose from their saved payment methods or add a new one.
+[Track Order]: The app provides real-time updates on the order status, including preparation, pickup, and delivery.
+
+Alternative Flows:
+[AF1: Item Unavailable]: If an item the customer selected is unavailable, the app displays a message and allows the customer to choose a substitute or remove the item from the order.
+[AF2: Insufficient Funds]: If the customer's selected payment method has insufficient funds, the app prompts the customer to update their payment information or choose a different payment method.
+[AF3: Delivery Unavailable]: If the customer's delivery address is outside the restaurant's delivery area, the app notifies the customer and suggests the nearest available restaurant.
+
+UC12: Update Account Information
+Preconditions:
+- The customer has a valid account with the food ordering app.
+
+Main Flow:
+1. The customer opens the food ordering app and selects the "Account" option from the main menu.
+2. The app displays the customer's current account information, including their name, delivery address, and payment methods.
+3. The customer selects the information they want to update, such as their name, delivery address, or payment method.
+4. The customer enters the new information and confirms the changes.
+5. The app updates the customer's account information and displays a confirmation message.
+
+Subflows:
+[Update Delivery Address]: The customer can add, modify, or remove their saved delivery addresses.
+[Update Payment Method]: The customer can add, update, or remove their saved payment methods.
+
+Alternative Flows:
+[AF1: Invalid Input]: If the customer enters invalid information (e.g., an incorrect address format), the app displays an error message and prompts the customer to correct the input.
+[AF2: Address Unavailable]: If the customer tries to add a delivery address that is not serviced by the app, the app notifies the customer and suggests nearby available areas.
+
+UC13: Track Order Status
+Preconditions:
+- The customer has placed a food order through the app.
+- The order is in progress or has been delivered.
+
+Main Flow:
+1. The customer opens the food ordering app and selects the "Track Order" option from the main menu.
+2. The app displays the current status of the customer's most recent order, including the order number, restaurant name, and estimated delivery time.
+3. The customer can view real-time updates on the order's progress, such as when the order was received, when it was prepared, and when it was picked up by the delivery driver.
+4. The app also provides the customer with the delivery driver's location and estimated time of arrival.
+5. Once the order is delivered, the app displays a confirmation message and prompts the customer to rate their experience.
+
+Subflows:
+[View Order History]: The customer can view a list of their past orders, including the order details and status for each order.
+[Contact Support]: The customer can access the app's customer support options, such as a chat feature or a help hotline, to address any issues with their current order.
+
+Alternative Flows:
+[AF1: Order Cancelled]: If the order is cancelled by the restaurant or the app, the app notifies the customer and provides information on the reason for the cancellation and any refund or credit that may be issued.
+[AF2: Delivery Delay]: If the delivery is delayed due to unforeseen circumstances, the app updates the customer with the new estimated delivery time and provides an explanation for the delay.
+
+UC14: Rate
+------------------------------------------------------------
+Q20: The staff member opens the dashboard, prompting the system to [Check Orders]. The staff selects an order to [Prepare Order] and, upon completion, chooses to [Mark Fulfilled], which directs the system to [Update Status] and remove the order from the active list.
+A20: UC11: Prepare and Fulfill Order
+
+Preconditions:
+- The restaurant staff member has logged into the system.
+- There are active orders waiting to be prepared.
+
+Main Flow:
+1. The staff member opens the dashboard, prompting the system to [Check Orders].
+2. The staff member selects an order to [Prepare Order].
+3. The staff member prepares the order.
+4. Upon completion of the order preparation, the staff member chooses to [Mark Fulfilled].
+5. The system [Update Status] to mark the order as fulfilled and removes it from the active list.
+
+Subflows:
+[Check Orders]
+1. The system displays a list of all active orders waiting to be prepared.
+
+[Prepare Order]
+1. The staff member selects an order from the list.
+2. The system displays the order details, including the items, special instructions, and customer information.
+3. The staff member proceeds to prepare the order.
+
+[Update Status]
+1. The system updates the order status to "Fulfilled".
+2. The order is removed from the active order list.
+3. The system notifies the customer that their order has been fulfilled and is ready for pickup or delivery.
+
+Alternative Flows:
+[AF1: Order Modification]
+1. While preparing the order, the staff member realizes that an item is unavailable or needs to be changed.
+2. The staff member selects the [Modify Order] option.
+3. The system allows the staff member to update the order details.
+4. The staff member continues with the preparation of the modified order.
+
+[AF2: Order Cancellation]
+1. While preparing the order, the staff member receives a notification that the customer has cancelled the order.
+2. The staff member selects the [Cancel Order] option.
+3. The system updates the order status to "Cancelled" and removes it from the active list.
+4. The system notifies the customer that their order has been cancelled.
+
+UC12: Manage Menu Items
+
+Preconditions:
+- The restaurant staff member has logged into the system.
+- The staff member has the necessary permissions to manage menu items.
+
+Main Flow:
+1. The staff member selects the [Manage Menu] option from the dashboard.
+2. The system displays the current menu items.
+3. The staff member can perform the following actions:
+   a. [Add New Item]: The staff member enters the new item details, including name, description, price, and availability.
+   b. [Edit Existing Item]: The staff member updates the details of an existing menu item.
+   c. [Remove Item]: The staff member removes an item from the menu.
+4. The staff member saves the changes, and the system updates the menu accordingly.
+
+Subflows:
+[Add New Item]
+1. The staff member clicks the "Add New Item" button.
+2. The system displays a form for the staff member to fill in the new item details.
+3. The staff member enters the required information and saves the new item.
+
+[Edit Existing Item]
+1. The staff member selects the menu item they want to edit.
+2. The system displays the item details in an editable form.
+3. The staff member updates the necessary information and saves the changes.
+
+[Remove Item]
+1. The staff member selects the menu item they want to remove.
+2. The system displays a confirmation prompt.
+3. The staff member confirms the removal, and the system removes the item from the menu.
+
+Alternative Flows:
+[AF1: Item Unavailable]
+1. While editing a menu item, the staff member realizes that the item is temporarily unavailable.
+2. The staff member updates the item's availability status to "Unavailable".
+3. The system updates the menu to reflect the item's unavailability.
+
+UC13: View Order History
+
+Preconditions:
+- The restaurant staff member has logged into the system.
+- The staff member has the necessary permissions to view order history.
+
+Main Flow:
+1. The staff member selects the [Order History] option from the dashboard.
+2. The system displays a list of all previous orders, including their status, customer information, and order details.
+3. The staff member can filter the order history by various criteria, such as order status, customer, or date range.
+4. The staff member can select a specific order to view its details, including the items ordered, special instructions, and delivery information.
+
+Subflows:
+[Filter Order History]
+1. The staff member uses the provided filters to narrow down the order history.
+2. The system updates the displayed list of orders base
+------------------------------------------------------------
+Q21: Subflows:
+A21: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: Place a Catering Order
+Preconditions:
+- User is registered and logged in to the system.
+- User has selected a restaurant that offers catering services.
+
+Main Flow:
+1. User selects the "Catering" option from the restaurant menu.
+2. System displays the catering menu, including options for different package sizes and add-ons.
+3. User selects the desired catering package and customizes the order as needed (e.g., add-ons, delivery time).
+4. User provides the number of guests and any special instructions.
+5. User reviews the order summary and total cost.
+6. User confirms the catering order.
+7. System processes the order and provides the user with a confirmation number.
+
+Subflows:
+[Select Catering Package]
+[Customize Order]
+[Review Order Summary]
+
+Alternative Flows:
+[AF1: Catering Unavailable]
+1. System informs the user that the selected restaurant does not offer catering services.
+2. System redirects the user back to the main restaurant menu.
+
+UC12: Schedule a Future Delivery
+Preconditions:
+- User is registered and logged in to the system.
+- User has selected items from the restaurant menu.
+
+Main Flow:
+1. User selects the "Schedule Delivery" option.
+2. System prompts the user to select a delivery date and time.
+3. User chooses the desired delivery date and time.
+4. System checks the restaurant's availability and delivery capacity for the selected time slot.
+5. If the time slot is available, system adds the scheduled delivery to the restaurant's queue.
+6. System provides the user with a confirmation number and estimated delivery time.
+
+Subflows:
+[Select Delivery Date and Time]
+[Check Restaurant Availability]
+
+Alternative Flows:
+[AF1: Time Slot Unavailable]
+1. System informs the user that the selected delivery time is not available.
+2. System prompts the user to choose a different date or time.
+3. User selects a new delivery time, and the system repeats the availability check.
+
+UC13: Earn Loyalty Points
+Preconditions:
+- User is registered and logged in to the system.
+- User has an active loyalty program account.
+
+Main Flow:
+1. User places an order for food delivery or pickup.
+2. System checks the user's loyalty program status and eligibility for points.
+3. System awards the user with loyalty points based on the order total.
+4. System updates the user's loyalty program account with the new points.
+5. System provides the user with a summary of the loyalty points earned.
+
+Subflows:
+[Check Loyalty Program Eligibility]
+[Award Loyalty Points]
+[Update Loyalty Account]
+
+Alternative Flows:
+[AF1: Loyalty Program Inactive]
+1. System informs the user that their loyalty program account is not active.
+2. System provides instructions on how to activate the loyalty program.
+
+UC14: Redeem Loyalty Points
+Preconditions:
+- User is registered and logged in to the system.
+- User has an active loyalty program account with sufficient points.
+
+Main Flow:
+1. User selects the "Redeem Loyalty Points" option.
+2. System displays the user's current loyalty points balance and available redemption options.
+3. User chooses the desired redemption option (e.g., discount on next order, free delivery, etc.).
+4. System applies the redemption value to the user's next order.
+5. System updates the user's loyalty points balance.
+6. System provides the user with a summary of the redemption transaction.
+
+Subflows:
+[Display Loyalty Points Balance]
+[Select Redemption Option]
+[Apply Redemption Value]
+[Update Loyalty Points Balance]
+
+Alternative Flows:
+[AF1: Insufficient Loyalty Points]
+1. System informs the user that they do not have enough loyalty points to redeem the selected option.
+2. System suggests alternative redemption options based on the user's points balance.
+
+UC15: Report Missing or Incorrect Order
+Preconditions:
+- User has placed a food delivery order and received the order.
+- User is registered and logged in to the system.
+
+Main Flow:
+1. User selects the "Report Issue" option from the order history.
+2. System prompts the user to describe the issue (e.g., missing items, incorrect order, damaged items).
+3. User provides the
+------------------------------------------------------------
+Q22: • [Check Orders] System retrieves all orders with status ORDERED.
+A22: UC11: Check Ordered Orders
+
+Preconditions:
+- User is logged in as an admin user
+- There are orders in the system with a status of "ORDERED"
+
+Main Flow:
+1. User selects the "Orders" section in the admin interface.
+2. System retrieves all orders with a status of "ORDERED".
+3. System displays a list of the ordered orders, including order details such as order ID, customer name, restaurant name, order items, order total, and order status.
+4. User reviews the list of ordered orders.
+
+Subflows:
+[Display Order List]
+1. System queries the database for all orders with a status of "ORDERED".
+2. System formats the order details into a structured list view.
+3. System displays the list of ordered orders to the user.
+
+Alternative Flows:
+[AF1: No Ordered Orders]
+1. If there are no orders with a status of "ORDERED", the system informs the user that there are no ordered orders to display.
+
+UC12: Update Order Status
+
+Preconditions:
+- User is logged in as an admin user
+- There is at least one order in the "ORDERED" status
+
+Main Flow:
+1. User selects an order from the list of ordered orders.
+2. System displays the detailed order information, including the current order status.
+3. User updates the order status (e.g., to "IN PROGRESS", "READY FOR PICKUP", or "DELIVERED").
+4. System saves the updated order status in the database.
+5. System notifies the customer and delivery agent of the updated order status.
+
+Subflows:
+[Update Order Status]
+1. User selects the appropriate order status from a dropdown or other UI control.
+2. System validates the new order status.
+3. System updates the order status in the database.
+4. System sends notifications to the customer and delivery agent.
+
+Alternative Flows:
+[AF1: Invalid Order Status]
+1. If the user attempts to update the order status to an invalid value, the system displays an error message and prompts the user to select a valid status.
+
+UC13: Assign Delivery Agent
+
+Preconditions:
+- User is logged in as an admin user
+- There is at least one order in the "READY FOR PICKUP" status
+
+Main Flow:
+1. User selects an order with a status of "READY FOR PICKUP".
+2. System displays the order details, including the restaurant location and customer delivery address.
+3. User assigns a delivery agent to the order.
+4. System updates the order record with the assigned delivery agent.
+5. System notifies the delivery agent of the new assignment.
+
+Subflows:
+[Assign Delivery Agent]
+1. System displays a list of available delivery agents.
+2. User selects a delivery agent from the list.
+3. System updates the order record with the assigned delivery agent.
+4. System sends a notification to the selected delivery agent.
+
+Alternative Flows:
+[AF1: No Available Delivery Agents]
+1. If there are no available delivery agents, the system informs the user and prompts them to try again later.
+
+UC14: Track Order Delivery
+
+Preconditions:
+- User is logged in as an admin user or a customer
+- There is at least one order in the "IN PROGRESS" status
+
+Main Flow:
+1. User selects an order with a status of "IN PROGRESS".
+2. System displays the order details, including the current location of the delivery agent.
+3. User can track the delivery progress by viewing the delivery agent's location on a map.
+4. System updates the order status as the delivery agent progresses through the delivery.
+
+Subflows:
+[Track Delivery Progress]
+1. System retrieves the current location of the assigned delivery agent.
+2. System plots the delivery agent's location on a map within the application.
+3. System updates the order status as the delivery agent progresses through the delivery (e.g., "PICKED UP", "EN ROUTE", "DELIVERED").
+
+Alternative Flows:
+[AF1: Delivery Agent Offline]
+1. If the delivery agent's location is unavailable (e.g., due to a device or network issue), the system informs the user that the delivery progress cannot be tracked at the moment.
+
+UC15: Provide Delivery Feedback
+
+Preconditions:
+- User is logged in as a customer
+- User has received a delivered order
+
+Main Flow:
+1. User selects a delivered order from the order history.
+2. System displays the order details and prompts the
+------------------------------------------------------------
+Q23: – If none exist, show “No new orders” [No Orders].
+A23: UC11: Search and Filter Restaurants
+
+Preconditions:
+- The user has launched the food ordering app.
+- The user wants to search for and filter restaurants based on various criteria.
+
+Main Flow:
+1. [Search Restaurants] The user taps the search bar at the top of the app.
+2. The user enters a keyword or location to search for restaurants.
+3. The app displays a list of restaurants matching the search query.
+4. [Filter Restaurants] The user taps the filter icon to access the filter options.
+5. The user selects one or more filter criteria, such as cuisine type, price range, rating, or delivery time.
+6. The app updates the restaurant list to show only those that match the selected filters.
+7. The user can browse the filtered restaurant list and select one to view its menu.
+
+Subflows:
+[Display Restaurant List]
+1. The app retrieves and displays a list of restaurants based on the user's search and filter criteria.
+2. Each restaurant listing shows the name, cuisine type, average rating, and estimated delivery time.
+3. The user can scroll through the list and tap on a restaurant to view its full menu.
+
+[Apply Filters]
+1. The user taps the filter icon to access the available filter options.
+2. The user selects one or more filter criteria from the list (e.g., cuisine, price range, rating, delivery time).
+3. The app updates the restaurant list to show only those that match the selected filters.
+4. The user can adjust the filters as needed to refine the search results.
+
+Alternative Flows:
+[AF1: No Search Results]
+1. If the user's search query does not return any matching restaurants, the app displays a message saying "No restaurants found."
+2. The user can try a different search query or adjust the filter settings to find relevant restaurants.
+
+[AF2: Filter Options Unavailable]
+1. If the app is unable to retrieve the necessary data to populate the filter options, it displays a message saying "Filters unavailable."
+2. The user can still browse the unfiltered restaurant list, but the filter functionality will be disabled.
+
+UC12: View Restaurant Menu and Details
+
+Preconditions:
+- The user has selected a restaurant from the search or filter results.
+- The user wants to view the restaurant's menu and other details.
+
+Main Flow:
+1. [Display Restaurant Page] The app displays the selected restaurant's page, showing the restaurant's name, cuisine type, average rating, and delivery time.
+2. [View Menu] The user scrolls down to see the restaurant's menu, which includes a list of available items, their descriptions, prices, and any customization options.
+3. [View Restaurant Details] The user taps on the "Details" tab to view additional information about the restaurant, such as operating hours, payment methods accepted, and any special notes or policies.
+4. The user can add items from the menu to their cart and proceed to the checkout process.
+
+Subflows:
+[Display Menu]
+1. The app retrieves and displays the restaurant's menu, organized by category (e.g., appetizers, entrees, desserts).
+2. Each menu item shows the name, description, price, and any available customization options.
+3. The user can scroll through the menu and tap on items to view more details or add them to their cart.
+
+[Display Restaurant Details]
+1. The app retrieves and displays the restaurant's additional details, such as operating hours, address, payment methods accepted, and any special notes or policies.
+2. The user can review this information to better understand the restaurant's offerings and policies.
+
+Alternative Flows:
+[AF1: Menu Unavailable]
+1. If the app is unable to retrieve the restaurant's menu data, it displays a message saying "Menu unavailable."
+2. The user can try selecting a different restaurant or contact the restaurant directly to inquire about the menu.
+
+[AF2: Restaurant Details Unavailable]
+1. If the app is unable to retrieve the restaurant's additional details, it displays a message saying "Restaurant details unavailable."
+2. The user can still view the restaurant's menu and proceed with their order, but will not have access to the supplementary information.
+
+UC13: Add Items to Cart and Update Order
+
+Preconditions:
+- The user has selected a restaurant and is viewing its menu.
+- The user wants to add items to their cart and update the order.
+
+Main Flow:
+1. [Add Items to Cart] The user taps on menu items to add them to their cart.
+2. The app updates the cart, displaying the selected items, quantities,
+------------------------------------------------------------
+Q24: • [Prepare Order] Staff prepares selected order.
+A24: UC11: Staff Prepares Selected Order
+
+Preconditions:
+- The customer has placed an order for pickup or delivery.
+- The restaurant staff has received the order details.
+
+Main Flow:
+1. [Receive Order] The restaurant staff receives the customer's order details.
+2. [Verify Ingredients] The staff checks if all the required ingredients for the ordered items are available.
+3. [Prepare Order] The staff proceeds to prepare the ordered items according to the recipe and instructions.
+4. [Package Order] Once the order is ready, the staff packages the food items securely for pickup or delivery.
+5. [Update Order Status] The staff updates the order status to "Ready for Pickup" or "Ready for Delivery".
+6. [Notify Customer] The system notifies the customer that their order is ready.
+
+Subflows:
+[Receive Order]
+1. The staff receives the order details through the restaurant's order management system.
+2. The staff reviews the order for any special instructions or customizations.
+
+[Verify Ingredients]
+1. The staff checks the available inventory of ingredients.
+2. If any ingredients are missing, the staff informs the manager to procure the necessary items.
+
+[Package Order]
+1. The staff places the prepared food items in the appropriate packaging.
+2. The staff ensures the packaging is secure and maintains the quality of the food.
+
+Alternative Flows:
+[AF1: Ingredient Unavailable]
+1. If a required ingredient is unavailable, the staff informs the customer and offers a suitable substitute.
+2. If the customer accepts the substitute, the staff proceeds with the order preparation.
+3. If the customer rejects the substitute, the staff cancels the order and informs the customer.
+
+[AF2: Order Modification]
+1. The customer requests a modification to the order before it is prepared.
+2. The staff updates the order details and proceeds with the preparation.
+3. The staff informs the customer of the updated order details and expected ready time.
+------------------------------------------------------------
+Q25: – If unable to complete, go to [Cancel Order].
+A25: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: Cancel Order
+Preconditions: User has placed an order.
+Main Flow:
+1. User selects "Cancel Order" button.
+2. System displays confirmation dialog.
+3. User confirms cancellation.
+4. System cancels the order and refunds the payment.
+Alternative Flows:
+[AF1: Order Already Prepared]
+3a. System informs user that the order is already prepared and cannot be canceled.
+4a. User is given the option to pick up the order or have it delivered.
+
+UC12: Rate Delivery Experience
+Preconditions: User has received their order.
+Main Flow:
+1. System prompts user to rate the delivery experience.
+2. User selects a rating (1-5 stars) and provides optional feedback.
+3. System saves the rating and feedback.
+Subflows:
+[Provide Tip]
+2a. User opts to provide a tip for the delivery driver.
+2a1. User enters tip amount and confirms.
+2a2. System processes the tip payment.
+
+UC13: Reorder Previous Order
+Preconditions: User has placed at least one previous order.
+Main Flow:
+1. User selects "View Previous Orders" option.
+2. System displays a list of the user's previous orders.
+3. User selects an order to reorder.
+4. System prefills the order details.
+5. User reviews and confirms the order.
+6. System processes the new order.
+
+UC14: Apply Coupon or Promo Code
+Preconditions: User has items in their cart.
+Main Flow:
+1. User selects "Apply Coupon" option.
+2. System displays a field to enter a coupon or promo code.
+3. User enters a code and applies it.
+4. System validates the code and applies the discount.
+5. User reviews the updated cart total.
+Alternative Flows:
+[AF1: Invalid Coupon Code]
+3a. System informs user that the code is invalid.
+3b. User is prompted to try a different code.
+
+UC15: Track Driver Location
+Preconditions: User has placed an order for delivery.
+Main Flow:
+1. User selects "Track Driver" option.
+2. System displays the driver's current location on a map.
+3. User can monitor the driver's progress towards their location.
+Subflows:
+[Contact Driver]
+2a. User taps the driver's icon on the map.
+2a1. System displays the driver's contact information.
+2a2. User can call or message the driver.
+
+UC16: Schedule Future Order
+Preconditions: None
+Main Flow:
+1. User selects "Schedule Order" option.
+2. System displays a calendar and time selection interface.
+3. User selects the desired delivery date and time.
+4. User builds their order.
+5. System confirms the scheduled order details.
+6. User completes the payment.
+Alternative Flows:
+[AF1: Unavailable Delivery Timeslot]
+3a. System informs user that the selected timeslot is unavailable.
+3b. User is prompted to choose a different date or time.
+
+UC17: Split Order
+Preconditions: User has items in their cart.
+Main Flow:
+1. User selects "Split Order" option.
+2. System displays the current cart items.
+3. User selects which items to split into a separate order.
+4. System creates a new order with the selected items.
+5. User completes the payment for the new order.
+6. System processes both orders independently.
+
+UC18: Pause Delivery
+Preconditions: User has placed an order for delivery.
+Main Flow:
+1. User selects "Pause Delivery" option.
+2. System displays a confirmation dialog.
+3. User confirms the pause request.
+4. System pauses the delivery and notifies the driver.
+5. User can resume the delivery later.
+Alternative Flows:
+[AF1: Order Already Prepared]
+3a. System informs user that the order is already prepared and cannot be paused.
+3b. User is given the option to pick up the order or continue the delivery.
+
+UC19: Refer Friend
+Preconditions: User has an active account.
+Main Flow:
+1. User selects "Refer Friend" option.
+2. System generates a unique referral code for the user.
+3. User shares the referral code
+------------------------------------------------------------
+Q26: • [Mark Fulfilled] Staff selects “Mark as Fulfilled”; system sets status to FULFILLED.
+A26: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: View Order History
+Preconditions: The user must be logged in to the app.
+Main Flow:
+1. The user selects the "Order History" option from the main menu.
+2. The system retrieves and displays the user's previous orders, including order details, status, and delivery information.
+3. The user can view the details of each past order.
+
+Subflows:
+[View Order Details]
+1. The user selects a specific order from the order history list.
+2. The system displays detailed information about the selected order, including the items ordered, order total, delivery address, and delivery status.
+
+Alternative Flows:
+[AF1: No Order History]
+1. If the user has no previous orders, the system displays a message indicating that the order history is empty.
+
+UC12: Rate Delivery Experience
+Preconditions: The user must have received a completed delivery.
+Main Flow:
+1. The user selects the "Rate Delivery" option from the order details or the main menu.
+2. The system displays a rating screen with options to rate the delivery driver's performance and the overall delivery experience.
+3. The user provides a rating and optional feedback for the delivery.
+4. The system saves the user's rating and feedback.
+
+Subflows:
+[Display Ratings]
+1. The user can view their past delivery ratings and feedback.
+
+Alternative Flows:
+[AF1: No Completed Deliveries]
+1. If the user has not received any completed deliveries, the system displays a message indicating that there are no deliveries to rate.
+
+UC13: Redeem Rewards
+Preconditions: The user must be logged in to the app and have accumulated rewards.
+Main Flow:
+1. The user selects the "Rewards" option from the main menu.
+2. The system displays the user's available rewards, such as coupons, discounts, or gift cards.
+3. The user selects the reward they wish to redeem.
+4. The system applies the selected reward to the user's account or generates a code for the user to use.
+
+Subflows:
+[View Reward History]
+1. The user can view their past redeemed rewards and the current balance of their rewards.
+
+Alternative Flows:
+[AF1: No Available Rewards]
+1. If the user has no available rewards, the system displays a message indicating that the user has no rewards to redeem.
+
+UC14: Report Missing or Incorrect Order
+Preconditions: The user must have received a completed delivery.
+Main Flow:
+1. The user selects the "Report Issue" option from the order details or the main menu.
+2. The system displays a form for the user to report an issue with the order, such as missing items or incorrect items.
+3. The user provides details about the issue and submits the report.
+4. The system logs the report and notifies the restaurant and delivery service of the issue.
+
+Subflows:
+[View Issue History]
+1. The user can view the history of their reported issues and the status of each report.
+
+Alternative Flows:
+[AF1: No Completed Deliveries]
+1. If the user has not received any completed deliveries, the system displays a message indicating that there are no orders to report issues for.
+
+UC15: Modify Recurring Order
+Preconditions: The user must have an active recurring order set up.
+Main Flow:
+1. The user selects the "Recurring Orders" option from the main menu.
+2. The system displays the user's current recurring order details, including the scheduled delivery days and items ordered.
+3. The user selects the "Modify" option for the recurring order.
+4. The system displays a form for the user to update the recurring order details, such as changing the delivery frequency, items, or delivery address.
+5. The user makes the desired changes and submits the updated recurring order.
+6. The system saves the modified recurring order details and updates the user's account.
+
+Subflows:
+[Cancel Recurring Order]
+1. The user selects the "Cancel" option for the recurring order.
+2. The system removes the recurring order from the user's account.
+
+Alternative Flows:
+[AF1: No Recurring Orders]
+1. If the user has no active recurring orders, the system displays a message indicating that the user has no recurring orders to modify.
+
+UC16: Schedule a Future Delivery
+Preconditions: The user must be logged in to the app and have items in their cart.
+Main
+------------------------------------------------------------
+Q27: • [Update Status] Order is removed from the ORDERED list.
+A27: UC11: Update Order Status
+
+Preconditions:
+- The order has been placed and is in the "ORDERED" status.
+- The restaurant has prepared the food and is ready to update the order status.
+
+Main Flow:
+1. The restaurant user accesses the order management system.
+2. The restaurant user selects the order that is ready to be updated.
+3. The restaurant user changes the order status from "ORDERED" to "READY FOR PICKUP".
+4. The system confirms the status update and notifies the customer that their order is ready.
+5. The system moves the order from the "ORDERED" list to the "READY FOR PICKUP" list.
+
+Subflows:
+[Update Order Status]
+1. The restaurant user selects the "Update Order Status" option.
+2. The system displays the current order status and allows the user to change it.
+3. The user selects the "READY FOR PICKUP" status.
+4. The system confirms the status update.
+
+Alternative Flows:
+[AF1: Order Already Picked Up]
+1. If the order has already been picked up by the customer, the restaurant user cannot update the status.
+2. The system displays an error message indicating the order has already been fulfilled.
+
+[AF2: Order Canceled]
+1. If the order has been canceled, the restaurant user cannot update the status.
+2. The system displays an error message indicating the order has been canceled.
+
+UC12: Notify Customer of Order Status Update
+
+Preconditions:
+- The order status has been updated to "READY FOR PICKUP".
+
+Main Flow:
+1. The system detects that the order status has been updated to "READY FOR PICKUP".
+2. The system sends a notification to the customer's mobile app or email, informing them that their order is ready for pickup.
+3. The customer receives the notification and is prompted to come to the restaurant to pick up their order.
+
+Subflows:
+[Notify Customer]
+1. The system retrieves the customer's contact information (email, mobile number) from the order details.
+2. The system composes a notification message with the order details and status update.
+3. The system sends the notification to the customer using the appropriate communication channel (email, push notification).
+
+Alternative Flows:
+[AF1: Customer Contact Information Unavailable]
+1. If the customer's contact information is not available in the order details, the system cannot send a notification.
+2. The system logs the issue and notifies the restaurant staff to manually contact the customer.
+
+UC13: Pickup Order at Restaurant
+
+Preconditions:
+- The order status has been updated to "READY FOR PICKUP".
+- The customer has received the notification that their order is ready.
+
+Main Flow:
+1. The customer arrives at the restaurant to pick up their order.
+2. The restaurant staff locates the order and verifies the customer's identity.
+3. The restaurant staff hands the order to the customer.
+4. The customer inspects the order and confirms it is correct.
+5. The customer leaves the restaurant with their order.
+
+Subflows:
+[Verify Customer Identity]
+1. The restaurant staff asks the customer for their name or order number.
+2. The staff matches the customer's information with the order details.
+3. The staff confirms the customer's identity.
+
+[Retrieve Order]
+1. The restaurant staff locates the order in the "READY FOR PICKUP" list.
+2. The staff gathers the order items and prepares them for the customer.
+
+Alternative Flows:
+[AF1: Order Not Ready]
+1. If the order is not yet ready for pickup, the restaurant staff informs the customer.
+2. The customer is asked to wait or come back later to pick up the order.
+
+[AF2: Order Incorrect]
+1. If the customer inspects the order and finds it to be incorrect, they notify the restaurant staff.
+2. The staff investigates the issue and either corrects the order or provides a refund/replacement.
+
+UC14: Cancel Order
+
+Preconditions:
+- The order has been placed and is in the "ORDERED" status.
+- The customer has not yet picked up the order.
+
+Main Flow:
+1. The customer accesses the mobile app or website.
+2. The customer navigates to the order details and selects the "Cancel Order" option.
+3. The system prompts the customer to confirm the cancellation.
+4. The customer confirms the cancellation.
+5. The system updates the order status to "CANCELED".
+6. The system notifies the restaurant that the order
+------------------------------------------------------------
+Q28: • [Cancel Order] Staff selects “Cancel Order”; system sets status to CANCELLED.
+A28: UC11: Cancel Order
+
+Preconditions:
+- User has placed an order in the system
+- Order status is either PENDING, ACCEPTED, or IN_PREPARATION
+
+Main Flow:
+1. User selects "Cancel Order" option.
+2. System displays a confirmation dialog to the user.
+3. User confirms they want to cancel the order.
+4. System sets the order status to CANCELLED.
+5. System notifies the restaurant and delivery courier (if assigned) that the order has been cancelled.
+6. System refunds the user's payment (if applicable).
+7. System logs the cancellation event and updates the order history.
+
+Subflows:
+[SF1: Confirm Order Cancellation]
+1. System displays a confirmation dialog to the user asking if they want to cancel the order.
+2. User confirms they want to cancel the order.
+
+Alternative Flows:
+[AF1: Order Already Picked Up]
+1. If the order status is PICKED_UP, the system informs the user that the order cannot be cancelled as it has already been picked up by the delivery courier.
+2. User is redirected to the order details page.
+
+[AF2: Order Already Delivered]
+1. If the order status is DELIVERED, the system informs the user that the order cannot be cancelled as it has already been delivered.
+2. User is redirected to the order details page.
+
+[AF3: User Cancels Confirmation]
+1. If the user decides not to cancel the order after the confirmation dialog, the system returns the user to the previous page.
+
+UC12: Modify Order
+
+Preconditions:
+- User has placed an order in the system
+- Order status is PENDING or ACCEPTED
+
+Main Flow:
+1. User selects "Modify Order" option.
+2. System displays the current order details.
+3. User makes changes to the order (e.g., add/remove items, change quantities).
+4. User confirms the modified order.
+5. System updates the order details and recalculates the total cost.
+6. System notifies the restaurant of the order changes (if applicable).
+7. System logs the order modification event and updates the order history.
+
+Subflows:
+[SF1: Update Order Details]
+1. User selects the items they want to add, remove, or modify.
+2. User updates the quantities for the selected items.
+3. User confirms the changes.
+
+Alternative Flows:
+[AF1: Order Already In Preparation]
+1. If the order status is IN_PREPARATION, the system informs the user that the order cannot be modified as it is already being prepared.
+2. User is redirected to the order details page.
+
+[AF2: Order Already Picked Up]
+1. If the order status is PICKED_UP, the system informs the user that the order cannot be modified as it has already been picked up by the delivery courier.
+2. User is redirected to the order details page.
+
+[AF3: Order Already Delivered]
+1. If the order status is DELIVERED, the system informs the user that the order cannot be modified as it has already been delivered.
+2. User is redirected to the order details page.
+
+UC13: Track Order Status
+
+Preconditions:
+- User has placed an order in the system
+
+Main Flow:
+1. User selects "Track Order" option.
+2. System displays the current order status and relevant details.
+3. If the order is in the ACCEPTED or IN_PREPARATION state, the system provides an estimated delivery time.
+4. If the order is in the PICKED_UP state, the system displays the delivery courier's location on a map.
+5. If the order is in the DELIVERED state, the system displays the final delivery time.
+6. User can refresh the order status page to get the latest updates.
+
+Subflows:
+[SF1: Display Order Status]
+1. System retrieves the current order status from the database.
+2. System displays the order status and relevant details to the user.
+
+Alternative Flows:
+[AF1: Order Not Found]
+1. If the user tries to track an order that is not found in the system, the system displays an error message.
+2. User is prompted to check the order details and try again.
+
+UC14: Rate Delivery Experience
+
+Preconditions:
+- User has received a delivered order
+
+Main Flow:
+1. Upon delivery, the system prompts the user to rate the delivery experience.
+2. User selects a rating from 1 to 5 stars.
+3. User can optionally provide
+------------------------------------------------------------
+Q29: Alternative Flows:
+A29: UC11: Initiate Delivery Request
+
+Preconditions:
+- Customer has a valid account and has placed an order.
+- Restaurant has accepted the order and prepared the food.
+
+Main Flow:
+1. Customer selects "Place Delivery Order" option.
+2. System prompts customer to confirm delivery address and preferred delivery time.
+3. System displays available delivery slots and estimated delivery time.
+4. Customer selects preferred delivery slot.
+5. System confirms the delivery order details and estimates the total cost.
+6. Customer reviews and approves the order.
+7. System notifies the delivery service to pick up the order from the restaurant.
+
+Subflows:
+[Select Delivery Address]
+[Choose Delivery Time Slot]
+[Confirm Order Details]
+
+Alternative Flows:
+[AF1: Delivery Unavailable]
+4a. If the selected delivery time slot is not available, the system informs the customer and prompts them to choose an alternative time slot.
+4b. If no suitable delivery time slots are available, the system suggests the customer select a pick-up option instead.
+
+[AF2: Payment Declined]
+6a. If the customer's payment method is declined, the system prompts the customer to update their payment information and resubmit the order.
+6b. If the customer is unable to provide a valid payment method, the system cancels the order.
+
+UC12: Track Delivery Status
+
+Preconditions:
+- Customer has placed a delivery order.
+- Delivery service has been notified to pick up the order.
+
+Main Flow:
+1. Customer selects "Track Delivery" option.
+2. System retrieves the current status of the customer's delivery order.
+3. System displays the delivery status, including the driver's location, estimated time of arrival, and any updates.
+4. Customer can monitor the delivery progress in real-time.
+
+Subflows:
+[Retrieve Delivery Status]
+[Display Delivery Information]
+
+Alternative Flows:
+[AF1: Delivery Delayed]
+3a. If the delivery is delayed due to unforeseen circumstances, the system updates the customer with the new estimated time of arrival and the reason for the delay.
+3b. The system may offer the customer the option to cancel the order or select a different delivery time.
+
+[AF2: Delivery Driver Changed]
+3a. If the original delivery driver is no longer able to complete the delivery, the system assigns a new driver and updates the customer with the new driver's information.
+3b. The system may provide an estimated time for the new driver to arrive.
+
+UC13: Rate Delivery Experience
+
+Preconditions:
+- Customer has received their delivered order.
+
+Main Flow:
+1. System prompts the customer to rate the overall delivery experience.
+2. Customer provides a rating and optional feedback on the delivery service.
+3. System records the customer's feedback and rating.
+4. System updates the delivery service provider's performance metrics based on the customer's rating.
+
+Subflows:
+[Submit Delivery Rating]
+[Update Delivery Service Provider Performance]
+
+Alternative Flows:
+[AF1: Customer Declines to Rate]
+2a. If the customer chooses not to provide a rating, the system records the order as "unrated" and proceeds to update the delivery service provider's performance metrics based on other orders.
+
+[AF2: Delivery Issues Reported]
+2a. If the customer provides negative feedback or a low rating, the system prompts the customer to report any specific issues with the delivery.
+2b. The system logs the customer's feedback and notifies the delivery service provider to investigate the reported issues.
+2c. The delivery service provider may reach out to the customer to address the concerns and improve future deliveries.
+
+UC14: Manage Delivery Fleet
+
+Preconditions:
+- Delivery service provider has a fleet of delivery vehicles and drivers.
+- Delivery orders are being received from multiple restaurants.
+
+Main Flow:
+1. System aggregates incoming delivery orders and assigns them to available delivery drivers.
+2. System optimizes delivery routes based on factors such as driver availability, order location, and traffic conditions.
+3. System tracks the real-time location and status of each delivery driver.
+4. System monitors delivery performance metrics, such as on-time delivery rate and customer satisfaction.
+5. System generates reports and analytics to identify opportunities for improving delivery efficiency and sustainability.
+
+Subflows:
+[Assign Delivery Orders]
+[Route Optimization]
+[Track Delivery Fleet]
+[Analyze Delivery Performance]
+
+Alternative Flows:
+[AF1: Driver Unavailability]
+2a. If a
+------------------------------------------------------------
+Q30: • [AF1: No Orders] At [Check Orders], if no ORDERED orders exist, the System shows “No new orders.”
+A30: UC11: View Order History
+
+Preconditions:
+- The customer has an account and is logged in to the system.
+
+Main Flow:
+1. The customer selects the "Order History" option from the main menu.
+2. The system retrieves and displays the customer's previous order history, including details such as:
+   - Order date and time
+   - Restaurant name
+   - Items ordered
+   - Total cost
+   - Delivery status (e.g., delivered, canceled, in progress)
+3. The customer can view the details of each past order.
+
+Subflows:
+[View Order Details]
+1. The customer selects a specific order from the order history.
+2. The system displays detailed information about the selected order, including:
+   - Order number
+   - Items ordered with quantities and prices
+   - Special instructions
+   - Delivery address and contact information
+   - Delivery status and time
+   - Total cost and payment method
+
+Alternative Flows:
+[AF1: No Orders]
+1. At [View Order History], if the customer has no previous orders, the system displays a message "No order history found."
+
+UC12: Cancel Existing Order
+
+Preconditions:
+- The customer has an existing order that has not been picked up by the courier.
+
+Main Flow:
+1. The customer selects the "Cancel Order" option from the order details or the order history.
+2. The system confirms the customer's request to cancel the order.
+3. The system updates the order status to "Canceled" and notifies the restaurant and the assigned courier.
+4. The system refunds the payment to the customer's account.
+
+Subflows:
+[Update Order Status]
+1. The system changes the order status to "Canceled" in the database.
+2. The system sends notifications to the restaurant and the assigned courier about the order cancellation.
+
+[Process Refund]
+1. The system initiates a refund transaction for the canceled order.
+2. The system credits the refund amount back to the customer's payment method or account.
+
+Alternative Flows:
+[AF1: Order Already Picked Up]
+1. At [Cancel Existing Order], if the order has already been picked up by the courier, the system displays a message "This order cannot be canceled as it has already been picked up."
+
+UC13: Track Order Status
+
+Preconditions:
+- The customer has placed an order and is waiting for it to be delivered.
+
+Main Flow:
+1. The customer selects the "Track Order" option from the main menu or the order details.
+2. The system retrieves the current status of the customer's order and displays it, including:
+   - Order status (e.g., Accepted, Preparing, Out for Delivery, Delivered)
+   - Estimated time of delivery
+   - Current location of the assigned courier (if available)
+3. The customer can view the real-time updates on the order status and delivery progress.
+
+Subflows:
+[Display Order Status]
+1. The system checks the order status in the database.
+2. The system retrieves the relevant information about the order status and delivery progress.
+3. The system displays the order status and estimated delivery time to the customer.
+
+[Track Courier Location]
+1. The system accesses the courier's location data (if available).
+2. The system displays the current location of the assigned courier on a map.
+
+Alternative Flows:
+[AF1: Order Not Found]
+1. At [Track Order Status], if the system cannot find the customer's order, it displays a message "No order found."
+
+UC14: Rate Delivery Experience
+
+Preconditions:
+- The customer has received a delivered order.
+
+Main Flow:
+1. The customer selects the "Rate Delivery" option from the order details or the order history.
+2. The system prompts the customer to provide a rating and feedback on the delivery experience.
+3. The customer enters a rating (1-5 stars) and optional feedback.
+4. The system saves the customer's rating and feedback, associating it with the delivered order.
+
+Subflows:
+[Submit Rating and Feedback]
+1. The customer selects a rating from 1 to 5 stars.
+2. The customer can optionally provide written feedback about the delivery experience.
+3. The system records the rating and feedback in the database, linking it to the corresponding order.
+
+Alternative Flows:
+[AF1: Order Not Eligible for Rating]
+1. At [Rate Delivery Experience], if the order has not been delivered or is not eligible for rating, the system displays a message "This order is
+------------------------------------------------------------
+Q31: • [AF2: Missing Ingredients] At [Prepare Order], if the order cannot be completed, go to [Cancel Order].
+A31: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: Place Order for Pickup
+Preconditions:
+- Customer has an account and is logged in.
+- Customer has selected items to order.
+
+Main Flow:
+1. [Display Menu] Customer browses and selects menu items.
+2. [Add to Cart] Customer adds selected items to their cart.
+3. [Review Order] Customer reviews their cart contents and checkout.
+4. [Select Pickup] Customer chooses to pick up the order.
+5. [Provide Pickup Details] Customer provides their name and expected pickup time.
+6. [Process Payment] Customer completes the payment for their order.
+7. [Confirm Order] The system confirms the order and provides the customer with a pickup number.
+
+Subflows:
+[Display Menu]: The system displays the full menu of available food items, including descriptions, prices, and availability.
+[Add to Cart]: The system allows the customer to select menu items and add them to their virtual shopping cart.
+[Review Order]: The system displays the customer's cart contents, including item details, quantities, and the total cost.
+[Select Pickup]: The system presents the customer with the option to pick up the order from the restaurant.
+[Provide Pickup Details]: The system prompts the customer to provide their name and expected pickup time.
+[Process Payment]: The system securely processes the customer's payment for the order.
+[Confirm Order]: The system confirms the order details and provides the customer with a pickup number.
+
+Alternative Flows:
+[AF1: Out of Stock Item]: If an item in the customer's cart is out of stock, the system will notify the customer and allow them to remove or substitute the item.
+[AF2: Pickup Time Unavailable]: If the customer's requested pickup time is not available, the system will suggest alternative times and allow the customer to select a new time.
+
+UC12: Place Order for Delivery
+Preconditions:
+- Customer has an account and is logged in.
+- Customer has selected items to order.
+- Customer is within the delivery service area.
+
+Main Flow:
+1. [Display Menu] Customer browses and selects menu items.
+2. [Add to Cart] Customer adds selected items to their cart.
+3. [Review Order] Customer reviews their cart contents and checkout.
+4. [Select Delivery] Customer chooses to have the order delivered.
+5. [Provide Delivery Details] Customer provides their delivery address and contact information.
+6. [Estimate Delivery Time] The system provides an estimated delivery time based on the order and location.
+7. [Process Payment] Customer completes the payment for their order.
+8. [Confirm Order] The system confirms the order and provides the customer with a delivery tracking number.
+
+Subflows:
+[Display Menu]: The system displays the full menu of available food items, including descriptions, prices, and availability.
+[Add to Cart]: The system allows the customer to select menu items and add them to their virtual shopping cart.
+[Review Order]: The system displays the customer's cart contents, including item details, quantities, and the total cost.
+[Select Delivery]: The system presents the customer with the option to have the order delivered to their location.
+[Provide Delivery Details]: The system prompts the customer to provide their delivery address and contact information.
+[Estimate Delivery Time]: The system calculates the estimated time for the order to be delivered based on the customer's location and current restaurant operations.
+[Process Payment]: The system securely processes the customer's payment for the order.
+[Confirm Order]: The system confirms the order details and provides the customer with a delivery tracking number.
+
+Alternative Flows:
+[AF1: Out of Stock Item]: If an item in the customer's cart is out of stock, the system will notify the customer and allow them to remove or substitute the item.
+[AF2: Delivery Not Available]: If the customer's location is outside the delivery service area, the system will inform the customer and suggest pickup as an option.
+
+UC13: View Order History
+Preconditions:
+- Customer has an account and is logged in.
+
+Main Flow:
+1. [Display Order History] The system displays the customer's previous orders, including order details, status, and timestamps.
+2. [Filter Orders] The customer can filter their order history by date range, order status, or other criteria.
+3. [View Order Details] The customer can select a specific order to view its details, such as the items ordered, the total cost, and the delivery or pickup information.
+
+Subflows:
+[Display Order History]: The system retrieves an
+------------------------------------------------------------
+Q32: UC3: Delivery Driver Delivers Order
+A32: UC11: Customer Requests Order Cancellation
+
+Preconditions:
+- Customer has placed an order through the food delivery app.
+- Order has not been delivered yet.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to their current order.
+2. Customer selects the "Cancel Order" option.
+3. The app prompts the customer to provide a reason for cancellation (e.g., changed mind, long delivery time, order incorrect).
+4. Customer enters the reason for cancellation.
+5. The app confirms the order cancellation and provides the customer with a cancellation reference number.
+6. The app notifies the restaurant to cancel the order.
+7. The app notifies the delivery driver to stop the delivery.
+
+Subflows:
+[Provide Cancellation Reason]
+1. Customer selects the reason for cancellation from a predefined list (e.g., changed mind, long delivery time, order incorrect).
+2. If the reason is "other," the customer can enter a custom reason.
+
+Alternative Flows:
+[AF1: Order Already Prepared]
+1. If the restaurant has already prepared the order, the app informs the customer that the order cannot be canceled.
+2. The customer is given the option to proceed with the order or contact customer support.
+
+[AF2: Delivery in Progress]
+1. If the delivery driver has already picked up the order, the app informs the customer that the order cannot be canceled.
+2. The customer is given the option to contact the delivery driver or customer support.
+
+UC12: Customer Provides Feedback on Delivery Experience
+
+Preconditions:
+- Customer has received a delivered order.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the "Order History" section.
+2. Customer selects the order they wish to provide feedback on.
+3. The app prompts the customer to rate the delivery experience on a scale of 1 to 5 stars.
+4. Customer provides a rating and has the option to leave a written review.
+5. The app saves the customer's feedback and associates it with the order.
+
+Subflows:
+[Write Review]
+1. If the customer chooses to leave a written review, a text input field is provided.
+2. Customer enters their review comments.
+3. The app saves the written review along with the rating.
+
+Alternative Flows:
+[AF1: No Feedback Provided]
+1. If the customer chooses not to provide any feedback, the app saves the order details without any rating or review.
+
+UC13: Customer Requests Refund or Compensation
+
+Preconditions:
+- Customer has received a delivered order.
+- Customer is dissatisfied with the order or delivery experience.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the "Order History" section.
+2. Customer selects the order they wish to request a refund or compensation for.
+3. The app provides options for the customer to choose from, such as "Refund" or "Compensation."
+4. Customer selects the desired option and provides a reason for the request (e.g., order incorrect, food quality, late delivery).
+5. The app prompts the customer to provide supporting evidence, such as photos or a written explanation.
+6. Customer uploads the supporting evidence or provides a written explanation.
+7. The app submits the refund or compensation request to the customer support team.
+8. The customer support team reviews the request and provides a decision within a specified time frame.
+9. The app notifies the customer of the decision and, if approved, processes the refund or compensation.
+
+Subflows:
+[Provide Supporting Evidence]
+1. Customer selects the option to upload photos or write a detailed explanation of the issue.
+2. Customer uploads photos or enters a written explanation.
+3. The app attaches the supporting evidence to the refund or compensation request.
+
+Alternative Flows:
+[AF1: Request Denied]
+1. If the customer support team denies the refund or compensation request, the app notifies the customer of the decision and provides an explanation.
+2. The customer has the option to contact customer support for further assistance.
+
+UC14: Customer Tracks Order Status
+
+Preconditions:
+- Customer has placed an order through the food delivery app.
+- Order has not been delivered yet.
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to their current order.
+2. The app displays the current status of the order, such as "Preparing," "Picked up," or "On the way."
+3. The app provides a
+------------------------------------------------------------
+Q33: Preconditions:
+A33: UC11: Order Food for Pickup
+Preconditions:
+- Customer has registered an account with the food delivery app
+- Customer has a valid payment method linked to their account
+- Customer is physically located near the selected restaurant
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the "Pickup" section.
+2. Customer selects the desired restaurant from the list of available options.
+3. Customer browses the restaurant's menu and adds desired items to their cart.
+4. Customer proceeds to checkout and reviews their order details.
+5. Customer selects the "Pickup" option and chooses a convenient pickup time.
+6. Customer provides any special instructions or requests for the order.
+7. Customer submits the order and is provided with a pickup order number or code.
+8. Customer arrives at the restaurant at the selected pickup time.
+9. Customer presents the pickup order number/code to the restaurant staff.
+10. Restaurant staff verifies the order and hands it to the customer.
+11. Customer completes the pickup transaction and leaves the restaurant.
+
+Subflows:
+[Display Menu] - Customer browses the restaurant's menu and selects items to add to their cart.
+[Review Order] - Customer reviews the order details, including items, quantities, and total cost.
+[Select Pickup Time] - Customer chooses a convenient time slot for pickup.
+
+Alternative Flows:
+[AF1: Restaurant Unavailable] - If the selected restaurant is currently unavailable for pickup, the app displays an error message and suggests alternative options.
+[AF2: Pickup Time Unavailable] - If the customer's preferred pickup time is not available, the app displays alternative time slots for the customer to choose from.
+[AF3: Payment Issue] - If the customer's payment method is invalid or declined, the app prompts the customer to update their payment information before completing the order.
+
+UC12: Order Food for Delivery
+Preconditions:
+- Customer has registered an account with the food delivery app
+- Customer has a valid payment method linked to their account
+- Customer is located within the delivery area of the selected restaurant
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the "Delivery" section.
+2. Customer selects the desired restaurant from the list of available options.
+3. Customer browses the restaurant's menu and adds desired items to their cart.
+4. Customer proceeds to checkout and reviews their order details.
+5. Customer selects the "Delivery" option and enters their delivery address.
+6. Customer provides any special instructions or requests for the delivery.
+7. Customer submits the order and receives an estimated delivery time.
+8. Customer receives a notification when the order is picked up by the delivery driver.
+9. Customer receives a notification when the order is delivered.
+10. Customer completes the delivery transaction and provides any feedback or tips.
+
+Subflows:
+[Display Menu] - Customer browses the restaurant's menu and selects items to add to their cart.
+[Review Order] - Customer reviews the order details, including items, quantities, and total cost.
+[Enter Delivery Address] - Customer provides their delivery address and any additional details.
+
+Alternative Flows:
+[AF1: Restaurant Unavailable] - If the selected restaurant is currently unavailable for delivery, the app displays an error message and suggests alternative options.
+[AF2: Delivery Address Unavailable] - If the customer's delivery address is outside the restaurant's delivery area, the app displays an error message and suggests nearby restaurants.
+[AF3: Payment Issue] - If the customer's payment method is invalid or declined, the app prompts the customer to update their payment information before completing the order.
+[AF4: Delivery Delay] - If the delivery is delayed due to traffic or other factors, the app provides the customer with updates on the delivery status and estimated arrival time.
+
+UC13: Schedule a Future Delivery
+Preconditions:
+- Customer has registered an account with the food delivery app
+- Customer has a valid payment method linked to their account
+- Customer is located within the delivery area of the selected restaurant
+
+Main Flow:
+1. Customer opens the food delivery app and navigates to the "Delivery" section.
+2. Customer selects the desired restaurant from the list of available options.
+3. Customer browses the restaurant's menu and adds desired items to their cart.
+4. Customer proceeds to checkout and reviews their order details.
+5. Customer selects the "Scheduled Delivery" option and chooses a future delivery date and time.
+6. Customer provides any special instructions or requests for the delivery.
+7. Customer submits the order and receives a confirmation of the scheduled delivery.
+------------------------------------------------------------
+Q34: The User must be Logged In, and their account must have the Delivery Driver/Courier permissions [AF1].
+A34: UC11: Update User Profile
+Preconditions:
+- The user must be logged in to the Driver Person app.
+- The user must have a valid account with Delivery Driver/Courier permissions.
+
+Main Flow:
+1. The user selects the "User Profile" option from the app menu.
+2. The app displays the user's current profile information (name, email, contact number, photo, etc.).
+3. The user taps the "Edit Profile" button.
+4. The app displays editable fields for the user's profile information.
+5. The user updates the desired profile information.
+6. The user taps the "Save Changes" button.
+7. The app validates the updated information and saves the changes to the user's profile.
+8. The app displays a success message to the user.
+
+Subflows:
+[Display Profile]
+1. The app retrieves the user's profile information from the database.
+2. The app populates the profile fields with the retrieved data.
+
+[Save Profile]
+1. The app validates the updated profile information (e.g., email format, phone number format).
+2. The app updates the user's profile information in the database.
+3. The app sends a confirmation notification to the user.
+
+Alternative Flows:
+[AF1: User Lacks Delivery Driver/Courier Permissions]
+1. If the user does not have the required Delivery Driver/Courier permissions, the app displays an error message and prevents the user from accessing the profile editing functionality.
+
+[AF2: Invalid Input]
+1. If the user enters invalid information (e.g., email format, phone number format), the app displays an error message and prompts the user to correct the input.
+
+UC12: View Delivery History
+Preconditions:
+- The user must be logged in to the Driver Person app.
+- The user must have a valid account with Delivery Driver/Courier permissions.
+
+Main Flow:
+1. The user selects the "Delivery History" option from the app menu.
+2. The app retrieves the user's past delivery records from the database.
+3. The app displays a list of the user's completed deliveries, including details such as the order number, restaurant name, customer name, delivery date and time, and total payment.
+4. The user can tap on a specific delivery record to view more details.
+5. The app displays the selected delivery's detailed information, including the order items, customer address, and any additional notes.
+
+Subflows:
+[Display Delivery History]
+1. The app queries the database for the user's past delivery records.
+2. The app formats the delivery data and displays it in a list format.
+
+[View Delivery Details]
+1. The app retrieves the selected delivery's detailed information from the database.
+2. The app displays the order items, customer address, and any additional notes.
+
+Alternative Flows:
+[AF1: No Delivery History]
+1. If the user has not completed any deliveries, the app displays a message indicating that the delivery history is empty.
+
+UC13: Accept Delivery Request
+Preconditions:
+- The user must be logged in to the Driver Person app.
+- The user must have a valid account with Delivery Driver/Courier permissions.
+- The user must be available for new delivery requests.
+
+Main Flow:
+1. The app receives a new delivery request and sends a push notification to the user.
+2. The user taps on the notification to view the delivery details.
+3. The app displays the delivery information, including the restaurant name, customer location, estimated delivery time, and the order contents.
+4. The user reviews the delivery details and taps the "Accept" button.
+5. The app confirms the user's acceptance of the delivery request.
+6. The app updates the delivery status in the system and notifies the restaurant and the customer.
+
+Subflows:
+[Display Delivery Request]
+1. The app retrieves the delivery request details from the database.
+2. The app formats the delivery information and displays it to the user.
+
+[Accept Delivery]
+1. The app updates the delivery status in the database to "Accepted".
+2. The app sends notifications to the restaurant and the customer, informing them that the delivery request has been accepted.
+
+Alternative Flows:
+[AF1: Decline Delivery Request]
+1. If the user taps the "Decline" button, the app updates the delivery status in the database to "Declined".
+2. The app sends a notification to the restaurant and the customer, informing them that the delivery request has been declined.
+
+[AF2: Delivery Request Expired]
+------------------------------------------------------------
+Q35: Mainflow:
+A35: Here are 15 new use cases for a food ordering and delivery system:
+
+UC11: Track Delivery Status
+Preconditions:
+- Customer has placed an order for food delivery
+- Order has been accepted by the restaurant and is in the process of being delivered
+
+Main Flow:
+1. Customer selects "Track Order" from the app or website
+2. The system retrieves the current status of the customer's order
+3. The system displays the order status, including:
+   - Order preparation status at the restaurant
+   - Courier assignment and location
+   - Estimated time of arrival
+4. Customer can view the real-time location of the courier on a map
+5. Customer receives push notifications or SMS updates on order status changes
+
+Subflows:
+[Display Order Status]
+[Display Courier Location]
+
+Alternative Flows:
+[AF1: Delivery Delayed]
+   1. If the delivery is delayed beyond the estimated time of arrival, the system notifies the customer
+   2. Customer is provided with options to contact the restaurant or the delivery service
+
+UC12: Customize Order
+Preconditions:
+- Customer has added items to their cart
+- Order has not yet been placed
+
+Main Flow:
+1. Customer selects "Customize Order" from the cart
+2. The system displays the current order items and allows the customer to modify them
+3. Customer can:
+   - Add or remove items
+   - Modify item quantities
+   - Select customization options (e.g., toppings, sauce preferences)
+4. The system recalculates the order total based on the changes
+5. Customer reviews the updated order and proceeds to checkout
+
+Subflows:
+[Display Order Items]
+[Modify Order Items]
+[Calculate Order Total]
+
+Alternative Flows:
+[AF1: Item Unavailable]
+   1. If a selected item is no longer available, the system notifies the customer
+   2. Customer is asked to choose a replacement item or remove the unavailable item from the order
+
+UC13: Schedule Future Delivery
+Preconditions:
+- Customer has an account with the food delivery service
+- Customer has a valid address associated with their account
+
+Main Flow:
+1. Customer selects "Schedule Delivery" from the app or website
+2. The system prompts the customer to select a delivery date and time
+3. Customer chooses the desired delivery date and time
+4. The system checks the availability of the selected delivery slot
+5. If the slot is available, the system confirms the scheduled delivery
+6. Customer receives a notification with the scheduled delivery details
+
+Subflows:
+[Select Delivery Date and Time]
+[Check Delivery Slot Availability]
+
+Alternative Flows:
+[AF1: Unavailable Delivery Slot]
+   1. If the selected delivery slot is not available, the system notifies the customer
+   2. Customer is asked to select a different date or time for the delivery
+
+UC14: Provide Feedback
+Preconditions:
+- Customer has received a food delivery
+- Customer has an account with the food delivery service
+
+Main Flow:
+1. Customer selects "Leave Feedback" from the app or website
+2. The system prompts the customer to rate the overall delivery experience
+3. Customer provides a rating (e.g., 1-5 stars) and optional written feedback
+4. The system saves the customer's feedback and associates it with the completed order
+5. The system sends a confirmation to the customer that their feedback has been recorded
+
+Subflows:
+[Rate Delivery Experience]
+[Submit Written Feedback]
+
+Alternative Flows:
+[AF1: Anonymous Feedback]
+   1. If the customer prefers to provide anonymous feedback, the system allows them to do so
+   2. The system saves the feedback without associating it with the customer's account
+
+UC15: Manage Restaurant Menu
+Preconditions:
+- Restaurant has an account with the food delivery service
+- Restaurant has active menu items available for ordering
+
+Main Flow:
+1. Restaurant owner or manager accesses the restaurant management portal
+2. The system displays the current menu items and their details
+3. Restaurant owner or manager can:
+   - Add new menu items
+   - Edit existing menu item details (e.g., name, description, price)
+   - Mark menu items as unavailable or inactive
+4. The system updates the menu information in real-time
+5. Customers can view the updated menu in the food delivery app or website
+
+Subflows:
+[Add Menu Item]
+[Edit Menu Item]
+[Mark Menu Item Unavailable]
+
+Alternative Flows:
+[AF1: Menu Item Unavailable]
+------------------------------------------------------------
+Q36: On the main home page, the User selects "Check Orders," which displays all orders assigned to the User that are ready for pickup [AF2]. The User is then able to select an Order, then select the Pickup option [AF3][AF4]. The User is then directed to the Map, which updates to show the most efficient and safest route for the Driver to take to deliver the order to the Customer [AF5]. Once the Driver delivers the Order, they select the Delivered option, which will remove the Order from the Active Orders and add it to the Delivered Orders under the Customer’s account [AF6].
+A36: UC11: Select Order for Pickup
+
+Preconditions:
+- The User is logged into the app and has access to the "Check Orders" feature.
+- There are one or more orders assigned to the User that are ready for pickup.
+
+Main Flow:
+1. The User selects the "Check Orders" option on the home page.
+2. The app displays a list of all orders assigned to the User that are ready for pickup.
+3. The User selects the order they wish to pick up.
+4. The app confirms the User has selected the order and prompts them to select the "Pickup" option.
+
+Subflows:
+[AF2: No Orders Ready for Pickup]
+If there are no orders ready for pickup, the app will display a message indicating there are no orders available for pickup at this time.
+
+Alternative Flows:
+[AF3: Order Not Available for Pickup]
+If the selected order is no longer available for pickup (e.g., it has already been assigned to another Driver), the app will display a message indicating the order is no longer available and return the User to the "Check Orders" page.
+
+[AF4: Unable to Confirm Pickup]
+If the app is unable to confirm the User has picked up the order (e.g., due to a system error), the app will display an error message and return the User to the "Check Orders" page.
+
+UC12: Navigate to Delivery Location
+
+Preconditions:
+- The User has selected an order for pickup.
+- The app has confirmed the order is ready for delivery.
+
+Main Flow:
+1. The app displays a map with the most efficient and safest route for the Driver to take to deliver the order to the Customer.
+2. The app provides the estimated time of arrival (ETA) for the delivery.
+3. The User can view the Customer's address and contact information.
+4. The User can navigate to the Customer's location using the map and directions provided by the app.
+
+Subflows:
+[AF5: Unable to Determine Route]
+If the app is unable to determine the best route for the Driver to take (e.g., due to real-time traffic conditions or road closures), the app will display a message indicating it is unable to provide directions and the User will need to manually navigate to the Customer's location.
+
+Alternative Flows:
+None.
+
+UC13: Mark Order as Delivered
+
+Preconditions:
+- The User has delivered the order to the Customer.
+
+Main Flow:
+1. The User selects the "Delivered" option in the app.
+2. The app confirms the order has been successfully delivered.
+3. The app removes the order from the User's "Active Orders" and adds it to the Customer's "Delivered Orders" history.
+
+Subflows:
+None.
+
+Alternative Flows:
+[AF6: Unable to Confirm Delivery]
+If the app is unable to confirm the order has been delivered (e.g., due to a system error), the app will display an error message and the order will remain in the User's "Active Orders" list.
+
+UC14: View Delivery History
+
+Preconditions:
+- The User is logged into the app.
+
+Main Flow:
+1. The User selects the "Delivery History" option in the app.
+2. The app displays a list of all orders the User has previously delivered, including the order details, delivery date, and Customer information.
+3. The User can filter the delivery history by date range, Customer, or order status.
+4. The User can select a specific order to view additional details, such as the route taken, delivery time, and any customer feedback.
+
+Subflows:
+None.
+
+Alternative Flows:
+[AF7: No Delivery History]
+If the User has not yet completed any deliveries, the app will display a message indicating there is no delivery history to display.
+
+UC15: Update User Profile
+
+Preconditions:
+- The User is logged into the app.
+
+Main Flow:
+1. The User selects the "Profile" option in the app.
+2. The app displays the User's current profile information, including their name, contact details, and vehicle information.
+3. The User can edit any of the profile fields as needed.
+4. The User saves the updated profile information.
+5. The app confirms the profile has been successfully updated.
+
+Subflows:
+[SF1: Upload Profile Photo]
+The User can upload a new profile photo to replace the existing one.
+
+Alternative Flows:
+[AF8: Unable to Update Profile]
+If the app is unable to save the updated profile information (e.g., due to a system error
+------------------------------------------------------------
+Q37: Subflows:
+A37: UC11: Schedule a Recurring Order
+Preconditions:
+- The user has an active account in the food ordering system.
+- The user has a valid payment method attached to their account.
+
+Main Flow:
+1. The user navigates to the "Recurring Orders" section of the app.
+2. The user selects the "Create New Recurring Order" option.
+3. The user specifies the restaurant, menu items, and order details for the recurring order.
+4. The user selects the desired frequency (e.g., daily, weekly, bi-weekly) and start/end dates for the recurring order.
+5. The user reviews the recurring order summary and confirms the order.
+6. The system saves the recurring order details and schedules the orders based on the user's specified frequency.
+
+Subflows:
+[Select Favorite Restaurant]: The user can choose a restaurant from their list of favorite or previously ordered restaurants.
+[Select Saved Order]: The user can select a previously placed order as the basis for the recurring order.
+[Update Payment Method]: The user can update their stored payment method for the recurring order.
+
+Alternative Flows:
+[AF1: Edit Recurring Order]: The user can access the "Recurring Orders" section to view, edit, or cancel any scheduled recurring orders.
+
+UC12: Redeem Loyalty Points
+Preconditions:
+- The user has an active account in the food ordering system.
+- The user has accumulated loyalty points through previous orders.
+
+Main Flow:
+1. The user navigates to the "Loyalty" section of the app.
+2. The user views their current loyalty point balance.
+3. The user selects the "Redeem Loyalty Points" option.
+4. The user chooses the desired redemption option (e.g., discount on their next order, free delivery, gift card).
+5. The system deducts the required loyalty points from the user's account.
+6. The system applies the selected redemption benefit to the user's account or next order.
+
+Subflows:
+[View Loyalty Point History]: The user can view their past loyalty point earning and redemption activities.
+[Earn Loyalty Points]: The user can earn additional loyalty points through various actions, such as referring friends or completing surveys.
+
+Alternative Flows:
+[AF1: Insufficient Loyalty Points]: If the user does not have enough loyalty points to redeem their desired option, the system informs the user and suggests alternative redemption options.
+
+UC13: Participate in Restaurant Promotions
+Preconditions:
+- The user has an active account in the food ordering system.
+- The user has previously ordered from the restaurant offering the promotion.
+
+Main Flow:
+1. The user navigates to the "Promotions" section of the app.
+2. The user selects a promotion offered by a restaurant they have previously ordered from.
+3. The user reviews the promotion details, such as the offer, eligibility requirements, and expiration date.
+4. The user chooses to participate in the promotion by claiming the offer.
+5. The system verifies the user's eligibility and applies the promotion to the user's account or next order.
+
+Subflows:
+[Filter Promotions]: The user can filter the available promotions by restaurant, offer type, or expiration date.
+[Share Promotion]: The user can share the promotion details with friends or on social media.
+
+Alternative Flows:
+[AF1: Ineligible for Promotion]: If the user does not meet the eligibility requirements for the promotion, the system informs the user and suggests alternative promotions they may qualify for.
+[AF2: Promotion Expired]: If the user attempts to claim a promotion that has expired, the system informs the user that the promotion is no longer available.
+
+UC14: Track Order Delivery Status
+Preconditions:
+- The user has placed an order for food delivery through the app.
+- The order has been accepted by the restaurant and is in the process of being delivered.
+
+Main Flow:
+1. The user navigates to the "Orders" section of the app.
+2. The user selects the active delivery order they want to track.
+3. The system displays the current status of the order, such as "Preparing", "On the Way", or "Delivered".
+4. The system provides an estimated delivery time and updates the status in real-time as the order progresses.
+5. The user can view the location of the delivery driver on a map.
+6. The user is notified when the order has been delivered.
+
+Subflows:
+[Contact Customer Service]: The user can initiate a chat or call with customer service
+------------------------------------------------------------
+Q38: Pickup: Once selected, the Order is removed from the Orders Ready list (as seen under Check Orders), and is moved to the Active Orders list under the Users account. Additionally, the Customer receives a notification that the Order has been picked up and will be delivered soon.
+A38: UC11: Update Order Status to Picked Up
+
+Preconditions:
+- The customer has placed an order through the app.
+- The restaurant has prepared the order and marked it as "Ready".
+- A delivery agent has arrived at the restaurant to pick up the order.
+
+Main Flow:
+1. The delivery agent selects the "Pick Up" option for the order in the app.
+2. The system removes the order from the "Orders Ready" list and moves it to the "Active Orders" list for the delivery agent.
+3. The system sends a notification to the customer informing them that the order has been picked up and is being delivered.
+
+Subflows:
+[Update Order Status]
+1. The system updates the order status from "Ready" to "Picked Up".
+2. The system moves the order from the "Orders Ready" list to the "Active Orders" list for the delivery agent.
+
+Alternative Flows:
+[AF1: Order Not Ready]
+1. If the order is not ready when the delivery agent arrives, the delivery agent selects the "Not Ready" option.
+2. The system updates the order status to "Pickup Pending" and keeps the order in the "Orders Ready" list.
+3. The system sends a notification to the customer informing them that the order is not yet ready for pickup.
+
+UC12: Track Order Delivery
+
+Preconditions:
+- The customer has placed an order through the app.
+- The order has been picked up by the delivery agent.
+
+Main Flow:
+1. The customer opens the app and selects the "Track Order" option.
+2. The system displays the current location of the delivery agent and the estimated time of arrival.
+3. The customer can continuously track the progress of the delivery.
+
+Subflows:
+[Display Delivery Location]
+1. The system retrieves the real-time location of the delivery agent using GPS.
+2. The system calculates the estimated time of arrival based on the delivery agent's location and the customer's address.
+3. The system displays the delivery agent's location and the estimated time of arrival on the customer's app.
+
+Alternative Flows:
+[AF1: Delivery Delay]
+1. If the delivery agent experiences a delay due to traffic or other factors, the system updates the estimated time of arrival accordingly.
+2. The system sends a notification to the customer informing them of the delivery delay.
+
+UC13: Provide Delivery Feedback
+
+Preconditions:
+- The customer has received their order.
+- The customer has the option to provide feedback on the delivery service.
+
+Main Flow:
+1. The customer opens the app and selects the "Provide Feedback" option for the completed order.
+2. The system displays a feedback form where the customer can rate the delivery service and provide additional comments.
+3. The customer submits the feedback form.
+4. The system records the customer's feedback and associates it with the delivery agent's profile.
+
+Subflows:
+[Submit Feedback]
+1. The customer selects a rating for the delivery service (e.g., 1-5 stars).
+2. The customer can provide additional comments or feedback in a text field.
+3. The customer submits the feedback form.
+
+Alternative Flows:
+[AF1: Skip Feedback]
+1. If the customer does not wish to provide feedback, they can simply close the feedback form without submitting it.
+
+UC14: Manage Delivery Agents
+
+Preconditions:
+- The delivery platform has a pool of registered delivery agents.
+- The delivery platform needs to assign orders to the appropriate agents.
+
+Main Flow:
+1. The system monitors the availability and location of registered delivery agents.
+2. When a new order is placed, the system selects the most suitable delivery agent based on factors such as proximity to the restaurant, order priority, and agent availability.
+3. The system assigns the order to the selected delivery agent and notifies them.
+4. The delivery agent accepts the order and proceeds to pick up the food.
+
+Subflows:
+[Assign Order to Delivery Agent]
+1. The system analyzes the location of the restaurant, the customer's address, and the available delivery agents.
+2. The system selects the delivery agent who is closest to the restaurant and can deliver the order in the shortest time.
+3. The system assigns the order to the selected delivery agent and updates their active order list.
+
+Alternative Flows:
+[AF1: Delivery Agent Declines Order]
+1. If the assigned delivery agent declines the order, the system selects the next most suitable agent and assigns the order to them.
+2. The system sends a notification to the decline
+------------------------------------------------------------
+Q39: Map: Displays the map of where the User is, as well as the route that should be taken, as well as any potential alternative routes. The Map page will automatically update based on traffic and weather conditions to provide the safest and quickest route.
+A39: Here are 15 new use cases for the food ordering and delivery system:
+
+UC11: View Delivery Route Map
+Preconditions: User has placed an order for delivery.
+Main Flow:
+1. System displays the map view showing the user's location, the restaurant location, and the optimal delivery route.
+2. User can view the estimated time of arrival for the delivery.
+3. System updates the route in real-time to account for traffic conditions and provide alternative routes if needed.
+4. User can zoom in/out and pan the map to get a better view of the route.
+Subflows:
+[Display Route]: The system plots the optimal delivery route on the map, taking into account factors like distance, traffic, and road conditions.
+[Update Route]: The system continuously monitors the delivery route and updates it based on changing traffic and weather conditions.
+Alternative Flows:
+[AF1: Rider Offline]: If the delivery rider goes offline, the system notifies the user and provides an estimated time for when the rider will come back online.
+
+UC12: Contact Delivery Rider
+Preconditions: User has placed an order for delivery, and the order is currently in progress.
+Main Flow:
+1. User selects the "Contact Rider" option in the app.
+2. System displays the delivery rider's contact information, including name, phone number, and photo (if available).
+3. User can call or send a text message to the delivery rider directly from the app.
+4. System logs the communication between the user and the delivery rider.
+Subflows:
+[Display Rider Info]: The system retrieves and displays the delivery rider's contact details.
+[Initiate Communication]: The system allows the user to call or message the delivery rider through the app's integrated communication channels.
+Alternative Flows:
+[AF1: Rider Unavailable]: If the delivery rider is unavailable (e.g., does not answer the call), the system notifies the user and provides an estimated time for when the rider will be available.
+
+UC13: Rate Delivery Experience
+Preconditions: User has received their order and the delivery is complete.
+Main Flow:
+1. System prompts the user to rate their overall delivery experience.
+2. User selects a rating from 1 to 5 stars.
+3. User can provide additional feedback or comments about the delivery experience.
+4. System saves the user's rating and feedback, and associates it with the delivery record.
+Subflows:
+[Provide Rating]: The system allows the user to select a rating from 1 to 5 stars.
+[Add Feedback]: The system provides a text field for the user to enter additional comments about their delivery experience.
+[Save Feedback]: The system stores the user's rating and feedback and associates it with the delivery record.
+Alternative Flows:
+[AF1: No Feedback]: If the user chooses not to provide a rating or feedback, the system proceeds to complete the delivery record without the user's input.
+
+UC14: Track Order Status
+Preconditions: User has placed an order for delivery or pickup.
+Main Flow:
+1. System displays the current status of the user's order, including the order number, preparation status, and estimated delivery/pickup time.
+2. User can refresh the order status to see the latest updates.
+3. System provides real-time updates on the order status, including any delays or changes.
+Subflows:
+[Display Order Status]: The system retrieves and displays the current status of the user's order, including the order number, preparation status, and estimated delivery/pickup time.
+[Update Order Status]: The system continuously monitors the order and updates the status in real-time, reflecting any changes or delays.
+Alternative Flows:
+[AF1: Order Cancelled]: If the order is cancelled, the system notifies the user and provides the reason for the cancellation.
+
+UC15: Manage Saved Addresses
+Preconditions: User has an account with the food ordering and delivery system.
+Main Flow:
+1. User selects the "Manage Addresses" option in the app.
+2. System displays the user's saved addresses, including home, work, and any other custom addresses.
+3. User can add a new address, edit an existing address, or delete an address from the list.
+4. System validates the address information and updates the user's address book accordingly.
+Subflows:
+[Add Address]: The system allows the user to enter a new address, including address line, city, state, and zip code, and saves it to the user's address book.
+[Edit Address]: The system allows the user to modify the details of an existing address
+------------------------------------------------------------
+Q40: Alternative Flows:
+A40: UC11: View Order History
+Preconditions:
+- The customer has an active account with the food ordering and delivery system.
+
+Main Flow:
+1. The customer navigates to the order history section of the mobile app or website.
+2. The system displays a list of the customer's previous orders, including the order date, restaurant, items ordered, total cost, and delivery status.
+3. The customer can select a specific order to view more details, such as the order contents, special instructions, and delivery tracking information.
+4. The customer can also filter or sort the order history based on various criteria, such as date, restaurant, or order status.
+
+Subflows:
+[Display Order Details]
+1. The system retrieves and displays the detailed information for the selected order, including the order contents, special instructions, delivery tracking, and any other relevant details.
+
+Alternative Flows:
+[AF1: No Order History]
+1. If the customer does not have any previous orders in the system, the system displays a message indicating that the order history is empty.
+2. The customer is provided with options to place a new order or explore recommended restaurants.
+
+UC12: Track Order Delivery
+Preconditions:
+- The customer has placed an order and is waiting for it to be delivered.
+
+Main Flow:
+1. The customer navigates to the order tracking section of the mobile app or website.
+2. The system displays the current status of the order, including the preparation progress at the restaurant and the location of the delivery driver.
+3. The customer can view a map that shows the driver's location and the estimated time of arrival.
+4. The customer can also view any updates or notifications related to the order delivery, such as delays or special instructions.
+
+Subflows:
+[Update Delivery Status]
+1. The system regularly updates the order status and delivery driver location based on data received from the restaurant and delivery fleet.
+2. The system notifies the customer of any changes to the estimated delivery time or other important updates.
+
+Alternative Flows:
+[AF1: Order Delayed]
+1. If the order is delayed due to unexpected circumstances, the system notifies the customer and provides an updated estimated delivery time.
+2. The customer is given the option to contact customer support or cancel the order if the delay is unacceptable.
+
+[AF2: Driver Off-Route]
+1. If the delivery driver deviates from the optimal route, the system detects this and notifies the customer of the change.
+2. The customer is provided with the option to contact the driver or customer support to inquire about the reason for the deviation.
+
+UC13: Receive Delivery Notification
+Preconditions:
+- The customer has placed an order and is waiting for it to be delivered.
+
+Main Flow:
+1. The delivery driver arrives at the customer's location and marks the order as delivered in the system.
+2. The system detects the order delivery and sends a notification to the customer's mobile device or registered email address.
+3. The notification includes the final delivery time, any special instructions or delivery notes, and a prompt for the customer to rate the delivery experience.
+
+Subflows:
+[Prompt Customer Feedback]
+1. The system presents the customer with an option to rate the delivery experience on a scale (e.g., 1-5 stars) and provide additional feedback or comments.
+2. The customer's feedback is recorded and used to improve the delivery service.
+
+Alternative Flows:
+[AF1: Delivery Issues]
+1. If the customer reports any issues with the delivery, such as missing items or incorrect order, the system logs the feedback and escalates it to customer support for resolution.
+2. The customer is provided with options to request a refund, reorder the missing items, or schedule a re-delivery.
+
+[AF2: No Delivery Notification]
+1. If the system fails to detect the order delivery or send the notification to the customer, the customer can manually mark the order as received in the app or website.
+2. The system logs the manual order receipt and updates the customer's order history accordingly.
+
+UC14: Schedule Recurring Orders
+Preconditions:
+- The customer has an active account with the food ordering and delivery system.
+
+Main Flow:
+1. The customer navigates to the recurring orders section of the mobile app or website.
+2. The customer selects the option to create a new recurring order.
+3. The system prompts the customer to choose a restaurant, customize the order, and set the delivery schedule (e.g., weekly, bi-weekly, monthly).
+4. The customer reviews the recurring order details and confirms the setup.
+5. The system saves the recurring order and sche
+------------------------------------------------------------
+Q41: [AF1]: If the User does not have Delivery Driver/Courier permissions, they will be redirected to the Customer view of the application, but will be able to go under the Support section of the application to request assistance
+A41: UC11: Request Courier Assistance
+
+Preconditions:
+- The user is logged into the app and does not have Delivery Driver/Courier permissions.
+- The user is on the main screen of the app.
+
+Main Flow:
+1. The user selects the "Support" option from the main menu.
+2. The system displays the Support options, including "Request Courier Assistance".
+3. The user selects the "Request Courier Assistance" option.
+4. The system prompts the user to provide details about the request, such as the issue they are facing, the location, and any other relevant information.
+5. The user inputs the requested details and submits the request.
+6. The system confirms the request has been received and informs the user that a Delivery Driver/Courier will be in touch shortly.
+
+Subflows:
+[Display Support Options]
+1. The system displays the available Support options, including "Request Courier Assistance".
+
+Alternative Flows:
+[AF1: User Does Not Have Delivery Driver/Courier Permissions]
+1. If the user does not have Delivery Driver/Courier permissions, the system will redirect them to the Customer view of the application.
+2. The user can still access the Support section and request assistance, but the request will be handled by the customer support team rather than a Delivery Driver/Courier.
+
+UC12: Manage Multiple Deliveries
+
+Preconditions:
+- The user is a registered Delivery Driver/Courier.
+- The user has accepted multiple delivery orders.
+
+Main Flow:
+1. The user receives a notification for a new delivery order.
+2. The system displays the new order details, including the pickup and drop-off locations.
+3. The user reviews the order details and decides whether to accept the delivery.
+4. If the user accepts the delivery, the system adds the new order to the user's active delivery queue.
+5. The user navigates to the next pickup location using the integrated GPS.
+6. The user completes the pickup and delivery for the first order.
+7. The system updates the order status and removes it from the user's active delivery queue.
+8. The user proceeds to the next pickup location for the remaining orders.
+9. The user repeats steps 5-7 until all active orders have been completed.
+
+Subflows:
+[Display Order Details]
+1. The system presents the user with the relevant details for the new delivery order, including the pickup and drop-off locations, customer information, and any special instructions.
+
+[Navigate to Pickup Location]
+1. The system integrates with the device's GPS to provide turn-by-turn navigation to the specified pickup location.
+
+Alternative Flows:
+[AF1: Decline Delivery Order]
+1. If the user decides not to accept the new delivery order, they can decline it.
+2. The system removes the order from the user's active delivery queue and assigns it to another available Delivery Driver/Courier.
+
+[AF2: Order Cancellation]
+1. If a customer cancels an order that is currently assigned to the user, the system will remove the order from the user's active delivery queue.
+2. The system will notify the user of the cancellation and provide any relevant details.
+
+UC13: Provide Delivery Feedback
+
+Preconditions:
+- The user is a registered Delivery Driver/Courier.
+- The user has completed a delivery.
+
+Main Flow:
+1. The system prompts the user to provide feedback on the delivery experience.
+2. The user selects the appropriate rating (e.g., 1-5 stars) to indicate their overall satisfaction with the delivery.
+3. The user has the option to provide additional comments or notes about the delivery.
+4. The user submits the feedback.
+5. The system records the feedback and associates it with the completed delivery order.
+
+Subflows:
+[Display Feedback Prompt]
+1. After the user completes a delivery, the system displays a prompt requesting feedback on the delivery experience.
+
+[Submit Feedback]
+1. The user selects a rating and, optionally, provides additional comments.
+2. The user submits the feedback, and the system records the information.
+
+Alternative Flows:
+[AF1: Skip Feedback]
+1. If the user does not want to provide feedback, they can choose to skip the feedback prompt.
+2. The system will not record any feedback for the completed delivery.
+
+UC14: Receive Order Notifications
+
+Preconditions:
+- The user is a registered Delivery Driver/Courier.
+- The user has enabled push notifications in the app.
+
+Main Flow:
+------------------------------------------------------------
+Q42: [AF2]: If no order is available and marked as ready for pickup, the User is unable to select Pickup
+A42: UC11: Handle Unavailable Order for Pickup
+
+Preconditions:
+- The user has selected the "Pickup" option for their food order.
+- The restaurant has not yet marked the order as "Ready" for pickup.
+
+Main Flow:
+1. The system checks if the order is marked as "Ready" for pickup.
+2. If the order is not ready, the system displays a message to the user indicating that the order is not yet available for pickup.
+3. The user is presented with the option to either wait for the order to be ready or cancel the order.
+
+Subflows:
+[Wait for Order]
+1. The user chooses to wait for the order to be ready.
+2. The system updates the order status and notifies the user when the order is ready for pickup.
+3. The user can then proceed to the restaurant to pick up the order.
+
+[Cancel Order]
+1. The user chooses to cancel the order.
+2. The system cancels the order and provides the user with a refund or credit.
+3. The system notifies the restaurant that the order has been canceled.
+
+Alternative Flows:
+[AF1: Pickup Option Not Available]
+1. If the "Pickup" option is not available for the selected restaurant, the system informs the user that pickup is not supported and only delivery is available.
+2. The user is directed to the delivery option to place their order.
+------------------------------------------------------------
+Q43: [AF3]: If more than one order is marked as ready, all orders can be selected and the Bulk Pickup option can be selected
+A43: UC11: Bulk Pickup of Multiple Ready Orders
+
+Preconditions:
+- The runner has arrived at the restaurant and the order status is marked as "Ready".
+- There are multiple orders at the restaurant that are marked as "Ready".
+
+Main Flow:
+1. The runner selects the "Bulk Pickup" option.
+2. The system displays a list of all the ready orders at the restaurant.
+3. The runner selects the orders they want to pick up as part of the bulk pickup.
+4. The system confirms the selected orders and updates their status to "Picked Up".
+5. The system notifies the customers that their orders have been picked up.
+6. The runner departs the restaurant with the selected orders.
+
+Subflows:
+[Select Orders]: The runner selects the orders they want to pick up as part of the bulk pickup.
+
+Alternative Flows:
+[AF1: No Ready Orders]
+1. If there are no ready orders at the restaurant, the system informs the runner that there are no ready orders available for pickup.
+2. The runner waits for the orders to be ready or departs the restaurant.
+
+[AF2: Order Unavailable]
+1. If one of the selected orders is no longer available or has been canceled, the system removes that order from the list.
+2. The runner confirms the remaining orders for pickup.
+
+[AF3: More Orders Become Ready]
+1. If additional orders become ready while the runner is selecting orders, the system updates the list to include the new ready orders.
+2. The runner can then select the additional orders to be picked up as part of the bulk pickup.
+
+UC12: View Delivery Agent Performance
+
+Preconditions:
+- The user is logged into the app as a restaurant owner or manager.
+
+Main Flow:
+1. The user selects the "View Delivery Agent Performance" option.
+2. The system displays a list of all the delivery agents that have completed orders for the restaurant.
+3. For each delivery agent, the system shows the following information:
+   - Number of orders completed
+   - Average delivery time
+   - Customer feedback rating
+4. The user can filter the list by delivery agent, order volume, or performance metrics.
+5. The user can select a specific delivery agent to view more detailed performance information.
+
+Subflows:
+[Filter List]: The user filters the list of delivery agents based on selected criteria.
+[View Agent Details]: The user selects a delivery agent to view their detailed performance information.
+
+Alternative Flows:
+[AF1: No Delivery Agent Data]
+1. If there is no delivery agent performance data available, the system informs the user that there is no data to display.
+2. The user can try again later or contact customer support.
+
+[AF2: Error Fetching Data]
+1. If there is an error fetching the delivery agent performance data, the system displays an error message.
+2. The user can try again or contact customer support for assistance.
+
+UC13: Report Missing or Incorrect Order Items
+
+Preconditions:
+- The user has received their food order.
+- The user is logged into the app.
+
+Main Flow:
+1. The user selects the "Report Missing or Incorrect Items" option.
+2. The system displays the details of the user's most recent order.
+3. The user selects the item(s) that are missing or incorrect.
+4. The user provides a reason for the report (e.g., item missing, incorrect item, incorrect quantity).
+5. The user submits the report.
+6. The system sends the report to the restaurant and the delivery service for investigation.
+7. The user receives a confirmation that the report has been submitted.
+
+Subflows:
+[Select Order Items]: The user selects the specific items in the order that are missing or incorrect.
+[Provide Reason]: The user provides a reason for the report.
+
+Alternative Flows:
+[AF1: No Recent Orders]
+1. If the user does not have any recent orders, the system informs the user that they do not have any orders to report.
+2. The user can try again after placing a new order.
+
+[AF2: Report Already Submitted]
+1. If the system detects that a report has already been submitted for the same order, the system informs the user that a report has already been filed.
+2. The user can contact customer support for further assistance.
+
+[AF3: Restaurant Resolves Issue]
+1. If the restaurant resolves the issue and updates the order status, the system notifies the user of the resolution.
+2. The user can provide feedback on the resolution.
+
+UC14:
+------------------------------------------------------------

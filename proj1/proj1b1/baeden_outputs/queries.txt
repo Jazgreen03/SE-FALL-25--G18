@@ -1,0 +1,15 @@
+UC1: Customer Rates a Delivered Order
+UC2: Staff Edits an Existing Menu Item
+UC3: Admin Views System Usage Reports
+UC4: Customer Reorders a Previous Meal
+UC5: Delivery Driver Accepts a New Delivery Assignment
+UC6: Restaurant Staff Marks Item as Out of Stock
+UC7: Admin Manages User Accounts and Permissions
+UC8: Customer Sends Feedback to Restaurant
+UC9: Staff Adds Limited-Time Promotional Items to Menu
+UC10: Customer Tracks Real-Time Order Delivery
+UC11: Admin Exports Financial and Sales Reports
+UC12: Staff Updates Estimated Prep Time for Orders
+UC13: Customer Edits Order Before Final Submission
+UC14: Admin Broadcasts Announcement to All Users
+UC15: Restaurant Sets Business Hours and Availability

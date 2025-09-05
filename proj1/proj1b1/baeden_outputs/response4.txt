@@ -1,0 +1,127 @@
+Q1: Use the following structures as a template for your response:
+
+UC1: Order a Drink as a Customer
+Preconditions:
+• The customer is logged in.
+• At least one menu item is available.
+
+Main Flow:
+The user opens the application, triggering the system to [Display Menu]. The user then makes a selection, which executes the [Select Item] subflow. The user provides final confirmation to [Place Order], prompting the system to [Confirm Order] and finalize the transaction.
+
+Subflows:
+• [Display Menu] System retrieves and displays available items.
+• [Select Item] Customer chooses an item from the list.
+• [Place Order] Customer confirms (e.g., taps “Order Now”).
+• [Confirm Order] System creates an order number, sets status to ORDERED, and shows a confirmation message.
+
+Alternative Flows and Edge Cases:
+• [AF1: No Available Items] At [Display Menu], if no items are available, show: “Sorry, no items are currently available.” and return to start.
+• [AF2: Item Unavailable After Selection] At [Place Order], if the item is no longer available, show: “Sorry, that item just sold out,” and return to [Display Menu].
+
+UC2: View and Fulfill a New Order
+Preconditions:
+• The Staff member is logged into the Staff Dashboard with the STAFF role.
+
+Main Flow:
+The staff member opens the dashboard, prompting the system to [Check Orders]. The staff selects an order to [Prepare Order] and, upon completion, chooses to [Mark Fulfilled], which directs the system to [Update Status] and remove the order from the active list.
+
+Subflows:
+• [Check Orders] System retrieves all orders with status ORDERED.
+ – If none exist, show “No new orders” [No Orders].
+• [Prepare Order] Staff prepares selected order.
+ – If unable to complete, go to [Cancel Order].
+• [Mark Fulfilled] Staff selects “Mark as Fulfilled”; system sets status to FULFILLED.
+• [Update Status] Order is removed from the ORDERED list.
+• [Cancel Order] Staff selects “Cancel Order”; system sets status to CANCELLED.
+
+Alternative Flows:
+• [AF1: No Orders] At [Check Orders], if no ORDERED orders exist, the System shows “No new orders.”
+• [AF2: Missing Ingredients] At [Prepare Order], if the order cannot be completed, go to [Cancel Order].
+
+UC3: Delivery Driver Delivers Order
+Preconditions:
+The User must be Logged In, and their account must have the Delivery Driver/Courier permissions [AF1].
+
+Mainflow:
+	On the main home page, the User selects "Check Orders," which displays all orders assigned to the User that are ready for pickup [AF2]. The User is then able to select an Order, then select the Pickup option [AF3][AF4]. The User is then directed to the Map, which updates to show the most efficient and safest route for the Driver to take to deliver the order to the Customer [AF5]. Once the Driver delivers the Order, they select the Delivered option, which will remove the Order from the Active Orders and add it to the Delivered Orders under the Customer’s account [AF6].
+
+Subflows:
+Pickup: Once selected, the Order is removed from the Orders Ready list (as seen under Check Orders), and is moved to the Active Orders list under the Users account. Additionally, the Customer receives a notification that the Order has been picked up and will be delivered soon.
+Map: Displays the map of where the User is, as well as the route that should be taken, as well as any potential alternative routes. The Map page will automatically update based on traffic and weather conditions to provide the safest and quickest route.
+
+Alternative Flows:
+[AF1]: If the User does not have Delivery Driver/Courier permissions, they will be redirected to the Customer view of the application, but will be able to go under the Support section of the application to request assistance
+[AF2]: If no order is available and marked as ready for pickup, the User is unable to select Pickup
+[AF3]: If more than one order is marked as ready, all orders can be selected and the Bulk Pickup option can be selected
+A1: # UC11: Schedule Future Order
+**Preconditions:**
+• The customer is logged in.
+• At least one restaurant is available for future delivery.
+• The selected time slot is within the restaurant's operating hours.
+
+**Main Flow:**
+The user opens the application and selects "Schedule Order" from the main menu, triggering the system to [Display Available Time Slots]. The user selects a preferred delivery time, which executes the [Select Time Slot] subflow. The user then browses the menu to [Select Items] and proceeds to [Schedule Order Confirmation], prompting the system to [Store Scheduled Order] and notify relevant parties.
+
+**Subflows:**
+• [Display Available Time Slots] System retrieves and displays available delivery windows for the next 7 days.
+• [Select Time Slot] Customer chooses a specific date and time for delivery.
+• [Select Items] Customer adds items to cart with scheduled delivery details.
+• [Schedule Order Confirmation] Customer reviews order details and confirms scheduling.
+• [Store Scheduled Order] System creates order with status SCHEDULED and sets delivery timestamp.
+
+**Alternative Flows:**
+• [AF1: No Available Slots] At [Display Available Time Slots], if no slots are available, show "No delivery slots available for selected period" and suggest alternative dates.
+• [AF2: Restaurant Closed] At [Select Time Slot], if restaurant is closed during selected time, show "Restaurant unavailable during selected hours" and return to [Display Available Time Slots].
+
+---
+
+# UC12: Manage Delivery Zones
+**Preconditions:**
+• The administrator is logged into the Admin Dashboard with ADMIN role.
+• Geographic mapping service is available.
+
+**Main Flow:**
+The administrator opens the delivery management section, prompting the system to [Display Current Zones]. The administrator selects "Add New Zone" to [Define Zone Boundaries] and sets delivery parameters through [Configure Zone Settings]. Upon completion, the system executes [Update Zone Database] and notifies affected restaurants and drivers.
+
+**Subflows:**
+• [Display Current Zones] System shows map view of all active delivery zones with coverage areas.
+• [Define Zone Boundaries] Administrator draws or selects geographic boundaries for new delivery zone.
+• [Configure Zone Settings] Administrator sets delivery fees, estimated times, and driver assignments.
+• [Update Zone Database] System saves new zone configuration and updates routing algorithms.
+
+**Alternative Flows:**
+• [AF1: Overlapping Zones] At [Define Zone Boundaries], if new zone overlaps existing zones, show conflict resolution options.
+• [AF2: No Available Drivers] At [Configure Zone Settings], if no drivers are assigned to the zone, show warning and suggest driver reassignment.
+
+---
+
+# UC13: Apply Promotional Codes
+**Preconditions:**
+• The customer is logged in and has items in their cart.
+• At least one valid promotional code exists in the system.
+
+**Main Flow:**
+During checkout, the user selects "Apply Promo Code" which triggers [Display Promo Code Entry]. The user enters a code, executing the [Validate Promo Code] subflow. Upon successful validation, the system performs [Apply Discount] and proceeds to [Update Order Total] before finalizing the purchase.
+
+**Subflows:**
+• [Display Promo Code Entry] System shows input field for promotional code entry.
+• [Validate Promo Code] System checks code validity, expiration, and usage limits.
+• [Apply Discount] System calculates discount amount based on promotion rules.
+• [Update Order Total] System recalculates total price with applied discount.
+
+**Alternative Flows:**
+• [AF1: Invalid Code] At [Validate Promo Code], if code is invalid or expired, show "Promo code is invalid or has expired" and return to [Display Promo Code Entry].
+• [AF2: Minimum Order Not Met] At [Apply Discount], if order doesn't meet minimum requirements, show "Order must be above $X to use this code" and return to checkout.
+
+---
+
+# UC14: Handle Customer Complaints
+**Preconditions:**
+• The customer support agent is logged in with SUPPORT role.
+• Customer complaint has been submitted through the app or other channels.
+
+**Main Flow:**
+The support agent accesses the complaint dashboard, triggering [Display Active Complaints]. The agent selects a complaint to [Review Complaint Details] and determines appropriate action through [Categorize Issue]. The agent then proceeds to [Resolve Complaint] and updates the system via [Update Complaint Status].
+
+**Subflows
+------------------------------------------------------------

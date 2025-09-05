@@ -1,0 +1,120 @@
+Q1: Use the following structures as a template for your response:
+
+UC1: Order a Drink as a Customer
+Preconditions:
+• The customer is logged in.
+• At least one menu item is available.
+
+Main Flow:
+The user opens the application, triggering the system to [Display Menu]. The user then makes a selection, which executes the [Select Item] subflow. The user provides final confirmation to [Place Order], prompting the system to [Confirm Order] and finalize the transaction.
+
+Subflows:
+• [Display Menu] System retrieves and displays available items.
+• [Select Item] Customer chooses an item from the list.
+• [Place Order] Customer confirms (e.g., taps “Order Now”).
+• [Confirm Order] System creates an order number, sets status to ORDERED, and shows a confirmation message.
+
+Alternative Flows and Edge Cases:
+• [AF1: No Available Items] At [Display Menu], if no items are available, show: “Sorry, no items are currently available.” and return to start.
+• [AF2: Item Unavailable After Selection] At [Place Order], if the item is no longer available, show: “Sorry, that item just sold out,” and return to [Display Menu].
+
+UC2: View and Fulfill a New Order
+Preconditions:
+• The Staff member is logged into the Staff Dashboard with the STAFF role.
+
+Main Flow:
+The staff member opens the dashboard, prompting the system to [Check Orders]. The staff selects an order to [Prepare Order] and, upon completion, chooses to [Mark Fulfilled], which directs the system to [Update Status] and remove the order from the active list.
+
+Subflows:
+• [Check Orders] System retrieves all orders with status ORDERED.
+ – If none exist, show “No new orders” [No Orders].
+• [Prepare Order] Staff prepares selected order.
+ – If unable to complete, go to [Cancel Order].
+• [Mark Fulfilled] Staff selects “Mark as Fulfilled”; system sets status to FULFILLED.
+• [Update Status] Order is removed from the ORDERED list.
+• [Cancel Order] Staff selects “Cancel Order”; system sets status to CANCELLED.
+
+Alternative Flows:
+• [AF1: No Orders] At [Check Orders], if no ORDERED orders exist, the System shows “No new orders.”
+• [AF2: Missing Ingredients] At [Prepare Order], if the order cannot be completed, go to [Cancel Order].
+
+UC3: Delivery Driver Delivers Order
+Preconditions:
+The User must be Logged In, and their account must have the Delivery Driver/Courier permissions [AF1].
+
+Mainflow:
+	On the main home page, the User selects "Check Orders," which displays all orders assigned to the User that are ready for pickup [AF2]. The User is then able to select an Order, then select the Pickup option [AF3][AF4]. The User is then directed to the Map, which updates to show the most efficient and safest route for the Driver to take to deliver the order to the Customer [AF5]. Once the Driver delivers the Order, they select the Delivered option, which will remove the Order from the Active Orders and add it to the Delivered Orders under the Customer’s account [AF6].
+
+Subflows:
+Pickup: Once selected, the Order is removed from the Orders Ready list (as seen under Check Orders), and is moved to the Active Orders list under the Users account. Additionally, the Customer receives a notification that the Order has been picked up and will be delivered soon.
+Map: Displays the map of where the User is, as well as the route that should be taken, as well as any potential alternative routes. The Map page will automatically update based on traffic and weather conditions to provide the safest and quickest route.
+
+Alternative Flows:
+[AF1]: If the User does not have Delivery Driver/Courier permissions, they will be redirected to the Customer view of the application, but will be able to go under the Support section of the application to request assistance
+[AF2]: If no order is available and marked as ready for pickup, the User is unable to select Pickup
+[AF3]: If more than one order is marked as ready, all orders can be selected and the Bulk Pickup option can be selected
+
+A1: 
+UC11: Update Customer Profile
+Preconditions:
+- The customer is logged into the app.
+
+Main Flow:
+The customer opens the "My Account" section of the app, triggering the system to [Display Profile]. The customer then selects the option to [Edit Profile], which allows them to update their personal information such as name, email, or address. After making the desired changes, the customer taps "Save" to [Update Profile], and the system confirms the changes have been saved.
+
+Subflows:
+- [Display Profile] System retrieves and displays the customer's current profile information.
+- [Edit Profile] Customer can modify any of the editable profile fields.
+- [Update Profile] System saves the updated profile information.
+
+Alternative Flows:
+- [AF1: Invalid Input] At [Edit Profile], if the customer enters invalid data (e.g., an improperly formatted email address), the system displays an error message and prompts the customer to correct the input before allowing the update.
+- [AF2: Network Error] At [Update Profile], if a network error occurs while saving the changes, the system displays a message asking the customer to try again later and returns them to the [Display Profile] screen.
+
+UC12: Set Delivery Preferences
+Preconditions:
+- The customer is logged into the app.
+
+Main Flow:
+The customer opens the "Preferences" section of the app, triggering the system to [Display Preferences]. The customer then selects the "Delivery" option, which allows them to [Set Delivery Preferences] such as preferred delivery time, instructions for the driver, or selected default address. After making the desired changes, the customer taps "Save" to [Update Preferences], and the system confirms the changes have been saved.
+
+Subflows:
+- [Display Preferences] System retrieves and displays the customer's current preferences.
+- [Set Delivery Preferences] Customer can modify delivery-related settings.
+- [Update Preferences] System saves the updated preference information.
+
+Alternative Flows:
+- [AF1: Invalid Input] At [Set Delivery Preferences], if the customer enters invalid data (e.g., a delivery time that is not available), the system displays an error message and prompts the customer to correct the input before allowing the update.
+- [AF2: Network Error] At [Update Preferences], if a network error occurs while saving the changes, the system displays a message asking the customer to try again later and returns them to the [Display Preferences] screen.
+
+UC13: Track Order Status
+Preconditions:
+- The customer has placed an order.
+
+Main Flow:
+The customer opens the "My Orders" section of the app, triggering the system to [Display Orders]. The customer then selects the order they want to track, causing the system to [Display Order Details] including the current status. The customer can then choose to [View Order Timeline], which shows the progression of the order from placement to delivery.
+
+Subflows:
+- [Display Orders] System retrieves and displays all orders placed by the customer.
+- [Display Order Details] System retrieves and displays the details of the selected order, including the current status.
+- [View Order Timeline] System displays a timeline of the order's progression, including timestamps for each stage (e.g., order placed, order accepted, food prepared, order picked up, order delivered).
+
+Alternative Flows:
+- [AF1: No Orders] At [Display Orders], if the customer has not placed any orders, the system displays a message stating "You have no previous orders."
+- [AF2: Order Cancelled] At [Display Order Details], if the order has been cancelled, the system displays a message stating "This order has been cancelled."
+
+UC14: Rate Delivery Experience
+Preconditions:
+- The customer has received a delivered order.
+
+Main Flow:
+After the customer receives their order, the system prompts them to [Rate Delivery Experience]. The customer can then provide a rating for the delivery service and, optionally, leave a comment. Once the customer submits their feedback, the system [Saves Feedback] and updates the delivery driver's performance metrics.
+
+Subflows:
+- [Rate Delivery Experience] Customer selects a rating (e.g., 1-5 stars) and can provide a written comment.
+- [Saves Feedback] System stores the customer's rating and comment, and updates the delivery driver's performance history.
+
+Alternative Flows:
+- [AF1: No Feedback Provided] At [Rate Delivery Experience], if the customer chooses not to provide a rating or comment, the system saves the feedback with a default neutral rating.
+- [AF2:
+------------------------------------------------------------

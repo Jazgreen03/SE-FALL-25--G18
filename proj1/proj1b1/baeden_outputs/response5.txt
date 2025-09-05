@@ -1,0 +1,345 @@
+Q1: UC1: Customer Rates a Delivered Order
+A1: UC1: Customer Rates a Delivered Order
+
+**Preconditions:** 
+• The customer is logged in. 
+• The customer has received a delivered order. 
+• The order status is marked as DELIVERED.
+
+**Main Flow:** 
+The system prompts the customer to [Display Rating Interface] after order completion. The customer engages with the rating system through [Select Rating] and optionally provides additional feedback via [Add Written Review]. The customer finalizes their evaluation by choosing to [Submit Rating], which triggers the system to [Process and Store Rating] for future reference.
+
+**Subflows:** 
+• [Display Rating Interface] System shows rating categories including overall satisfaction, food quality, delivery speed, order accuracy, and delivery personnel service with 1-5 star scales. 
+• [Select Rating] Customer assigns star ratings for each category and overall experience. 
+• [Add Written Review] Customer optionally enters text comments about their experience. 
+• [Submit Rating] Customer confirms rating submission (e.g., taps "Submit Review"). 
+• [Process and Store Rating] System saves rating data, updates restaurant and delivery statistics, and displays confirmation message.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: Rating Already Submitted] At [Display Rating Interface], if customer has already rated this order, show: "You have already rated this order. Would you like to update your rating?" with options to modify or cancel. 
+• [AF2: Incomplete Rating Submission] At [Submit Rating], if required rating fields are missing, show: "Please rate at least the overall experience before submitting" and return to [Select Rating]. 
+• [AF3: System Error During Submission] At [Process and Store Rating], if system fails to save, show: "Rating could not be submitted. Please try again later" and retain entered data for retry.
+------------------------------------------------------------
+Q2: UC2: Staff Edits an Existing Menu Item
+A2: UC2: Staff Edits an Existing Menu Item
+
+Preconditions: 
+• The restaurant staff member is logged in with menu management permissions. 
+• At least one menu item exists in the system. 
+• The restaurant profile is active and verified.
+
+Main Flow: 
+The staff member accesses the menu management section, triggering the system to [Display Current Menu]. The staff member selects an existing item, which executes the [Select Item to Edit] subflow. The staff member makes desired changes through [Modify Item Details], then confirms the updates to [Save Changes], prompting the system to [Update Menu Item] and refresh the display.
+
+Subflows: 
+• [Display Current Menu] System retrieves and displays all current menu items with their details and availability status. 
+• [Select Item to Edit] Staff member chooses a specific menu item from the current menu list. 
+• [Modify Item Details] Staff member updates item information such as name, description, price, ingredients, dietary restrictions, or availability status. 
+• [Save Changes] Staff member confirms modifications (e.g., taps "Update Item"). 
+• [Update Menu Item] System validates changes, updates the database, and displays a confirmation message with the updated item details.
+
+Alternative Flows and Edge Cases: 
+• [AF1: No Menu Items Available] At [Display Current Menu], if no menu items exist, show: "No menu items found. Please add items first," and redirect to add item function. 
+• [AF2: Invalid Price Entry] At [Save Changes], if price is negative or invalid format, show: "Please enter a valid price," and return to [Modify Item Details]. 
+• [AF3: Concurrent Edit Conflict] At [Save Changes], if another staff member modified the same item simultaneously, show: "This item was recently updated by another user. Please refresh and try again," and return to [Display Current Menu].
+------------------------------------------------------------
+Q3: UC3: Admin Views System Usage Reports
+A3: UC3: Admin Views System Usage Reports
+
+**Preconditions:** 
+• The admin is logged in to the admin panel. 
+• System has collected usage data from customer, restaurant, and driver interactions. 
+• At least one completed transaction exists in the system.
+
+**Main Flow:** 
+The admin accesses the admin panel and navigates to the reports section, triggering the system to [Display Report Dashboard]. The admin selects specific report parameters, which executes the [Configure Report Settings] subflow. The system then processes the request to [Generate Usage Report], and finally [Display Report Data] to present the comprehensive analytics.
+
+**Subflows:** 
+• [Display Report Dashboard] System presents available report categories (orders, revenue, user activity, delivery metrics, restaurant performance). 
+• [Configure Report Settings] Admin selects date range, report type, and specific metrics (e.g., by restaurant, by region, by time period). 
+• [Generate Usage Report] System queries database, aggregates data, and compiles statistics including total orders, active users, delivery times, and revenue analytics. 
+• [Display Report Data] System presents formatted report with charts, tables, and key performance indicators, with options to export or print.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: No Data Available] At [Generate Usage Report], if no data exists for selected parameters, show: "No data available for the selected criteria. Please adjust your filters." and return to [Configure Report Settings]. 
+• [AF2: Report Generation Timeout] At [Generate Usage Report], if processing takes too long due to large dataset, show: "Report is taking longer than expected. Please try with a smaller date range." and return to [Configure Report Settings]. 
+• [AF3: Export Failure] At [Display Report Data], if export functionality fails, show: "Unable to export report at this time. Please try again later." but continue to display the report on screen.
+------------------------------------------------------------
+Q4: UC4: Customer Reorders a Previous Meal
+A4: UC4: Customer Reorders a Previous Meal
+
+**Preconditions:** 
+• The customer is logged in to their account. 
+• The customer has at least one previous order in their order history. 
+• The restaurant from the previous order is currently available and accepting orders.
+
+**Main Flow:** 
+The customer navigates to their order history, triggering the system to [Display Order History]. The customer selects a previous order to reorder, which executes the [Select Previous Order] subflow. The system then performs [Verify Item Availability] to ensure all items are still available. The customer reviews the reorder details and executes [Confirm Reorder], prompting the system to [Process Reorder] and complete the transaction.
+
+**Subflows:** 
+• [Display Order History] System retrieves and displays the customer's past orders with order date, restaurant name, and items ordered. 
+• [Select Previous Order] Customer chooses an order from their history list by tapping "Reorder" button. 
+• [Verify Item Availability] System checks if all items from the selected order are currently available and if the restaurant is accepting orders. 
+• [Confirm Reorder] Customer reviews the order details, delivery address, and total amount, then confirms the reorder. 
+• [Process Reorder] System creates a new order with the same items, generates an order number, sets status to ORDERED, and displays confirmation.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: No Order History] At [Display Order History], if the customer has no previous orders, show: "You haven't placed any orders yet. Start exploring our restaurants!" and redirect to restaurant catalog. 
+• [AF2: Restaurant Unavailable] At [Verify Item Availability], if the restaurant is closed or not accepting orders, show: "Sorry, [Restaurant Name] is currently unavailable. Would you like to find similar restaurants?" and offer alternative suggestions. 
+• [AF3: Some Items Unavailable] At [Verify Item Availability], if some items are no longer available, show: "Some items from your previous order are unavailable. Would you like to proceed with available items or modify your order?" and allow customer to adjust the order or cancel.
+------------------------------------------------------------
+Q5: UC5: Delivery Driver Accepts a New Delivery Assignment
+A5: UC5: Delivery Driver Accepts a New Delivery Assignment
+
+**Preconditions:** 
+• The delivery driver is logged into the driver app and marked as available
+• The driver has completed their profile setup with vehicle information and delivery preferences
+• At least one delivery order is ready for assignment in the system
+• The driver's GPS location is active and trackable
+
+**Main Flow:** 
+The system identifies an available delivery assignment and executes [Send Assignment Notification] to the driver. The driver reviews the assignment details through [Display Assignment Details] and decides to [Accept Assignment]. The system then processes the acceptance via [Confirm Assignment] and transitions the driver to active delivery mode through [Initialize Delivery Process].
+
+**Subflows:**
+• [Send Assignment Notification] System sends push notification and audio alert to driver's device with basic order information (pickup location, estimated distance, and delivery fee)
+• [Display Assignment Details] System shows complete assignment information including restaurant address, customer address, estimated delivery time, payment amount, and any special delivery instructions
+• [Accept Assignment] Driver taps "Accept" button within the time limit (typically 60-90 seconds)
+• [Confirm Assignment] System assigns the order to the driver, updates order status to "DRIVER_ASSIGNED", and removes the assignment from other available drivers' queues
+• [Initialize Delivery Process] System activates GPS navigation to restaurant, starts delivery timer, and notifies both restaurant and customer that a driver has been assigned
+
+**Alternative Flows and Edge Cases:**
+• [AF1: Driver Declines Assignment] At [Accept Assignment], if driver taps "Decline" or takes no action within time limit, system shows "Assignment declined" and reassigns order to next available driver
+• [AF2: Assignment Already Taken] At [Accept Assignment], if another driver has already accepted the same order, show "This delivery has been assigned to another driver" and return to waiting mode
+• [AF3: Driver Connection Issues] At [Send Assignment Notification], if driver's app is offline or has poor connectivity, system temporarily removes driver from available pool and attempts to reconnect
+• [AF4: Multiple Delivery Opportunity] At [Display Assignment Details], if driver is already handling a delivery, system shows option to "Add to Route" for nearby pickups, allowing batch delivery management
+------------------------------------------------------------
+Q6: UC6: Restaurant Staff Marks Item as Out of Stock
+A6: UC6: Restaurant Staff Marks Item as Out of Stock
+
+Preconditions: 
+• Restaurant staff member is logged into the system with appropriate permissions. 
+• At least one menu item exists in the restaurant's inventory. 
+• The restaurant is currently accepting orders through the platform.
+
+Main Flow: 
+The restaurant staff member accesses the inventory management interface, triggering the system to [Display Current Menu Items]. The staff member identifies an unavailable item and executes the [Select Item to Update] subflow. The staff member then [Mark Item Out of Stock], prompting the system to [Update Item Status] and notify relevant parties about the inventory change.
+
+Subflows: 
+• [Display Current Menu Items] System retrieves and displays all menu items with current availability status and stock levels.
+• [Select Item to Update] Staff member chooses a specific menu item from the inventory list.
+• [Mark Item Out of Stock] Staff member changes item status to unavailable and optionally adds a reason (e.g., "ingredients depleted," "preparation equipment broken").
+• [Update Item Status] System immediately updates item availability across all customer-facing interfaces and sends notifications to active customers browsing that item.
+
+Alternative Flows and Edge Cases: 
+• [AF1: Item Already in Customer Cart] At [Update Item Status], if the item is currently in pending customer carts, system removes item from carts and sends notification: "Sorry, [item name] is no longer available and has been removed from your cart."
+• [AF2: Active Orders Containing Item] At [Update Item Status], if there are confirmed orders containing this item that haven't started preparation, system flags these orders for staff review and prompts: "3 pending orders contain this item. Please contact customers or suggest substitutions."
+• [AF3: No Permission to Modify Inventory] At [Select Item to Update], if staff member lacks inventory management permissions, show: "You don't have permission to modify inventory. Please contact your manager" and return to main interface.
+------------------------------------------------------------
+Q7: UC7: Admin Manages User Accounts and Permissions
+A7: UC7: Admin Manages User Accounts and Permissions
+
+**Preconditions:**
+• The admin is logged into the admin panel with appropriate permissions.
+• User accounts exist in the system (customers, restaurant owners, delivery drivers).
+• The system database is accessible and operational.
+
+**Main Flow:**
+The admin accesses the admin panel and navigates to the user management section, triggering the system to [Display User Accounts]. The admin selects a specific user account to [View User Details]. Based on the required action, the admin can [Modify User Permissions], [Update Account Status], or [Assign User Roles]. The admin confirms changes, prompting the system to [Apply Changes] and update the user's account accordingly.
+
+**Subflows:**
+• [Display User Accounts] System retrieves and displays a list of all user accounts with basic information (name, email, role, status).
+• [View User Details] Admin selects a user to view comprehensive account information including registration date, activity history, and current permissions.
+• [Modify User Permissions] Admin adjusts access levels for specific features (e.g., menu management, order processing, payment access).
+• [Update Account Status] Admin changes account status (active, suspended, blocked, pending verification).
+• [Assign User Roles] Admin assigns or changes user roles (customer, restaurant manager, delivery driver, support staff).
+• [Apply Changes] System validates changes, updates database records, and sends notification to affected user.
+
+**Alternative Flows and Edge Cases:**
+• [AF1: Insufficient Admin Permissions] At [Modify User Permissions], if admin lacks sufficient privileges, show: "Access denied. You do not have permission to modify user accounts," and return to [Display User Accounts].
+• [AF2: User Account Locked] At [View User Details], if the selected account is locked by another admin, show: "This account is currently being modified by another administrator. Please try again later," and return to [Display User Accounts].
+• [AF3: System Database Error] At [Apply Changes], if database update fails, show: "Unable to save changes due to system error. Please try again," and retain current user session without applying changes.
+• [AF4: Invalid Permission Assignment] At [Assign User Roles], if role assignment conflicts with business rules, show: "Invalid role assignment. Please select appropriate permissions for this user type," and return to [Modify User Permissions].
+------------------------------------------------------------
+Q8: UC8: Customer Sends Feedback to Restaurant
+A8: UC8: Customer Sends Feedback to Restaurant
+
+**Preconditions:** 
+• The customer has a completed order with "DELIVERED" status.
+• The customer is logged into the application.
+• The feedback window period has not expired (typically 7-30 days post-delivery).
+
+**Main Flow:** 
+The customer accesses their order history and selects a completed order, triggering the system to [Display Feedback Options]. The customer then proceeds to [Rate Experience] and optionally [Write Review]. Once satisfied with their feedback, the customer executes [Submit Feedback], prompting the system to [Process Feedback] and notify relevant parties.
+
+**Subflows:**
+• [Display Feedback Options] System shows rating interface (1-5 stars) with categories for food quality, delivery time, packaging, and overall experience, plus optional text review field.
+• [Rate Experience] Customer selects star ratings for each category and overall experience.
+• [Write Review] Customer optionally adds written comments about their experience (character limit: 500 words).
+• [Submit Feedback] Customer confirms submission by tapping "Send Feedback."
+• [Process Feedback] System saves feedback to database, calculates updated restaurant ratings, sends notification to restaurant, and displays confirmation message to customer.
+
+**Alternative Flows and Edge Cases:**
+• [AF1: Feedback Already Submitted] At [Display Feedback Options], if feedback was already provided for this order, show existing feedback with option to "Edit Review" instead of creating new feedback.
+• [AF2: Inappropriate Content Detected] At [Submit Feedback], if the system detects offensive language or inappropriate content, show: "Your review contains inappropriate content. Please revise and resubmit" and return to [Write Review].
+• [AF3: Network Error During Submission] At [Process Feedback], if submission fails due to connectivity issues, show: "Unable to submit feedback. Please try again later" and save draft locally for later submission.
+• [AF4: Expired Feedback Window] At [Display Feedback Options], if the feedback period has expired, show: "Feedback period for this order has ended" and return to order history.
+------------------------------------------------------------
+Q9: UC9: Staff Adds Limited-Time Promotional Items to Menu
+A9: UC9: Staff Adds Limited-Time Promotional Items to Menu
+
+**Preconditions:** 
+• The restaurant staff member is logged in with menu management privileges. 
+• The restaurant has active menu items available. 
+• The promotional campaign details have been finalized.
+
+**Main Flow:** 
+The staff member accesses the menu management system and navigates to [Access Promotional Tools]. The staff member then proceeds to [Create Promotional Item] with specific campaign parameters. Once the promotional details are configured, the staff member executes [Set Promotional Schedule] to define the active period. Finally, the system processes the request to [Publish Promotional Item] and makes it visible to customers.
+
+**Subflows:** 
+• [Access Promotional Tools] Staff navigates to the promotional menu section within the management dashboard. 
+• [Create Promotional Item] Staff defines the promotional offer (e.g., "Buy One Get One Free," combo deals, seasonal specials) and selects applicable menu items. 
+• [Set Promotional Schedule] Staff configures start date, end date, daily time windows, and quantity limits for the promotion. 
+• [Publish Promotional Item] System validates the promotional parameters, updates the customer-facing menu with promotional badges, and sends notifications to active users about the new offer.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: Conflicting Promotion] At [Create Promotional Item], if the selected items already have active promotions, show: "These items are already part of an active promotion. Please resolve conflicts before proceeding." and return to item selection. 
+• [AF2: Invalid Schedule] At [Set Promotional Schedule], if the end date is before the start date or the promotion duration exceeds system limits, show: "Invalid promotional schedule. Please check your dates and try again." and return to schedule configuration. 
+• [AF3: Insufficient Inventory] At [Publish Promotional Item], if the restaurant's inventory cannot support the promotional quantity, show: "Warning: Current inventory may not support this promotion. Continue anyway?" with options to proceed or modify quantities.
+------------------------------------------------------------
+Q10: UC10: Customer Tracks Real-Time Order Delivery
+A10: UC10: Customer Tracks Real-Time Order Delivery
+
+**Preconditions:** 
+• The customer has successfully placed an order and received order confirmation.
+• The order status is PREPARING, OUT_FOR_DELIVERY, or DELIVERED.
+• GPS and location services are enabled on the customer's device.
+
+**Main Flow:** 
+The customer opens the application and navigates to the order tracking section, prompting the system to [Display Order Status]. The system then executes [Load Real-Time Location] to show the delivery progress. The customer can interact with the tracking interface to [View Delivery Details] and optionally [Contact Delivery Agent]. The system continuously updates the display through [Refresh Location Data] until the order reaches DELIVERED status.
+
+**Subflows:**
+• [Display Order Status] System retrieves current order information and displays status (e.g., "Your order is being prepared" or "Driver is on the way").
+• [Load Real-Time Location] System connects to GPS tracking and displays driver location on interactive map with estimated arrival time.
+• [View Delivery Details] Customer can see driver name, contact information, vehicle details, and optimized delivery route.
+• [Contact Delivery Agent] Customer can call or message the assigned delivery driver directly through the app.
+• [Refresh Location Data] System automatically updates driver position, estimated arrival time, and delivery status every 30 seconds.
+
+**Alternative Flows and Edge Cases:**
+• [AF1: GPS Connection Lost] At [Load Real-Time Location], if GPS signal is unavailable, show: "Tracking temporarily unavailable. Last known location: [address]" and continue with status updates only.
+• [AF2: Driver Unreachable] At [Contact Delivery Agent], if driver cannot be contacted, show: "Driver is currently unavailable. Contact customer service for assistance" with support phone number.
+• [AF3: Delivery Delay] During [Refresh Location Data], if estimated arrival time extends beyond original estimate, automatically send push notification: "Your delivery is running [X] minutes late due to [traffic/weather/high demand]" and update ETA.
+• [AF4: Order Status Error] At [Display Order Status], if order cannot be found in system, show: "Unable to track order. Please contact customer service with order #[number]" and provide support options.
+------------------------------------------------------------
+Q11: UC11: Admin Exports Financial and Sales Reports
+A11: UC11: Admin Exports Financial and Sales Reports
+
+**Preconditions:** 
+• The admin is logged in with appropriate permissions. 
+• The system contains historical order and transaction data. 
+• At least one completed transaction exists in the system.
+
+**Main Flow:** 
+The admin opens the reports section, prompting the system to [Display Report Options]. The admin selects the desired report type and parameters, which executes the [Configure Report Parameters] subflow. The admin initiates the export process to [Generate Report], and the system processes the request to [Export and Deliver Report].
+
+**Subflows:** 
+• [Display Report Options] System shows available report types (daily sales, monthly revenue, commission reports, tax summaries, vendor performance metrics).
+• [Configure Report Parameters] Admin selects date range, report format (CSV, PDF, Excel), specific vendors or regions, and revenue breakdown options.
+• [Generate Report] System compiles data from order history, payment records, and commission calculations based on selected parameters.
+• [Export and Deliver Report] System formats the report, generates download link, and sends notification email to admin with file attachment or download instructions.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: No Data Available] At [Generate Report], if no transactions exist for the selected period, show: "No data available for the specified date range. Please adjust your parameters." and return to [Configure Report Parameters].
+• [AF2: Large Dataset Processing] At [Generate Report], if the dataset exceeds processing limits, show: "Report is being processed and will be emailed when complete" and send the report via email when ready.
+• [AF3: Export Failure] At [Export and Deliver Report], if file generation fails due to system error, show: "Report generation failed. Please try again or contact support." and log the error for technical review.
+------------------------------------------------------------
+Q12: UC12: Staff Updates Estimated Prep Time for Orders
+A12: UC12: Staff Updates Estimated Prep Time for Orders
+
+Preconditions: 
+• Restaurant staff member is logged into the system. 
+• At least one active order exists with "Confirmed" or "In Preparation" status. 
+• The staff member has permission to modify order details.
+
+Main Flow: 
+The staff member accesses the order management dashboard, triggering the system to [Display Active Orders]. The staff member selects a specific order, which executes the [View Order Details] subflow. The staff member then [Modify Prep Time] based on current kitchen conditions, prompting the system to [Update Delivery Estimates] and [Notify Stakeholders] of the changes.
+
+Subflows: 
+• [Display Active Orders] System retrieves and displays all orders with "Confirmed" or "In Preparation" status, showing current estimated prep times. 
+• [View Order Details] System displays order specifics including items, quantities, original prep time estimate, and current status. 
+• [Modify Prep Time] Staff member inputs new estimated preparation time based on kitchen capacity, ingredient availability, or order complexity. 
+• [Update Delivery Estimates] System recalculates total delivery time by combining new prep time with courier travel time. 
+• [Notify Stakeholders] System sends updated time estimates to customer via app notification and email, and alerts assigned courier of schedule changes.
+
+Alternative Flows and Edge Cases: 
+• [AF1: Order Already Picked Up] At [View Order Details], if order status shows "Picked Up" or "Delivered," display: "Cannot modify prep time - order has already been collected" and return to [Display Active Orders]. 
+• [AF2: Invalid Time Entry] At [Modify Prep Time], if entered time is unrealistic (negative or exceeds 4 hours), show: "Please enter a valid preparation time between 1-240 minutes" and prompt for re-entry. 
+• [AF3: Customer Notification Failure] At [Notify Stakeholders], if customer notification fails, log the error but continue processing, ensuring courier is still notified of timing changes.
+------------------------------------------------------------
+Q13: UC13: Customer Edits Order Before Final Submission
+A13: UC13: Customer Edits Order Before Final Submission
+
+**Preconditions:** 
+• The customer is logged in.
+• The customer has added at least one item to their cart.
+• The order has not been submitted for final confirmation.
+
+**Main Flow:** 
+The customer reviews their current cart and decides to make changes, triggering the system to [Display Current Cart]. The customer selects an item to modify, executing the [Edit Cart Item] subflow. After making desired changes, the customer can [Update Cart Totals] and proceed to [Save Changes]. The system then returns the customer to the cart overview with updated information.
+
+**Subflows:** 
+• [Display Current Cart] System shows all items in cart with quantities, customizations, and current total price.
+• [Edit Cart Item] Customer can modify quantity, add/remove customizations, or delete items entirely from their order.
+• [Update Cart Totals] System recalculates subtotal, taxes, delivery fees, and final total based on cart modifications.
+• [Save Changes] System preserves all modifications and updates the cart state for the current session.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: Item No Longer Available] At [Edit Cart Item], if a previously added item is no longer available, show: "This item is no longer available and has been removed from your cart," update totals, and return to [Display Current Cart].
+• [AF2: Minimum Order Not Met] At [Update Cart Totals], if modifications result in falling below restaurant minimum order amount, display: "Your order is below the minimum requirement of $X. Please add more items," and highlight the minimum order threshold.
+• [AF3: Empty Cart After Edits] At [Save Changes], if all items have been removed, show: "Your cart is empty. Browse our menu to add items," and redirect to [Display Menu].
+------------------------------------------------------------
+Q14: UC14: Admin Broadcasts Announcement to All Users
+A14: UC14: Admin Broadcasts Announcement to All Users
+
+**Preconditions:** 
+• The admin is logged into the admin panel with broadcast privileges. 
+• The system has registered users (customers, drivers, and/or restaurants). 
+• The notification service is operational.
+
+**Main Flow:** 
+The admin accesses the campaign management section and selects [Create Broadcast]. The admin then composes the announcement content and executes [Configure Target Audience]. After reviewing the message details, the admin initiates [Send Broadcast], prompting the system to [Deliver Notifications] and provide confirmation of the broadcast status.
+
+**Subflows:** 
+• [Create Broadcast] Admin selects announcement type (maintenance, promotion, policy update, etc.) and enters message title and content. 
+• [Configure Target Audience] Admin selects recipient groups (all users, customers only, drivers only, restaurants only, or specific geographic zones). 
+• [Send Broadcast] Admin reviews message preview and confirms broadcast delivery by clicking "Send Now" or "Schedule for Later". 
+• [Deliver Notifications] System processes the broadcast queue, sends push notifications to selected user groups, and logs delivery status for each recipient.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: No Active Users in Selected Audience] At [Send Broadcast], if no active users match the target criteria, show: "No recipients found for selected audience. Please adjust your targeting settings." and return to [Configure Target Audience]. 
+• [AF2: Notification Service Unavailable] At [Deliver Notifications], if the push notification service fails, show: "Broadcast service temporarily unavailable. Message saved as draft." and store the announcement for retry. 
+• [AF3: Scheduled Broadcast] At [Send Broadcast], if admin selects "Schedule for Later," system prompts for date/time selection and queues the message for future delivery with confirmation: "Broadcast scheduled successfully."
+------------------------------------------------------------
+Q15: UC15: Restaurant Sets Business Hours and Availability
+A15: UC15: Restaurant Sets Business Hours and Availability
+
+**Preconditions:** 
+• The restaurant partner is logged into the restaurant management system.
+• The restaurant has an active account with the platform.
+• At least one menu item exists in the system.
+
+**Main Flow:** 
+The restaurant manager opens the business settings panel, triggering the system to [Display Current Schedule]. The manager selects the option to modify availability, which executes the [Configure Operating Hours] subflow. The manager can then adjust real-time availability through [Set Current Status], and finally saves changes to [Update Business Schedule], prompting the system to [Notify Platform] of the availability changes.
+
+**Subflows:** 
+• [Display Current Schedule] System retrieves and shows current business hours, special closures, and real-time availability status.
+• [Configure Operating Hours] Manager sets weekly schedule including opening/closing times, break periods, and special holiday hours.
+• [Set Current Status] Manager toggles between "Open," "Closed," "Busy/Limited Orders," or "Emergency Closure" with optional custom messages.
+• [Update Business Schedule] System validates the schedule for conflicts and saves the new availability settings.
+• [Notify Platform] System updates the restaurant's visibility to customers and adjusts estimated delivery times based on new hours.
+
+**Alternative Flows and Edge Cases:** 
+• [AF1: Peak Hours Conflict] At [Configure Operating Hours], if manager sets hours during known peak delivery times without adequate staffing warnings, show: "Warning: Peak delivery hours detected. Consider capacity limitations during lunch/dinner rushes."
+• [AF2: Emergency Closure] At [Set Current Status], if manager selects emergency closure, immediately hide restaurant from customer app and show: "Restaurant temporarily unavailable" to customers with existing orders redirected to customer service.
+• [AF3: Overlapping Break Times] At [Update Business Schedule], if break periods conflict with operating hours, show: "Schedule conflict detected. Please adjust break times to fall within operating hours" and return to [Configure Operating Hours].
+------------------------------------------------------------
