@@ -1,3 +1,9 @@
 .env
 
 /proj1/proj1b1/venv
+/proj1/proj1b1.baeden_page.file
+
+RAG/API Test/.env
+RAG/API Test/page.file
+RAG/Local Test/.env
+RAG/Local Test/page.file
